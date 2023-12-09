@@ -105,3 +105,6 @@
   - Heroku
 - API
   - Geocoding系API（ユーザー提供の「観光地名」「都道府県」を元におおよその住所を返して投稿に割り当て）
+
+## 画面遷移図
+https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=LuFJgdIqyuprDBfb-1
