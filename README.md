@@ -108,3 +108,6 @@
 
 ## 画面遷移図
 https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=LuFJgdIqyuprDBfb-1
+
+## ER図
+[![Image from Gyazo](https://i.gyazo.com/dd60d98d4f450b9e8125ff306e462bdb.png)](https://gyazo.com/dd60d98d4f450b9e8125ff306e462bdb)
