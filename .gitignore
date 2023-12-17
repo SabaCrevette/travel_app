@@ -1,0 +1,55 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/tmp/pids/*
+!/tmp/pids/
+!/tmp/pids/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+/tmp/storage/*
+!/tmp/storage/
+!/tmp/storage/.keep
+
+/public/assets
+/public/uploads
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# Ignore node modules and vendor bundles
+/node_modules
+/vendor/bundle
+
+# Ignore local environment uploaded files
+/uploads/
+
+# Ignore local settings files
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+# Ignore log files and temporary files.
+*.log
+src/.temp
+
+# Ignore system files.
+.DS_Store
+
+# Ignore build outputs.
+dist
+
+# Ignore environment configuration files.
+.env
+.env.*
