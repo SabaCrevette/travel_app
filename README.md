@@ -111,3 +111,7 @@ https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/52fae41e800b2f59a2d8d0856f5d3a66.png)](https://gyazo.com/52fae41e800b2f59a2d8d0856f5d3a66)
+
+## セットアップ方法
+- `docker compose up -d --build`
+- `docker compose exec web rails db:prepare`
