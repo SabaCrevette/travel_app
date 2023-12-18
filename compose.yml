@@ -15,6 +15,7 @@ services:
     command: sh -c "rm -f tmp/pids/server.pid && ./bin/dev"
     volumes:
       - .:/travel_app
+      - node_modules:/travel_app/node_modules
     ports:
       - 3000:3000
     stdin_open: true
@@ -23,3 +24,4 @@ services:
       - db
 volumes:
   postgres_volume:
+  node_modules:
