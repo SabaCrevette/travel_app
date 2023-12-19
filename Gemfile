@@ -52,6 +52,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 5.0'
   # factory_botの導入
   gem 'factory_bot_rails'
+  # Bulletの追加
+  gem 'bullet'
 end
 
 group :development do

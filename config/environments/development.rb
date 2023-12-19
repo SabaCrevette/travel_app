@@ -3,6 +3,16 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  # Bulletの設定
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.alert = true # ブラウザのJavaScriptアラートとして警告を表示
+    Bullet.bullet_logger = true # log/bullet.logへのログ記録
+    Bullet.console = true # ブラウザのコンソールログに警告を表示
+    Bullet.rails_logger = true # Railsのログに警告を出力
+    Bullet.add_footer = true # 画面下部に警告を表示
+  end
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
