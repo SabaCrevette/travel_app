@@ -27,9 +27,10 @@ module TravelApp
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
       g.helper false # helperファイルの生成をスキップ
-      g.test_framework :rspec # RSpecのみ生成(minitestはスキップ)
       g.routes false           # ルーティングの記述をスキップ
       g.javascripts false      # JSファイルの生成をスキップ
+      g.test_framework :rspec # RSpecのみ生成(minitestはスキップ)
+        
     end
   end
 end
