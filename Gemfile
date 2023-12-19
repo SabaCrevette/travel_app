@@ -75,4 +75,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  # webdriversの導入
+  gem 'webdrivers'
+  # Fakerの導入
+  gem 'faker'
 end
