@@ -50,6 +50,8 @@ group :development, :test do
   gem 'rubocop', require: false
   # RSpecの導入
   gem 'rspec-rails', '~> 5.0'
+  # factory_botの導入
+  gem 'factory_bot_rails'
 end
 
 group :development do
