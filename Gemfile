@@ -48,6 +48,8 @@ group :development, :test do
   gem 'debug', platforms: %i[mri windows]
   # rubocopの導入
   gem 'rubocop', require: false
+  # RSpecの導入
+  gem 'rspec-rails', '~> 5.0'
 end
 
 group :development do
