@@ -1,6 +1,8 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails/all"
+require_relative 'boot'
+
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,7 +16,7 @@ module TravelApp
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -24,8 +26,8 @@ module TravelApp
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.generators do |g|
-      g.helper false           # helperファイルの生成をスキップ
-      g.test_framework :rspec   # RSpecのみ生成(minitestはスキップ)
+      g.helper false # helperファイルの生成をスキップ
+      g.test_framework :rspec # RSpecのみ生成(minitestはスキップ)
       g.routes false           # ルーティングの記述をスキップ
       g.javascripts false      # JSファイルの生成をスキップ
     end
