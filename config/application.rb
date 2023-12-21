@@ -30,6 +30,7 @@ module TravelApp
       g.routes false           # ルーティングの記述をスキップ
       g.javascripts false      # JSファイルの生成をスキップ
       g.test_framework :rspec # RSpecのみ生成(minitestはスキップ)
+      g.request_specs false # Request specsの生成をスキップ
     end
   end
 end
