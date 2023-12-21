@@ -13,6 +13,9 @@ Rails.application.configure do
     Bullet.add_footer = true # 画面下部に警告を表示
   end
 
+  # better_errorsをdocker上で使えるようにするための設定
+  BetterErrors::Middleware.allow_ip! "0.0.0.0/0"
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded any time
