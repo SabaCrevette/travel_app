@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   root 'tops#index'
   get '/mypage', to: 'users#index'
   get '/mypage/:user_id', to: 'users#show'
+  
+  resources :users, only: %i[new create]
+  resources :sessions, only: %i[new create destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
