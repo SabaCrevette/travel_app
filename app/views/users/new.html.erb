@@ -1,5 +1,29 @@
-<h1>Users#new</h1>
-<p>app/views/users/new.html.erb</p>
-
-<h1>Mypage  /users/new</h1>
-<h1>ユーザー情報登録ページ</h1>
+<div class='container flex justify-center'>
+  <div class='row'>
+    <div class='col-md-10 col-lg-8 mx-auto'>
+      <h1>アカウント登録</h1>
+      <%= form_with model: @user, local: true do |f| %>
+        <div class="relative">
+          <%= f.label :name, "名前", class: "leading-7 text-sm text-gray-600" %>
+          <%= f.text_field :name, id: "name", class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+        </div>
+        <div class="relative">
+          <%= f.label :email, "Email", class: "leading-7 text-sm text-gray-600" %>
+          <%= f.email_field :email, id: "email", class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+        </div>
+        <div class="relative">
+          <%= f.label :password, "password", class: "leading-7 text-sm text-gray-600" %>
+          <%= f.password_field :password, id: "password", class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+        </div>
+        <div class="relative">
+          <%= f.label :password_confirmation, "password（確認用）", class: "leading-7 text-sm text-gray-600" %>
+          <%= f.password_field :password_confirmation, id: "password_confirmation", class: "w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" %>
+        </div>
+        <%= f.submit 'アカウント登録', class: 'btn btn-primary mt-4' %>
+      <% end %>
+      <div class='text-center mt-4'>
+        <%= link_to 'ログインページへ', login_path, class: "text-indigo-500" %>
+      </div>
+    </div>
+  </div>
+</div>
