@@ -1,20 +1,20 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: %i[new create]
+
   def new; end
 
   def create
-    user = User.authenticate(params[:email], params[:password])
+    @user = login(params[:email], params[:password])
 
-    if user
-      session[:user_id] = user.id
-      redirect_to root_url, notice: 'ログイン成功'
+    if @user
+      redirect_to root_path
     else
-      flash.now.alert = 'メールまたはパスワードが間違っています。'
       render :new
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    redicert_to root_url, notice: 'ログアウトしました。'
+    logout
+    redirect_to root_path, status: :see_other
   end
 end

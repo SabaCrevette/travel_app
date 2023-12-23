@@ -46,6 +46,9 @@ gem 'bootsnap', require: false
 # sorceryの導入
 gem 'sorcery'
 
+# Hotwireを用いたturboの導入
+gem 'hotwire-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
