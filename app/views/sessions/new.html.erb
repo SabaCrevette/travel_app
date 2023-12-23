@@ -1,18 +1,17 @@
 <div class="container flex justify-center">
   <div class="row">
     <div class="col-md-10 col-lg-8 mx-auto">
-      <h1>ログイン</h1>
       <%= form_with url: login_path, local: true do |f| %>
         <div class="relative mb-4">
           <%= f.label :email, class: "leading-7 text-sm text-gray-600" %>
-          <%= f.text_field :email, class: 'w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out' %>
+          <%= f.email_field :email, class: 'w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out' %>
         </div>
         <div class="relative mb-4">
           <%= f.label :password, class: "leading-7 text-sm text-gray-600" %>
           <%= f.password_field :password, class: 'w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out' %>
         </div>
         <div class="flex justify-center">
-          <%= f.submit 'ログイン', class: 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg focus:outline-none hover:bg-blue-600' %>
+          <%= f.submit t('.login'), class: 'inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg focus:outline-none hover:bg-blue-600' %>
         </div>
       <% end %>
       <div class='text-center mt-4'>

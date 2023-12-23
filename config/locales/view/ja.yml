@@ -1,0 +1,20 @@
+ja:
+  defaults: # 使い回しの多い翻訳や特定のスコープに限定されない汎用的な翻訳を記載
+    require_login: ログインしてください
+    flash:
+      created: "%{item}を作成しました"
+      not_created: "{item}を作成できませんでした"
+  users: # controller/usersに対応
+    new: # newアクションに対応
+      registration: アカウント登録
+    create:
+      success: ユーザー登録が完了しました
+      failure: ユーザー登録に失敗しました
+  sessions:
+    new:
+      login: ログイン
+    create:
+      success: ログインしました
+      failure: ログインに失敗しました
+    destroy:
+      success: ログアウトしました
