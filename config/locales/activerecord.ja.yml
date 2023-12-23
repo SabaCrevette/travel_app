@@ -1,0 +1,47 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      post: 投稿
+      prefecture: 都道府県
+      area: エリア
+      city: 市町村
+      tag: タグ
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        role: 権限
+      post:
+        location: 観光地・スポット
+        text: 本文
+        event_status: 開催状況
+        public_status: 公開設定
+      prefecture:
+        name: 都道府県
+      area:
+        name: 地域
+      city:
+        address: 住所
+        latitude: 緯度
+        longitude: 経度
+      tag:
+        name: タグ
+  attributes:
+    id: ID
+    created_at: 作成日時
+    updated_at: 更新日時
+  enums:
+    user:
+      role:
+        general: 一般
+        admin: 管理者
+    post:
+      event_status:
+        permanent: 通年
+        seasonal: 期間限定
+      public_status:
+        public: 公開
+        private: 非公開

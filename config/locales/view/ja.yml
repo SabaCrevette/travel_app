@@ -1,0 +1,8 @@
+ja:
+  defaults: # 使い回しの多い翻訳や特定のスコープに限定されない汎用的な翻訳を記載
+  users: # controller/usersに対応
+    new: # newアクションに対応
+      registration: アカウント登録
+  sessions:
+    new:
+      login: ログイン

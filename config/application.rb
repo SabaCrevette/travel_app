@@ -32,5 +32,11 @@ module TravelApp
       g.test_framework :rspec # RSpecのみ生成(minitestはスキップ)
       g.request_specs false # Request specsの生成をスキップ
     end
+
+    # i18n言語設定
+    config.i18n.available_locales = %i[ja en]
+    config.i18n.default_locale = :ja
+    # i18nロケールファイルの読み込みパス設定
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
