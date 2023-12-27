@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :posts
+  root 'tops#index'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
-  root 'tops#index'
   get '/mypage', to: 'users#index'
   get '/mypage/:user_id', to: 'users#show'
+  get '/search', to: 'posts#index'
   
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]
+  resources :posts, except: :index # 通常のCRUDルートを生成し、indexを除外
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
