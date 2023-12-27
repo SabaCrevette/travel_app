@@ -10,7 +10,7 @@
   <!-- 観光地名のテキストフィールド -->
   <div>
     <%= f.label :location, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :location, placeholder: "必須", class: "input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.text_field :location, placeholder: "観光地名やスポット名を記入してください", class: "input input-bordered input-sm w-full max-w-xs" %>
   </div>
 
 <% 
@@ -32,7 +32,7 @@
   <!-- 旅行の思い出 -->
   <div>
     <%= f.label :text, "旅行の思い出", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_area :text, rows: 3, placeholder: "必須", class: "textarea textarea-bordered textarea-sm w-full max-w-xs" %>
+    <%= f.text_area :text, rows: 3, placeholder: "旅の思い出やオススメポイントを自由に記入してください", class: "textarea textarea-bordered textarea-sm w-full max-w-xs" %>
   </div>
 
   <!-- 観光地の開催時期と公開設定 -->
