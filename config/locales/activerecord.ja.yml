@@ -43,5 +43,5 @@ ja:
         permanent: 通年
         seasonal: 期間限定
       public_status:
-        public: 公開
-        private: 非公開
+        open: 公開
+        closed: 非公開

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
   get '/mypage', to: 'users#index'
   get '/mypage/:user_id', to: 'users#show'
-  get '/search', to: 'posts#index'
+  get '/search', to: 'posts#index', as: 'search'
   
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]
