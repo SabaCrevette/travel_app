@@ -17,8 +17,8 @@
       <div class="dropdown dropdown-bottom dropdown-end">
         <div tabindex="0" class="m-1">メニュー</div> <!-- Hidden Click Element -->
         <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
-          <li><a href="/mypage">マイページ</a></li>
-          <li><a href="#">投稿する</a></li>
+          <li><%= link_to 'マイページ', '/mypage' %></li>
+          <li><%= link_to '投稿する', new_post_path %></li>
           <li><a href="#">探す</a></li>
         </ul>
       </div>

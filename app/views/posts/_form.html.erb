@@ -1,0 +1,62 @@
+<%= form_with model: post, local: true, class: "space-y-4" do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+
+  <!-- 都道府県のプルダウンメニュー -->
+  <div>
+    <%= f.label :prefecture_id, "都道府県", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択必須"}, {class: "select select-bordered select-sm w-full max-w-xs"} %>
+  </div>
+
+  <!-- 観光地名のテキストフィールド -->
+  <div>
+    <%= f.label :location, class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :location, placeholder: "必須", class: "input input-bordered input-sm w-full max-w-xs" %>
+  </div>
+
+  <!-- 画像選択（後にActiveStorageで実装） -->
+  <div>
+    <%= f.label :image, "画像を選択", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :image, class: "file-input file-input-bordered w-full max-w-xs", accept: 'image/*' %>
+    <!-- 省略: f.hidden_field :image_cache -->
+  </div>
+
+  <!-- 旅行の思い出 -->
+  <div>
+    <%= f.label :text, "旅行の思い出", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_area :text, rows: 3, placeholder: "必須", class: "textarea textarea-bordered textarea-sm w-full max-w-xs" %>
+  </div>
+
+  <!-- 観光地の開催時期と公開設定 -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div>
+      <%= f.label :event_status, "観光地の開催時期", class: "block text-sm font-medium text-gray-700" %>
+      <div class="mt-1 flex items-center">
+        <%= f.radio_button :event_status, 'year_round', class: "radio", id: "event_status_year_round", checked: true %>
+        <%= f.label :event_status_year_round, '通年', class: "ml-2 block text-sm font-medium text-gray-700" %>
+        <%= f.radio_button :event_status, 'limited_time', class: "radio", id: "event_status_limited_time" %>
+        <%= f.label :event_status_limited_time, '期間限定', class: "ml-2 block text-sm font-medium text-gray-700" %>
+      </div>
+
+      <fieldset>
+        <legend class="text-sm font-medium text-gray-700">公開設定</legend>
+        <div class="mt-1 flex items-center">
+          <%= f.radio_button :public_status, 'public', id: 'public_status_public', class: "radio", checked: true %>
+          <%= f.label :public_status_public, '公開', class: "ml-2 block text-sm font-medium text-gray-700" %>
+          <%= f.radio_button :public_status, 'private', id: 'public_status_private', class: "radio" %>
+          <%= f.label :public_status_private, '非公開', class: "ml-2 block text-sm font-medium text-gray-700" %>
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  <!-- タグ（将来的に実装） -->
+  <div>
+    <%= f.label :tags, "タグ", class: "block text-sm font-medium text-gray-700" %>
+    <!-- 省略: タグ入力フィールド -->
+  </div>
+
+  <!-- 送信ボタン -->
+  <div>
+    <%= f.submit "投稿する", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
+<% end %>
