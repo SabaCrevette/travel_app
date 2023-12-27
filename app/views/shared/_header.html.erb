@@ -8,9 +8,9 @@
     <% end %>
     <!-- Desktop Menu -->
     <nav class="hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
-      <a href="/mypage" class="mr-5 hover:text-gray-900">マイページ</a>
-      <a href="#" class="mr-5 hover:text-gray-900">投稿する</a>
-      <a href="#" class="mr-5 hover:text-gray-900">探す</a>
+      <%= link_to 'マイページ', '/mypage', class: "mr-5 hover:text-gray-900" %>
+      <%= link_to '投稿する', new_post_path, class: "mr-5 hover:text-gray-900" %>
+      <%= link_to '探す', '/search', class: "mr-5 hover:text-gray-900" %>
     </nav>
 
     <div class="md:hidden">
@@ -19,7 +19,7 @@
         <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to 'マイページ', '/mypage' %></li>
           <li><%= link_to '投稿する', new_post_path %></li>
-          <li><a href="#">探す</a></li>
+          <li><%= link_to '探す', '/search' %></li>
         </ul>
       </div>
     </div>
