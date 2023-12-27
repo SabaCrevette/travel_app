@@ -13,12 +13,21 @@
     <%= f.text_field :location, placeholder: "必須", class: "input input-bordered input-sm w-full max-w-xs" %>
   </div>
 
+<% 
+=begin
+%>
+
+
   <!-- 画像選択（後にActiveStorageで実装） -->
   <div>
     <%= f.label :image, "画像を選択", class: "block text-sm font-medium text-gray-700" %>
     <%= f.file_field :image, class: "file-input file-input-bordered w-full max-w-xs", accept: 'image/*' %>
     <!-- 省略: f.hidden_field :image_cache -->
   </div>
+
+<%
+=end
+%>
 
   <!-- 旅行の思い出 -->
   <div>
@@ -49,11 +58,19 @@
     </div>
   </div>
 
+<% 
+=begin
+%>
+
   <!-- タグ（将来的に実装） -->
   <div>
     <%= f.label :tags, "タグ", class: "block text-sm font-medium text-gray-700" %>
     <!-- 省略: タグ入力フィールド -->
   </div>
+
+<%
+=end
+%>
 
   <!-- 送信ボタン -->
   <div>
