@@ -15,9 +15,10 @@ ja:
         password_confirmation: パスワード確認
         role: 権限
       post:
+        prefecture_id: 都道府県
         location: 観光地・スポット
-        text: 本文
-        event_status: 開催状況
+        text: 旅行の思い出
+        event_status: 観光地の開催時期
         public_status: 公開設定
       prefecture:
         name: 都道府県

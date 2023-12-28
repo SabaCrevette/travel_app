@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   belongs_to :user
-  belongs_to :prefecture
+  belongs_to :prefecture, optional: true
 
+  validates :prefecture_id, presence: true
   validates :location, presence: true, length: { maximum: 50 }
   validates :text, presence: true, length: { maximum: 100 }
 

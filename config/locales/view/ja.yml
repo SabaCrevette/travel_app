@@ -3,7 +3,7 @@ ja:
     require_login: ログインしてください
     flash:
       created: "%{item}を作成しました"
-      not_created: "{item}を作成できませんでした"
+      not_created: "%{item}を作成できませんでした"
   users: # controller/usersに対応
     new: # newアクションに対応
       registration: アカウント登録

@@ -22,8 +22,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
+      flash[:notice] = t('defaults.flash.created', item: Post.model_name.human)
       redirect_to search_path
     else
+      flash.now[:alert] = t('defaults.flash.not_created', item: Post.model_name.human)
       render :new, status: :unprocessable_entity
     end
   end

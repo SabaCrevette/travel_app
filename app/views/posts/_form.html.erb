@@ -3,7 +3,7 @@
 
   <!-- 都道府県のプルダウンメニュー -->
   <div>
-    <%= f.label :prefecture_id, "都道府県", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.label :prefecture_id, class: "block text-sm font-medium text-gray-700" %>
     <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択必須"}, {class: "select select-bordered select-sm w-full max-w-xs"} %>
   </div>
 
@@ -31,14 +31,14 @@
 
   <!-- 旅行の思い出 -->
   <div>
-    <%= f.label :text, "旅行の思い出", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.label :text, class: "block text-sm font-medium text-gray-700" %>
     <%= f.text_area :text, rows: 3, placeholder: "旅の思い出やオススメポイントを自由に記入してください", class: "textarea textarea-bordered textarea-sm w-full max-w-xs" %>
   </div>
 
   <!-- 観光地の開催時期と公開設定 -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
-      <%= f.label :event_status, "観光地の開催時期", class: "block text-sm font-medium text-gray-700" %>
+      <%= f.label :event_status, class: "block text-sm font-medium text-gray-700" %>
       <div class="mt-1 flex items-center">
         <%= f.radio_button :event_status, 'permanent', class: "radio", id: "event_status_permanent", checked: true %>
         <%= f.label :event_status_permanent, '通年', class: "ml-2 block text-sm font-medium text-gray-700" %>
@@ -47,7 +47,7 @@
       </div>
 
       <fieldset>
-        <legend class="text-sm font-medium text-gray-700">公開設定</legend>
+        <%= f.label :public_status, class: "block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex items-center">
           <%= f.radio_button :public_status, 'open', id: 'public_status_open', class: "radio", checked: true %>
           <%= f.label :public_status_open, '公開', class: "ml-2 block text-sm font-medium text-gray-700" %>
