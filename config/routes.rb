@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :sessions, only: %i[new create destroy]
   resources :posts, except: :index # 通常のCRUDルートを生成し、indexを除外
 
+  resource :profile, only: %i[show edit update]
+
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
