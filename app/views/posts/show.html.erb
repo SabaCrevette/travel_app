@@ -40,8 +40,14 @@
           </button>
           </div>
           <div class="flex justify-end">
-          <button class="btn mr-3">編集</button>
-          <button class="btn btn-error">編集</button>
+            <% if current_user == @post.user %>
+              <%= link_to edit_post_path(@post), class: "btn mr-3", id: "button-edit-#{@post.id}" do %>
+                編集
+              <% end %>
+              <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？ '}, class: "btn btn-error", id: "button-delete-#{@post.id}" do %>
+                削除
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
