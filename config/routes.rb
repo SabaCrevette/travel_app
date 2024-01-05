@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :posts
   root 'tops#index'
   get 'sessions/new'
   get 'sessions/create'

@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
+  skip_before_action :require_login, only: %i[index show]
 
-  # GET /posts or /posts.json
+  # /search
   def index
     @posts = Post.includes(:user, :prefecture).all.order(created_at: :desc)
   end
