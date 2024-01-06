@@ -1,2 +1,50 @@
-<h1>Profiles#show</h1>
-<p>Find me in app/views/profiles/show.html.erb</p>
+<div class="container mx-auto p-5">
+  <div class="flex flex-col items-center bg-white p-4 shadow rounded-lg">
+    <div class="avatar mb-4">
+      <div class="w-24 rounded-full">
+      <span class="font-bold">ユーザー名</span>
+      </div>
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">ユーザー名</span>
+      test
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">メールアドレス</span>
+      test@test
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">パスワード</span>
+      
+      <%= link_to '編集', '#', class: 'btn btn-outline' %>
+    </div>
+    <div class="badge badge-outline">編集</div>
+  </div>
+</div>
+
+<!-- サンプル
+
+<div class="container mx-auto p-5">
+  <div class="flex flex-col items-center bg-white p-4 shadow rounded-lg">
+    <div class="avatar mb-4">
+      <div class="w-24 rounded-full">
+        image_tag('path_to_avatar_image', alt: 'avatar')
+      </div>
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">ユーザー名</span>
+      <span>@user.name</span>
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">メールアドレス</span>
+      <span>@user.emai</span>
+    </div>
+    <div class="flex flex-col items-center mb-4">
+      <span class="font-bold">パスワード</span>
+      link_to '編集', edit_user_password_path(@user), class: 'btn btn-outline'
+    </div>
+    <div class="badge badge-outline">編集</div>
+  </div>
+</div>
+
+-->
