@@ -52,6 +52,11 @@ gem 'hotwire-rails'
 # i18nの導入
 gem 'rails-i18n'
 
+# 画像投稿関連gem
+gem 'carrierwave', '~> 2.0'
+gem 'mini_magick'
+gem 'fog-aws'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug'

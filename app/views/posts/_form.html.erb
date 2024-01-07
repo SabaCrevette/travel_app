@@ -13,21 +13,25 @@
     <%= f.text_field :location, placeholder: "観光地名やスポット名を記入してください", class: "input input-bordered input-sm w-full max-w-xs" %>
   </div>
 
-<% 
-=begin
-%>
 
-
-  <!-- 画像選択（後にActiveStorageで実装） -->
+  <!-- 画像選択 -->
   <div>
-    <%= f.label :image, "画像を選択", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.file_field :image, class: "file-input file-input-bordered w-full max-w-xs", accept: 'image/*' %>
-    <!-- 省略: f.hidden_field :image_cache -->
+    <%= f.label :images, "画像を選択（最低1枚、最大4枚）", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.file_field :images, multiple: true, class: "file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
+    <!-- <%= f.hidden_field :images_cache %> -->
+    <% post.images.each do |image| %>
+      <%= hidden_field :post, :images, multiple: true, value: image.identifier %>
+    <% end %>
   </div>
 
-<%
-=end
-%>
+  <% if @post.images? %>
+    <div class="flex flex-row space-x-4">
+    <% @post.images.each do |image| %>
+      <%= image_tag(image.url(), class: "h-15 w-20") %>
+      <%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除しますか？' }, class: "text-xs text-red-600" %> <!-- 削除リンク -->
+    <% end %>
+    </div>
+  <% end %>
 
   <!-- 旅行の思い出 -->
   <div>

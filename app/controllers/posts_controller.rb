@@ -1,3 +1,5 @@
+require 'debug'
+
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index show]
@@ -48,7 +50,7 @@ class PostsController < ApplicationController
     post = current_user.posts.find(params[:id])
     post.destroy!
     flash[:notice] = t('defaults.flash.deleted', item: Post.model_name.human)
-    redirect_to posts_path, status: :see_other
+    redirect_to search_path, status: :see_other
   end
 
   private
@@ -60,6 +62,6 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:location, :prefecture_id, :text, :event_status, :public_status)
+    params.require(:post).permit(:location, :prefecture_id, :text, :event_status, :public_status, { images_cache: [] }, { images: [] })
   end
 end
