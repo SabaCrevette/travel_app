@@ -1,24 +1,25 @@
 <div class="container mx-auto p-5">
   <div class="flex flex-col items-center bg-white p-4 shadow rounded-lg">
     <div class="avatar mb-4">
+      <span class="font-bold">アバター画像</span>
       <div class="w-24 rounded-full">
-      <span class="font-bold">ユーザー名</span>
+      <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %>
       </div>
     </div>
     <div class="flex flex-col items-center mb-4">
       <span class="font-bold">ユーザー名</span>
-      test
+      <%= current_user.name %>
     </div>
     <div class="flex flex-col items-center mb-4">
       <span class="font-bold">メールアドレス</span>
-      test@test
+      <%= current_user.email %>
     </div>
     <div class="flex flex-col items-center mb-4">
       <span class="font-bold">パスワード</span>
+      非表示
       
-      <%= link_to '編集', '#', class: 'btn btn-outline' %>
+      <%= link_to '編集', edit_profile_path, class: 'btn btn-outline' %>
     </div>
-    <div class="badge badge-outline">編集</div>
   </div>
 </div>
 

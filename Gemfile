@@ -56,6 +56,8 @@ gem 'rails-i18n'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'fog-aws'
+gem 'aws-sdk-s3', require:false
+gem 'dotenv-rails'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
