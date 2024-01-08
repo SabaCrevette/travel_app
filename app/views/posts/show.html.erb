@@ -1,7 +1,24 @@
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-between">
-      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      <!-- 画像セクション -->
+      <div class="w-full lg:w-1/2 flex flex-wrap">
+        <div class="w-full mb-4 md:mb-0">
+          <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-64 object-contain rounded' %>
+        </div>
+        <div class="flex">
+          <div class="w-1/3">
+            <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+          </div>
+          <div class="w-1/3">
+            <%= image_tag @post.images.third&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+          </div>
+          <div class="w-1/3">
+            <%= image_tag @post.images.fourth&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+          </div>
+        </div>
+      </div>
+
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 relative">
         <div class="flex justify-between items-start">
           <div>
