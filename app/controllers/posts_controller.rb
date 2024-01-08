@@ -1,5 +1,3 @@
-require 'debug'
-
 class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index show]
