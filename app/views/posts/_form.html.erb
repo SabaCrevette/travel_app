@@ -62,20 +62,11 @@
     </div>
   </div>
 
-
-<% 
-=begin
-%>
-
   <!-- タグ（将来的に実装） -->
   <div>
-    <%= f.label :tags, "タグ", class: "block text-sm font-medium text-gray-700" %>
-    <!-- 省略: タグ入力フィールド -->
+    <%= f.label :tag_names, "タグ", class: "block text-sm font-medium text-gray-700" %>
+    <%= f.text_field :tag_names, value: @post.tags.pluck(:name).join(", "), placeholder: ",で区切って5個まで入力できます", class: "input input-bordered input-sm w-full max-w-xs" %>
   </div>
-
-<%
-=end
-%>
 
   <!-- 送信ボタン -->
   <div>
