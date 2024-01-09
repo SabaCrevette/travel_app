@@ -36,7 +36,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # 画像のリサイズなどの処理（resize_to_fillは必要であればトリミングを行う。fitはアスペクト比維持）
-  version :thumb do
-    process resize_to_fit: [200, 100]
-  end
+  # version :thumb do
+  #   process resize_to_fit: [200, 100]
+  #   process :convert_to_webp
+  # end
 end

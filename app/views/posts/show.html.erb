@@ -42,10 +42,13 @@
           </div>
           <div class="flex flex-col mb-4">
             <p class="leading-relaxed mb-4 mt-1"><%= @post.text %></p>
-            <div class="flex">
-            <span class="mr-3">タグ</span>
-            絶景・神奈川県・温泉
-            </div>
+              <div class="flex">
+                <% @post.tags.each do |tag| %>
+                  <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2">
+                    <%= tag.name %>
+                  </span>
+                <% end %>
+              </div>
           </div>
           <div class="flex  mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
             <span class="mr-3">投稿者</span>
