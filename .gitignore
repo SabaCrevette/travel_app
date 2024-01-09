@@ -41,3 +41,22 @@
 /node_modules
 
 /public/uploads
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# 系統固有のファイル
+.DS_Store
+
+# テキストエディタまたはIDE固有のファイル
+.idea/
+.vscode/
+
+# 開発ツールが生成する一時ファイルやキャッシュ
+*.log
+*.pid
+*.seed
+*.pid.lock

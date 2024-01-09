@@ -17,6 +17,12 @@ class Post < ApplicationRecord
   enum event_status: { permanent: 0, seasonal: 1 }
   enum public_status: { open: 0, closed: 1 }
 
+  # タグ名に基づいて投稿をフィルタリングするクラスメソッド
+  def self.with_tag(tag_name)
+    # タグに関連する投稿を取得
+    Tag.find_by(name: tag_name).posts
+  end
+
   private
 
   def images_count_within_limit
