@@ -17,7 +17,7 @@
     <button class="btn btn-primary col-span-2 sm:col-span-1 max-w-xs">投稿する</button>
     <button class="btn btn-secondary col-span-2 sm:col-span-1 max-w-xs">他の人の投稿を見る</button>
     <button class="btn btn-accent col-span-2 sm:col-span-1 max-w-xs">ランキング</button>
-    <button class="btn btn-ghost col-span-2 sm:col-span-1 max-w-xs">ブックマーク</button>
+    <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-ghost col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
   </div>
 </div>
 

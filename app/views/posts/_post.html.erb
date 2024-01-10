@@ -9,9 +9,18 @@
 
   <% end %>
   <div class="flex">
-<% post.tags.each do |tag| %>
-  <%= link_to tag.name, search_path(tag_name: tag.name) + '#posts-list-section', class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
-<% end %>
+  <!-- タグ -->
+  <% post.tags.each do |tag| %>
+    <%= link_to tag.name, search_path(tag_name: tag.name) + '#posts-list-section', class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
+  <% end %>
+
   </div>
   <span><%= post.user.name %></span>
+
+  <!-- bookmarks -->
+  <% if current_user.bookmark?(post) %>
+    <%= render 'unbookmark', post: post %>
+  <% else %>
+    <%= render 'bookmark', post: post %>
+  <% end %>
 </div>

@@ -62,6 +62,10 @@ class PostsController < ApplicationController
     redirect_to search_path, status: :see_other
   end
 
+  def bookmarks
+    @bookmark_posts = current_user.bookmark_posts.includes(:user, :prefecture, :tags)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
