@@ -63,10 +63,22 @@
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">投稿一覧</h2>
+  
+
+      <div>
+        <p>
+          <label class="label cursor-pointer justify-end">
+          ブックマーク
+          <span class="mr-2"></span>
+          <input type="checkbox" class="toggle" />
+          <!-- <input type="checkbox" class="toggle" disabled /> -->
+        </label>
+        </p>
+      </div>
 
     <div class="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
         <% if @posts.present? %>
-          <%= render @posts %>
+          <%= render partial: "post", collection: @posts, locals: { context: @context } %>
         <% else %>
           <div class="mb-3">投稿がありません</div>
         <% end %>

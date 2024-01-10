@@ -5,15 +5,22 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
-  get '/mypage', to: 'users#index'
+  get '/mypage', to: 'users#index', as: 'mypage'
   get '/mypage/:user_id', to: 'users#show'
   get '/search', to: 'posts#index', as: 'search'
   
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]
-  resources :posts, except: :index # 通常のCRUDルートを生成し、indexを除外
+  resources :posts, except: :index do
+    collection do
+      get 'bookmarks'
+    end
+  end
 
   resource :profile, only: %i[show edit update]
+
+  resources :bookmarks, only: %i[create destroy]
+
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'

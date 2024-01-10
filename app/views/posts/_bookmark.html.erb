@@ -1,0 +1,4 @@
+<%= link_to bookmarks_path(post_id: post.id), id: "bookmark-button-for-post-#{post.id}", data: { turbo_method: :post } do %>
+  <i class="fa-regular fa-star"></i>
+<% end %>
+
