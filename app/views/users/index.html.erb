@@ -3,14 +3,35 @@
     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
     <%= image_tag 'white-nihontizu.png', class: 'w-[720px] h-[600px]' %>
     <div class="text-center lg:w-2/3 w-full">
-      <p class="mb-8 leading-relaxed">🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟</p>
+      <p class="mb-8 leading-relaxed">現在の踏破状況</p>
       <div class="flex justify-center">
-        <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">Button</button>
-        <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Button</button>
+        <button class="inline-flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded text-lg">削除</button>
+        <button class="ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">登録</button>
       </div>
     </div>
   </div>
 </section>
+
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-2 gap-4 mx-auto max-w-lg rounded-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
+    <button class="btn btn-primary col-span-2 sm:col-span-1 max-w-xs">投稿する</button>
+    <button class="btn btn-secondary col-span-2 sm:col-span-1 max-w-xs">他の人の投稿を見る</button>
+    <button class="btn btn-accent col-span-2 sm:col-span-1 max-w-xs">ランキング</button>
+    <button class="btn btn-ghost col-span-2 sm:col-span-1 max-w-xs">ブックマーク</button>
+  </div>
+</div>
+
+<!-- =begin サンプル
+<div class="container mx-auto px-4">
+  <div class="grid grid-cols-2 gap-4">
+    <button class="btn btn-primary col-span-2 sm:col-span-1">投稿する</button>
+    <button class="btn btn-secondary col-span-2 sm:col-span-1">他の人の投稿を見る</button>
+    <button class="btn btn-accent col-span-2 sm:col-span-1">ランキング</button>
+    <button class="btn btn-ghost col-span-2 sm:col-span-1">ブックマーク</button>
+  </div>
+</div>
+= end -->
+
 
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
@@ -19,7 +40,7 @@
         <div class="w-24 h-full "></div>
       </div>
       <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
-        <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">Space The Final Frontier</h1>
+        <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">さばの投稿一覧</h1>
         <p class="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">Street art subway tile salvia four dollar toast bitters selfies quinoa yuccie synth meditation iPhone intelligentsia prism tofu. Viral gochujang bitters dreamcatcher.</p>
       </div>
     </div>

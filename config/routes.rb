@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
-  get '/mypage', to: 'users#index'
+  get '/mypage', to: 'users#index', as: 'mypage'
   get '/mypage/:user_id', to: 'users#show'
   get '/search', to: 'posts#index', as: 'search'
   
