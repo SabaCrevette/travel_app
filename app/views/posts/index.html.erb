@@ -62,26 +62,46 @@
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">投稿一覧</h2>
   
+
 
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
           ブックマーク
           <span class="mr-2"></span>
-          <input type="checkbox" class="toggle" />
-          <!-- <input type="checkbox" class="toggle" disabled /> -->
+          <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
         </label>
         </p>
       </div>
 
-    <div class="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
-        <% if @posts.present? %>
-          <%= render partial: "post", collection: @posts, locals: { context: @context } %>
-        <% else %>
-          <div class="mb-3">投稿がありません</div>
-        <% end %>
-    </div>
+      <turbo-frame id="posts_frame">
+        <%= render partial: "posts/posts_frame" %>
+      </turbo-frame>
+
+      <turbo-frame id="bookmarks_frame" src="/posts/bookmarks" style="display: none;">
+        <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
+      </turbo-frame>
+
   </div>
 </div>
+
+<script>
+  document.addEventListener('turbo:load', () => {
+    const toggleSwitch = document.getElementById('toggle-switch');
+    
+    toggleSwitch.addEventListener('change', () => {
+      const postsFrame = document.getElementById('posts_frame');
+      const bookmarksFrame = document.getElementById('bookmarks_frame');
+      if (toggleSwitch.checked) {
+        // ブックマーク一覧を表示 noneが非表示、blockが表示
+        postsFrame.style.display = 'none';
+        bookmarksFrame.style.display = 'block';
+      } else {
+        // 投稿一覧を表示
+        postsFrame.style.display = 'block';
+        bookmarksFrame.style.display = 'none';
+      }
+    });
+  });
+</script>

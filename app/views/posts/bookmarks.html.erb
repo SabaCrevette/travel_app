@@ -4,11 +4,9 @@
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">ブックマーク一覧</h2>
     <div class="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
-        <% if @bookmark_posts.present? %>
-          <%= render partial: "post", collection: @bookmark_posts, as: :post, locals: { context: @context } %>
-        <% else %>
-          <div class="mb-3">ブックマーク中の投稿がありません</div>
-        <% end %>
+      <turbo-frame id="bookmarks_frame" style="display: none;">
+        <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
+      </turbo-frame>
     </div>
   </div>
 </div>

@@ -26,6 +26,9 @@ class Post < ApplicationRecord
     Tag.find_by(name: tag_name).posts
   end
 
+  # タグに基づいて投稿を取得
+  scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+
   private
 
   def images_count_within_limit

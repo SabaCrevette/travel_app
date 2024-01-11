@@ -64,7 +64,11 @@ class PostsController < ApplicationController
   end
 
   def bookmarks
+    # ブックマーク一覧を取得
     @bookmark_posts = current_user.bookmark_posts.includes(:user, :prefecture, :tags)
+    # タグに基づいて絞り込み
+    @bookmark_posts = @bookmark_posts.with_tag(params[:tag_name]) if params[:tag_name].present?
+    @context = 'bookmarks'
   end
 
   private
