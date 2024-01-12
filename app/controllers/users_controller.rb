@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   def index
-    # 現在のユーザーの情報を取得するロジック
+    @user_prefectures = UserPrefecture.where(user_id: current_user.id)
   end
 
   def new

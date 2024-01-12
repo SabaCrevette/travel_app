@@ -1,11 +1,14 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture, optional: true
-  has_many :post_tags
+  has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
 
   has_many :bookmarks, dependent: :destroy
   has_many :users, through: :bookmarks
+
+  after_create :increment_user_prefecture_post_count
+  after_destroy :decrement_user_prefecture_post_count
 
   attr_accessor :images_cache
 
@@ -43,5 +46,15 @@ class Post < ApplicationRecord
 
   def validate_tags_count
     errors.add(:tags, 'の数は5個までです') if tags.size > 5
+  end
+
+  def increment_user_prefecture_post_count
+    user_prefecture = UserPrefecture.find_or_create_by(user:, prefecture:)
+    user_prefecture.increment!(:post_count)
+  end
+
+  def decrement_user_prefecture_post_count
+    user_prefecture = UserPrefecture.find_by(user:, prefecture:)
+    user_prefecture.decrement!(:post_count) if user_prefecture.present?
   end
 end

@@ -1,7 +1,76 @@
 <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
-    <%= image_tag 'white-nihontizu.png', class: 'w-[720px] h-[600px]' %>
+
+<% prefectures = [
+  "hokkaido", "aomori"
+] %>
+
+<!-- 
+, "aomori", "iwate", "miyagi", "akita",
+  "yamagata", "fukushima", "ibaraki", "tochigi",
+  "gunma", "saitama", "chiba", "tokyo", "kanagawa",
+  "niigata", "toyama", "ishikawa", "fukui", "yamanashi",
+  "nagano", "gifu", "shizuoka", "aichi", "mie",
+  "shiga", "kyoto", "osaka", "hyogo", "nara",
+  "wakayama", "tottori", "shimane", "okayama", "hiroshima",
+  "yamaguchi", "tokushima", "kagawa", "ehime", "kochi",
+  "fukuoka", "saga", "nagasaki", "kumamoto", "oita",
+  "miyazaki", "kagoshima", "okinawa"
+image_tag 'prefectures/01_hokkaido.png', class: 'w-[300px] h-[200px]'
+-->
+
+<!-- # このコードでは image_tag を使用しています %>
+<% prefectures.each_with_index do |prefecture_name, index| %>
+  <% prefecture_id = index + 1 %>
+  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
+  <% count_class = post_count >= 4 ? ".bg-count-4" : "bg-count-#{post_count}" %>
+  <%= image_tag "prefectures/#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg", class: "#{count_class} w-[300px] h-[200px]" %>
+<% end %>
+-->
+
+
+<% prefectures.each_with_index do |prefecture_name, index| %>
+  <% prefecture_id = index + 1 %>
+  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
+  <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
+
+  <% # SVGデータのパスを設定します %>
+  <% svg_filename = "#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg" %>
+  <% svg_path = Rails.root.join("app", "assets", "images", "prefectures", svg_filename) %>
+  <% if File.exist?(svg_path) %>
+    <% svg_data = File.read(svg_path) %>
+    <% # SVGデータを安全にHTMLに埋め込むためには `raw` ヘルパーまたは `html_safe` を使用します %>
+    <% updated_svg_data = svg_data.gsub('<path', "<path class=\"#{count_class}\"") %>
+    <%= raw(updated_svg_data).html_safe %>
+  <% else %>
+    <% # SVGファイルが見つからない場合は代替テキストや画像を表示 %>
+    <p>SVGファイルが見つかりません。</p>
+  <% end %>
+<% end %>
+
+<!-- インラインSVG
+<% prefectures.each_with_index do |prefecture_name, index| %>
+  <% prefecture_id = index + 1 %>
+  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
+  <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200.93 180.99" class="w-32 h-32">
+    <defs>
+      <clipPath id="clippath">
+        <rect x=".55" width="200.38" height="180.99"/>
+      </clipPath>
+    </defs>
+    <g>
+      <path class="<%= count_class %> " d="省略"/>
+    </g>
+  </svg>
+<% end %>
+-->
+
     <div class="text-center lg:w-2/3 w-full">
       <p class="mb-8 leading-relaxed">現在の踏破状況</p>
       <div class="flex justify-center">
