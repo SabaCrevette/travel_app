@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_10_033928) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_12_031813) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_033928) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "user_prefectures", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "prefecture_id"
+    t.integer "post_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
@@ -102,4 +110,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_10_033928) do
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "users"
+  add_foreign_key "user_prefectures", "prefectures"
+  add_foreign_key "user_prefectures", "users"
 end
