@@ -2,90 +2,52 @@
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
 
-<% prefectures = [
-  "hokkaido",
-  "aomori", "iwate", "miyagi", "akita",
-  "yamagata", "fukushima", "ibaraki", "tochigi",
-  "gunma", "saitama", "chiba", "tokyo", "kanagawa",
-  "niigata", "toyama", "ishikawa", "fukui", "yamanashi",
-  "nagano", "gifu", "shizuoka", "aichi", "mie",
-  "shiga", "kyoto", "osaka", "hyogo", "nara",
-  "wakayama", "tottori", "shimane", "okayama", "hiroshima",
-  "yamaguchi", "tokushima", "kagawa", "ehime", "kochi",
-  "fukuoka", "saga", "nagasaki", "kumamoto", "oita",
-  "miyazaki", "kagoshima", "okinawa"
-] %>
+    <% prefectures = [
+      "hokkaido",
+      "aomori", "iwate", "miyagi", "akita",
+      "yamagata", "fukushima", "ibaraki", "tochigi",
+      "gunma", "saitama", "chiba", "tokyo", "kanagawa",
+      "niigata", "toyama", "ishikawa", "fukui", "yamanashi",
+      "nagano", "gifu", "shizuoka", "aichi", "mie",
+      "shiga", "kyoto", "osaka", "hyogo", "nara",
+      "wakayama", "tottori", "shimane", "okayama", "hiroshima",
+      "yamaguchi", "tokushima", "kagawa", "ehime", "kochi",
+      "fukuoka", "saga", "nagasaki", "kumamoto", "oita",
+      "miyazaki", "kagoshima", "okinawa"
+    ] %>
 
-<!-- # このコードでは image_tag を使用しています %>
-<% prefectures.each_with_index do |prefecture_name, index| %>
-  <% prefecture_id = index + 1 %>
-  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
-  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
-  <% count_class = post_count >= 4 ? ".bg-count-4" : "bg-count-#{post_count}" %>
-  <%= image_tag "prefectures/#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg", class: "#{count_class} w-[300px] h-[200px]" %>
-<% end %>
--->
+    <%= image_tag 'prefectures/00_japan.svg', alt: '日本列島' %>
+    <%= raw File.read(Rails.root.join('app', 'assets', 'images', 'prefectures', '00_japan.svg')) %>
 
-<div class="japan-map-container relative w-full h-full">
-<% prefectures.each_with_index do |prefecture_name, index| %>
-  <% prefecture_id = index + 1 %>
-  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
-  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
-  <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
 
-  <% svg_filename = "#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg" %>
-  <% svg_path = Rails.root.join("app", "assets", "images", "prefectures", svg_filename) %>
-  <% if File.exist?(svg_path) %>
-    <% svg_data = File.read(svg_path) %>
-    <% # id="rake"を持つpathタグにはクラスを適用させない %>
-    <% updated_svg_data = svg_data.gsub(/<path(?!.*?id="rake")/, "<path class=\"#{count_class}\"") %>
-    <% # id="rake"を持つpathタグに白色を適用 %>
-    <% updated_svg_data = updated_svg_data.gsub(/<path id="rake"/, '<path id="rake" class="bg-shiga"') %>
-    <%= raw(updated_svg_data).html_safe %>
-  <% else %>
-    <p>SVGファイルが見つかりません。</p>
-  <% end %>
-<% end %>
-</div>
+<!-- =begin
+    <div class="japan-map-container relative flex items-center justify-center w-full h-full mx-auto sm:max-w-sm sm:max-h-96 md:max-w-md md:max-h-128">
+    <% prefectures.each_with_index do |prefecture_name, index| %>
+      <% prefecture_id = index + 1 %>
+      <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+      <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
+      <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
 
-<!-- インラインSVG
-<% prefectures.each_with_index do |prefecture_name, index| %>
-  <% prefecture_id = index + 1 %>
-  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
-  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
-  <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200.93 180.99" class="w-32 h-32">
-    <defs>
-      <clipPath id="clippath">
-        <rect x=".55" width="200.38" height="180.99"/>
-      </clipPath>
-    </defs>
-    <g>
-      <path class="<%= count_class %> " d="省略"/>
-    </g>
-  </svg>
-<% end %>
+      <% svg_filename = "#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg" %>
+      <% svg_path = Rails.root.join("app", "assets", "images", "prefectures", svg_filename) %>
+      <% if File.exist?(svg_path) %>
+        <% svg_data = File.read(svg_path) %>
+        <% # id="rake"を持つpathタグにはクラスを適用させない %>
+        <% updated_svg_data = svg_data.gsub(/<path(?!.*?id="rake")/, "<path class=\"#{count_class}\"") %>
+        <% # id="rake"を持つpathタグに白色を適用 %>
+        <% updated_svg_data = updated_svg_data.gsub(/<path id="rake"/, '<path id="rake" class="bg-shiga"') %>
+        <%= raw(updated_svg_data).html_safe %>
+      <% else %>
+        <p>SVGファイルが見つかりません。</p>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+</section>
+=end -->
 
-<% prefectures.each_with_index do |prefecture_name, index| %>
-  <% prefecture_id = index + 1 %>
-  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
-  <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
-  <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
-  
-  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200.93 180.99" class="w-32 h-32">
-    <defs>
-      <clipPath id="clippath">
-        <rect x=".55" width="200.38" height="180.99"/>
-      </clipPath>
-    </defs>
-    <g>
-      <path class="<%= count_class %> " d="M18.43,160.77s2.46-4.12,2.89-5.78c.43-1.66,1.38-3.74,0-4.81-1.38-1.08-1.78-.76-3.85-2.89-2.07-2.13-2.19-1.53-2.89-2.89-.7-1.36-1.74-1.89-2.89-1.93-1.15-.04-.96-3.85-.96-3.85,0,0,1.61-1.11,1.92-2.89.32-1.78,0-11.55,0-11.55,0,0,1.52-.79,2.89-.96,1.37-.17,3.85,0,3.85,0l1.92-2.89s2.01-2.94,2.89-1.93c.88,1.01,1.93.96,1.93.96l2.89-5.78s2.74-1.19,2.89-1.93c.15-.73,0-2.89,0-2.89,0,0-2.89-2.59-2.89-3.85s-1.93-5.78-1.93-5.78c0,0,1.32-2.31,1.93-1.93.61.39,3.85,0,3.85,0l3.85,3.85s1.06,1.97,2.89,2.89c1.83.91,6.74-.96,6.74-.96,0,0,2.92-.25,3.85.96.93,1.21,4.46,1.2,4.81,0,.36-1.2,4.12-6.22,4.81-6.74.69-.52.96-5.78.96-5.78,0,0-2.07-3.68-1.92-4.81.14-1.14-1.92-5.78-1.92-5.78,0,0,2.19-3.25,2.89-3.85.69-.6,5.78-2.89,5.78-2.89,0,0,2.27-5.05,1.93-5.78-.35-.72-1.89-10.88-.96-11.55.92-.67,2.43-3.09,2.89-3.85.45-.76.96-7.7.96-7.7v-8.66s-3.37-8.42-4.81-11.55c-1.44-3.13-1.8-4.19-1.92-5.78-.12-1.59,2.89-5.78,2.89-5.78l.96-4.81,1.93.96h3.85l1.92-3.85s2.01,3.8,2.89,4.81c.88,1.01,4.31,3.47,5.78,4.81,1.46,1.35,6.78,10.76,8.66,13.48,1.89,2.72,3.8,6.33,4.81,7.7,1.01,1.37,8.96,10.83,10.59,11.55,1.63.72,7.7,6.74,7.7,6.74,0,0,7.25,2.51,7.7,3.85.45,1.34,3.92,2.01,3.85,2.89-.07.88.96,2.89.96,2.89l4.81.96s1.21.86,1.93,0c.71-.86,2.89-1.92,2.89-1.92l2.89,1.92-.96,2.89s2.61,3.05,2.89,1.93c.28-1.13,1.92-4.81,1.92-4.81,0,0,2.58,4.13,2.89,4.81.31.68,5.59,3.27,6.74,2.89,1.14-.38,5.78-.96,5.78-.96l6.74-6.74s4.95-2.2,4.81-2.89c-.14-.69,5.78-5.78,5.78-5.78,0,0,1.47.89.96,1.93-.51,1.03-3.85,7.7-3.85,7.7l-1.92,5.78-3.85,5.78.96,2.89,2.89,3.85,1.92,1.92,2.89,1.93-3.85.96.96,3.85.96,2.89,1.93,2.89,1.92.96,5.78-4.81h4.81l.96,1.92-5.78,1.93-1.93,4.81s-4.22.71-6.74.96c-2.52.25-4.81.96-4.81.96l-1.93,2.89s-4.86,2.41-5.78,2.89c-.91.48-2.89-1.92-2.89-1.92,0,0-2.8-.38-1.93,1.92.88,2.3,1.24,1.55,0,1.93-1.24.38-7.4,1.44-9.63,0-2.22-1.44-2.89-2.89-2.89-2.89,0,0-5.67,1.19-6.74,1.92-1.07.73-6.87,5.48-8.67,6.74-1.8,1.26-13.04,14.4-13.48,15.4-.43,1-.96,7.7-.96,7.7v6.74l-2.89,1.93v2.89s-8.72-7.95-8.69-8.57c.02-.61-9.51-2.44-12.73-5.14-3.2-2.71-6.85-4.43-8.42-5.54-1.57-1.12-6.74-2.89-6.74-2.89l-3.85-3.85s-6.86-1.9-7.7-1.92c-.84-.03-5.06,2.17-6.74,2.89-1.68.72-6.04,2.45-6.74,3.85-.69,1.41-3.85,3.85-3.85,3.85l-.96,1.93s-1.12-2.13-2.89-3.85c-1.77-1.72-2.18-2.95-2.89-3.85-.7-.9-1.92-2.89-1.92-2.89,0,0-4.19-.77-4.81,0-.63.77-2.89-.96-2.89-.96l-4.81,5.78s-1.73,4.08-.96,5.78c.77,1.69,1.97,2.38,2.89,3.85.91,1.47,3.16,2.48,3.85,2.89.69.4,3.07,1.22,3.85.96.78-.26,4.81,1.92,4.81,1.92,0,0,1.94,2.31,2.89,3.85.95,1.54,2.89,2.89,2.89,2.89l3.85,1.93s1.85,4.42,0,4.81c-1.85.39-4.55,2.85-5.78,1.93-1.22-.92-5.78-3.85-5.78-3.85l-1.92-1.93-2.89,2.89s-4.16,3.93-4.81,3.85c-.65-.08,1.37,3.95.96,4.81-.41.87-6.74,3.85-6.74,3.85l-1.92,1.93-3.85-1.93s-2.03-2.9-1.92-3.85c.1-.95-.7-4.44,0-4.81.7-.37,1.92-3.85,1.92-3.85Z"/>
-    </g>
-  </svg>
-<% end %>
--->
-
+<div class="container mx-auto px-4">
+  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
     <div class="text-center lg:w-2/3 w-full">
       <p class="mb-8 leading-relaxed">現在の踏破状況</p>
       <div class="flex justify-center">
@@ -94,9 +56,6 @@
       </div>
     </div>
   </div>
-</section>
-
-<div class="container mx-auto px-4">
   <div class="grid grid-cols-2 gap-4 mx-auto max-w-lg rounded-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
     <button class="btn btn-primary col-span-2 sm:col-span-1 max-w-xs">投稿する</button>
     <button class="btn btn-secondary col-span-2 sm:col-span-1 max-w-xs">他の人の投稿を見る</button>

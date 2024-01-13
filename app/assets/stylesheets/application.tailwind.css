@@ -17,17 +17,328 @@
 .prefecture-image-01 {  /* 北海道の位置 */
   position: absolute;
   top: 0px;
-  right: 200px;
+  left: 50%;
+  transform: translateX(-50%) translateX(160px); 
 }
 
 .prefecture-image-02 {  /* 青森県の位置 */
   position: absolute;
-  top: 120px;
-  right: 200px;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%) translateX(95px); 
 }
 
 .prefecture-image-03 {  /* 北海道の位置 */
   position: absolute;
+  top: 265px;
+  left: 50%;
+  transform: translateX(-50%) translateX(130px); 
+}
+
+.prefecture-image-04 {  /* 北海道の位置 */
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-05 {  /* 北海道の位置 */
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-06 {  /* 北海道の位置 */
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-07 {  /* 北海道の位置 */
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-08 {  /* 北海道の位置 */
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-09 {  /* 北海道の位置 */
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-10 {  /* 北海道の位置 */
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-11 {  /* 北海道の位置 */
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-12 {  /* 北海道の位置 */
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-13 {  /* 北海道の位置 */
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-14 {  /* 北海道の位置 */
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-15 {  /* 北海道の位置 */
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-16 {  /* 北海道の位置 */
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-17 {  /* 北海道の位置 */
+  position: absolute;
   top: 160px;
-  left: 200px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-18 {  /* 北海道の位置 */
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-19 {  /* 北海道の位置 */
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-20 {  /* 北海道の位置 */
+  position: absolute;
+  top: 190px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-21 {  /* 北海道の位置 */
+  position: absolute;
+  top: 200px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-22 {  /* 北海道の位置 */
+  position: absolute;
+  top: 210px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-23 {  /* 北海道の位置 */
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-24 {  /* 北海道の位置 */
+  position: absolute;
+  top: 230px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-25 {  /* 北海道の位置 */
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-26 {  /* 北海道の位置 */
+  position: absolute;
+  top: 250px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-27 {  /* 北海道の位置 */
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-28 {  /* 北海道の位置 */
+  position: absolute;
+  top: 270px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-29 {  /* 北海道の位置 */
+  position: absolute;
+  top: 280px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-30 {  /* 北海道の位置 */
+  position: absolute;
+  top: 290px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-31 {  /* 北海道の位置 */
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-32 {  /* 北海道の位置 */
+  position: absolute;
+  top: 310px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-33 {  /* 北海道の位置 */
+  position: absolute;
+  top: 320px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-34 {  /* 北海道の位置 */
+  position: absolute;
+  top: 330px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-35 {  /* 北海道の位置 */
+  position: absolute;
+  top: 340px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-36 {  /* 北海道の位置 */
+  position: absolute;
+  top: 350px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-37 {  /* 北海道の位置 */
+  position: absolute;
+  top: 360px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-38 {  /* 北海道の位置 */
+  position: absolute;
+  top: 370px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-39 {  /* 北海道の位置 */
+  position: absolute;
+  top: 380px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-40 {  /* 北海道の位置 */
+  position: absolute;
+  top: 390px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-41 {  /* 北海道の位置 */
+  position: absolute;
+  top: 400px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-42 {  /* 北海道の位置 */
+  position: absolute;
+  top: 410px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-43 {  /* 北海道の位置 */
+  position: absolute;
+  top: 420px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-44 {  /* 北海道の位置 */
+  position: absolute;
+  top: 430px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-45 {  /* 北海道の位置 */
+  position: absolute;
+  top: 440px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-46 {  /* 北海道の位置 */
+  position: absolute;
+  top: 450px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
+}
+
+.prefecture-image-47 {  /* 北海道の位置 */
+  position: absolute;
+  top: 460px;
+  left: 50%;
+  transform: translateX(-50%) translateX(10px); 
 }
