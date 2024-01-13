@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="uuid-156bdc71-5d86-4121-a9c8-e4d4db578369" data-name="レイヤー 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 229.93 212.79">
+  <defs>
+    <style>
+      .uuid-df1b6614-fb74-4f00-bfcf-bca55522b80c {
+        fill: none;
+        fill-rule: evenodd;
+        stroke: #040000;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: .48px;
+      }
+    </style>
+  </defs>
+  <polyline class="uuid-df1b6614-fb74-4f00-bfcf-bca55522b80c" points="209.17 30.64 94.13 30.64 27.7 97.06 27.7 195.19"/>
+</svg>

@@ -3,11 +3,8 @@
     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
 
 <% prefectures = [
-  "hokkaido", "aomori"
-] %>
-
-<!-- 
-, "aomori", "iwate", "miyagi", "akita",
+  "hokkaido",
+  "aomori", "iwate", "miyagi", "akita",
   "yamagata", "fukushima", "ibaraki", "tochigi",
   "gunma", "saitama", "chiba", "tokyo", "kanagawa",
   "niigata", "toyama", "ishikawa", "fukui", "yamanashi",
@@ -17,8 +14,7 @@
   "yamaguchi", "tokushima", "kagawa", "ehime", "kochi",
   "fukuoka", "saga", "nagasaki", "kumamoto", "oita",
   "miyazaki", "kagoshima", "okinawa"
-image_tag 'prefectures/01_hokkaido.png', class: 'w-[300px] h-[200px]'
--->
+] %>
 
 <!-- # このコードでは image_tag を使用しています %>
 <% prefectures.each_with_index do |prefecture_name, index| %>
@@ -30,26 +26,27 @@ image_tag 'prefectures/01_hokkaido.png', class: 'w-[300px] h-[200px]'
 <% end %>
 -->
 
-
+<div class="japan-map-container relative w-full h-full">
 <% prefectures.each_with_index do |prefecture_name, index| %>
   <% prefecture_id = index + 1 %>
   <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
   <% post_count = user_prefecture ? user_prefecture.post_count : 0 %>
   <% count_class = post_count >= 4 ? "bg-count-4" : "bg-count-#{post_count}" %>
 
-  <% # SVGデータのパスを設定します %>
   <% svg_filename = "#{prefecture_id.to_s.rjust(2, '0')}_#{prefecture_name}.svg" %>
   <% svg_path = Rails.root.join("app", "assets", "images", "prefectures", svg_filename) %>
   <% if File.exist?(svg_path) %>
     <% svg_data = File.read(svg_path) %>
-    <% # SVGデータを安全にHTMLに埋め込むためには `raw` ヘルパーまたは `html_safe` を使用します %>
-    <% updated_svg_data = svg_data.gsub('<path', "<path class=\"#{count_class}\"") %>
+    <% # id="rake"を持つpathタグにはクラスを適用させない %>
+    <% updated_svg_data = svg_data.gsub(/<path(?!.*?id="rake")/, "<path class=\"#{count_class}\"") %>
+    <% # id="rake"を持つpathタグに白色を適用 %>
+    <% updated_svg_data = updated_svg_data.gsub(/<path id="rake"/, '<path id="rake" class="bg-shiga"') %>
     <%= raw(updated_svg_data).html_safe %>
   <% else %>
-    <% # SVGファイルが見つからない場合は代替テキストや画像を表示 %>
     <p>SVGファイルが見つかりません。</p>
   <% end %>
 <% end %>
+</div>
 
 <!-- インラインSVG
 <% prefectures.each_with_index do |prefecture_name, index| %>
