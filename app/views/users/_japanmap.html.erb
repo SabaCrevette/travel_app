@@ -1,0 +1,42 @@
+<% prefectures = [
+  "hokkaido",
+  "aomori", "iwate", "miyagi", "akita",
+  "yamagata", "fukushima", "ibaraki", "tochigi",
+  "gunma", "saitama", "chiba", "tokyo", "kanagawa",
+  "niigata", "toyama", "ishikawa", "fukui", "yamanashi",
+  "nagano", "gifu", "shizuoka", "aichi", "mie",
+  "shiga", "kyoto", "osaka", "hyogo", "nara",
+  "wakayama", "tottori", "shimane", "okayama", "hiroshima",
+  "yamaguchi", "tokushima", "kagawa", "ehime", "kochi",
+  "fukuoka", "saga", "nagasaki", "kumamoto", "oita",
+  "miyazaki", "kagoshima", "okinawa"
+] %>
+
+<% svg_path = Rails.root.join('app', 'assets', 'images', 'japan.svg') %>
+<% svg_data = File.read(svg_path) %>
+<% prefectures.each_with_index do |prefecture, index| %>
+  <% prefecture_id = index + 1 %>
+  <% user_prefecture = user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+  
+  <%# biwaが含まれている場合は.bg-biwaクラスを適用する %>
+  <% if prefecture.include?('biwa') %>
+    <% count_class = 'bg-biwa' %>
+  <% else %>
+    <% count_class = user_prefecture && user_prefecture.post_count >= 4 ? "bg-count-4" : "bg-count-#{user_prefecture ? user_prefecture.post_count : 0}" %>
+  <% end %>
+
+  <% svg_data.gsub!(/<path id="#{prefecture}"( class="[^"]*")?/, '<path id="' + prefecture + '" class="' + count_class + '"') %>
+<% end %>
+<%= raw(svg_data).html_safe %>
+
+<!-- パターンB 滋賀塗りつぶし =begin
+<% svg_path = Rails.root.join('app', 'assets', 'images', 'japan.svg') %>
+<% svg_data = File.read(svg_path) %>
+<% prefectures.each_with_index do |prefecture, index| %>
+  <% prefecture_id = index + 1 %>
+  <% user_prefecture = @user_prefectures.find { |up| up.prefecture_id == prefecture_id } %>
+  <% count_class = user_prefecture && user_prefecture.post_count >= 4 ? "bg-count-4" : "bg-count-#{user_prefecture ? user_prefecture.post_count : 0}" %>
+  <% svg_data.gsub!(/<path id="#{prefecture}"( class="[^"]*")?/, '<path id="' + prefecture + '" class="' + count_class + '"') %>
+<% end %>
+<%= raw(svg_data).html_safe %>
+=end -->

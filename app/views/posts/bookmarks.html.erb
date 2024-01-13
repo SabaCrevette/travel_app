@@ -7,6 +7,12 @@
       <turbo-frame id="bookmarks_frame" style="display: none;">
         <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
       </turbo-frame>
+      <!-- posts#bookmarksが直接参照された時に表示 -->
+        <% if @bookmark_posts.present? %>
+          <%= render partial: "post", collection: @bookmark_posts, as: :post, locals: { context: @context } %>
+        <% else %>
+          <div class="mb-3">ブックマーク中の投稿がありません</div>
+        <% end %>
     </div>
   </div>
 </div>

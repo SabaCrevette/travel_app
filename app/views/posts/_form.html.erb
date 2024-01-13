@@ -1,23 +1,24 @@
 <%= form_with model: post, local: true, class: "space-y-4" do |f| %>
   <%= render 'shared/error_messages', model: f.object %>
+  <div class="flex flex-col gap-4 p-4 md:p-8">
 
   <!-- 都道府県のプルダウンメニュー -->
   <div>
-    <%= f.label :prefecture_id, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択必須"}, {class: "select select-bordered select-sm w-full max-w-xs"} %>
+    <%= f.label :prefecture_id, class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
+    <%= f.collection_select :prefecture_id, Prefecture.all, :id, :name, {prompt: "選択必須"}, {class: "block select select-bordered select-sm w-full max-w-xs"} %>
   </div>
 
   <!-- 観光地名のテキストフィールド -->
   <div>
-    <%= f.label :location, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :location, placeholder: "観光地名やスポット名を記入してください", class: "input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.label :location, class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :location, placeholder: "観光地名やスポット名を記入してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
   </div>
 
 
   <!-- 画像選択 -->
   <div>
     <%= f.label :images, "画像を選択（最低1枚、最大4枚）", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.file_field :images, multiple: true, class: "file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
+    <%= f.file_field :images, multiple: true, class: "block file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
     <!-- <%= f.hidden_field :images_cache %> -->
     <% post.images.each do |image| %>
       <%= hidden_field :post, :images, multiple: true, value: image.identifier %>
@@ -27,34 +28,34 @@
   <% if @post.images? %>
     <div class="flex flex-row space-x-4">
     <% @post.images.each do |image| %>
-      <%= image_tag(image.url(), class: "h-15 w-20") %>
-      <%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除しますか？' }, class: "text-xs text-red-600" %> <!-- 削除リンク -->
+      <%= image_tag(image.url(), class: "block h-15 w-20") %>
+      <%= link_to '削除', '#', method: :delete, data: { confirm: '本当に削除しますか？' }, class: "block text-xs text-red-600" %> <!-- 削除リンク -->
     <% end %>
     </div>
   <% end %>
 
   <!-- 旅行の思い出 -->
   <div>
-    <%= f.label :text, class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_area :text, rows: 3, placeholder: "旅の思い出やオススメポイントを自由に記入してください", class: "textarea textarea-bordered textarea-sm w-full max-w-xs" %>
+    <%= f.label :text, class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_area :text, rows: 3, placeholder: "旅の思い出やオススメポイントを自由に記入してください", class: "block textarea textarea-bordered textarea-sm w-full max-w-xs" %>
   </div>
 
   <!-- 観光地の開催時期と公開設定 -->
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
-      <%= f.label :event_status, class: "block text-sm font-medium text-gray-700" %>
+      <%= f.label :event_status, class: "mb-2 block text-sm font-medium text-gray-700" %>
       <div class="mt-1 flex items-center">
-        <%= f.radio_button :event_status, 'permanent', class: "radio", id: "event_status_permanent", checked: true %>
-        <%= f.label :event_status_permanent, '通年', class: "ml-2 block text-sm font-medium text-gray-700" %>
-        <%= f.radio_button :event_status, 'seasonal', class: "radio", id: "event_status_seasonal" %>
+        <%= f.radio_button :event_status, 'permanent', class: "radio", id: "block event_status_permanent", checked: true %>
+        <%= f.label :event_status_permanent, '通年', class: "mr-4 ml-2 block text-sm font-medium text-gray-700" %>
+        <%= f.radio_button :event_status, 'seasonal', class: "block radio", id: "event_status_seasonal" %>
         <%= f.label :event_status_seasonal, '期間限定', class: "ml-2 block text-sm font-medium text-gray-700" %>
       </div>
 
       <fieldset>
-        <%= f.label :public_status, class: "block text-sm font-medium text-gray-700" %>
+        <%= f.label :public_status, class: "mt-2 mb-2 block text-sm font-medium text-gray-700" %>
         <div class="mt-1 flex items-center">
           <%= f.radio_button :public_status, 'open', id: 'public_status_open', class: "radio", checked: true %>
-          <%= f.label :public_status_open, '公開', class: "ml-2 block text-sm font-medium text-gray-700" %>
+          <%= f.label :public_status_open, '公開', class: "mr-4 ml-2 block text-sm font-medium text-gray-700" %>
           <%= f.radio_button :public_status, 'closed', id: 'public_status_close', class: "radio" %>
           <%= f.label :public_status_close, '非公開', class: "ml-2 block text-sm font-medium text-gray-700" %>
         </div>
@@ -64,12 +65,13 @@
 
   <!-- タグ（将来的に実装） -->
   <div>
-    <%= f.label :tag_names, "タグ", class: "block text-sm font-medium text-gray-700" %>
-    <%= f.text_field :tag_names, value: @post.tags.pluck(:name).join(", "), placeholder: ",で区切って5個まで入力できます", class: "input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.label :tag_names, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :tag_names, value: @post.tags.pluck(:name).join(", "), placeholder: ",で区切って5個まで入力できます", class: "block input input-bordered input-sm w-full max-w-xs" %>
   </div>
 
   <!-- 送信ボタン -->
   <div>
-    <%= f.submit "投稿する", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+    <%= f.submit "投稿する", class: "w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+  </div>
   </div>
 <% end %>
