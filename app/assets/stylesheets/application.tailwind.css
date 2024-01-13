@@ -12,3 +12,22 @@
 .bg-count-2  { fill: #58f2c6; }
 .bg-count-3  { fill: #58f2a4; }
 .bg-count-4  { fill: #58f277; }
+.bg-shiga { fill: #FFFFFF}
+
+.prefecture-image-01 {  /* 北海道の位置 */
+  position: absolute;
+  top: 0px;
+  right: 200px;
+}
+
+.prefecture-image-02 {  /* 青森県の位置 */
+  position: absolute;
+  top: 120px;
+  right: 200px;
+}
+
+.prefecture-image-03 {  /* 北海道の位置 */
+  position: absolute;
+  top: 160px;
+  left: 200px;
+}
