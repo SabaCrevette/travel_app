@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   # /search
   def index
+    @user_prefectures = UserPrefecture.all
     @posts = if (tag_name = params[:tag_name])
                # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
                Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)

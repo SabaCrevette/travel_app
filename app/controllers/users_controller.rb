@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   skip_before_action :require_login, only: %i[new create]
   def index
+    @posts = current_user.posts.includes(:prefecture, :tags).order(created_at: :desc)
     @user_prefectures = UserPrefecture.where(user_id: current_user.id)
+    @context = 'posts'
   end
 
   def new
