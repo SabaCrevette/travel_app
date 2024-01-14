@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :prefecture, optional: true
-  has_many :post_tags, dependent: :destroy
+  has_many :post_tags
   has_many :tags, through: :post_tags
 
   has_many :bookmarks, dependent: :destroy
@@ -31,6 +31,16 @@ class Post < ApplicationRecord
 
   # タグに基づいて投稿を取得
   scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+
+  # 検索に含める関連付けを指定
+  def self.ransackable_associations(_auth_object = nil)
+    %w[prefecture tags]
+  end
+
+  # 検索に含める属性を指定
+  def self.ransackable_attributes(auth_object = nil)
+    super - %w[id created_at updated_at] # 除外したい属性をここで指定
+  end
 
   private
 

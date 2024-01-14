@@ -34,30 +34,45 @@
       <%= render 'users/japanmap', user_prefectures: @user_prefectures %>
     </div>
     <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-      <h4>都道府県</h4>
-      <select class="select select-bordered select-sm w-full max-w-xs">
-        <option disabled selected>全て選択</option>
-        <option>Small Apple</option>
-        <option>Small Orange</option>
-        <option>Small Tomato</option>
-      </select>
-      <h4>エリア</h4>
-      <select class="select select-bordered select-sm w-full max-w-xs">
-        <option disabled selected>全て選択</option>
-        <option>Small Apple</option>
-        <option>Small Orange</option>
-        <option>Small Tomato</option>
-      </select>
-      <h4>キーワード</h4>
-      <input type="text" placeholder="フリーワード" class="input input-bordered input-sm w-full max-w-xs" />
-      <h4>タグ</h4>
-      <input type="text" placeholder="フリーワード" class="input input-bordered input-sm w-full max-w-xs" />
-      <h4>検索オプション</h4>
-      <input type="checkbox" checked="checked" class="checkbox checkbox-sm" /> 未踏破の都道府県に絞り込む
-      <input type="checkbox" checked="checked" class="checkbox checkbox-sm" /> 期間限定の観光地・イベントを除外する
-      <div class="flex justify-center">
-        <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">検索</button>
-      </div>
+    
+<%= search_form_for @q, url: "/search", class: "space-y-4", id: "search-form" do |f| %>
+  <div class="flex flex-col gap-4 p-4 md:p-8">
+    <!-- 都道府県による検索 -->
+    <div>
+      <%= f.label :prefecture_id_eq, "都道府県", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, { class: "block select select-bordered select-sm w-full max-w-xs" } %>
+    </div>
+
+    <!-- postsテーブルのtextに対する検索 -->
+    <div>
+    <%= f.label :text_cont_any, "検索キーワード", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    </div>
+
+    <!-- tagsテーブルのnameに対する検索 -->
+    <div>
+    <%= f.label :tags_name_cont_any, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    </div>
+
+    <!-- 通年開催の観光地・イベントに絞り込むチェックボックス -->
+    <div>
+      <%= f.check_box :event_status_eq, { class: "checkbox checkbox-primary" }, 'permanent', nil %>
+      <%= f.label :event_status_eq, '通年開催の観光地・イベントに絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
+    </div>
+
+      <!-- Ransackの検索条件にはない独自のチェックボックス -->
+  <div>
+  <%= check_box_tag :exclude_unvisited_prefectures, "true", params[:exclude_unvisited_prefectures] == "true", class: "checkbox checkbox-primary" %>
+  <%= label_tag :exclude_unvisited_prefectures, '未踏破の都道府県に絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
+  </div>
+
+    <!-- 検索ボタン -->
+    <div>
+      <%= f.submit "検索", class: "inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" %>
+    </div>
+ </div>
+<% end %>
     </div>
   </div>
 </section>
@@ -89,15 +104,40 @@
     toggleSwitch.addEventListener('change', () => {
       const postsFrame = document.getElementById('posts_frame');
       const bookmarksFrame = document.getElementById('bookmarks_frame');
-      if (toggleSwitch.checked) {
-        // ブックマーク一覧を表示 noneが非表示、blockが表示
-        postsFrame.style.display = 'none';
-        bookmarksFrame.style.display = 'block';
-      } else {
-        // 投稿一覧を表示
-        postsFrame.style.display = 'block';
-        bookmarksFrame.style.display = 'none';
-      }
+if (toggleSwitch.checked) {
+  postsFrame.style.display = 'none';
+  bookmarksFrame.style.display = 'block';
+  bookmarksFrame.src = '/posts/bookmarks'; // ブックマークのデータを再ロード
+} else {
+  postsFrame.style.display = 'block';
+  bookmarksFrame.style.display = 'none';
+}
+
     });
   });
+
+document.addEventListener('submit', function(e) {
+  var tagField = document.getElementById('tag_field');
+  if (tagField) {
+    var tags = tagField.value.split(/[\s,、]+/); // 半角/全角スペース、コンマで分割
+    tagField.value = tags.join(' '); // 半角スペースで結合し直す
+    }
+  });
+
+  // 最終手段
+    //   <>
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   const toggleSwitch = document.getElementById('toggle-switch');
+      
+    //   toggleSwitch.addEventListener('change', () => {
+    //     if (toggleSwitch.checked) {
+    //       Turbo.visit('/posts/bookmarks');
+    //     } else {
+    //       Turbo.visit('/search');
+    //     }
+    //   });
+    // });
+
 </script>
+
+
