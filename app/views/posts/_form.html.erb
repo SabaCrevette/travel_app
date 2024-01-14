@@ -20,8 +20,14 @@
     <%= f.label :images, "画像を選択（最低1枚、最大4枚）", class: "block text-sm font-medium text-gray-700" %>
     <%= f.file_field :images, multiple: true, class: "block file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
     <!-- <%= f.hidden_field :images_cache %> -->
-    <% post.images.each do |image| %>
-      <%= hidden_field :post, :images, multiple: true, value: image.identifier %>
+    <% if @post.new_record? %>
+      <% @post.images.each do |image| %>
+        <%= hidden_field :post, :images, multiple: true, value: image.cache_name %>
+      <% end %>
+    <% else %>
+      <% @post.images.each do |image| %>
+        <%= hidden_field :post, :images, multiple: true, value: image.identifier %>
+      <% end %>
     <% end %>
   </div>
 
@@ -63,7 +69,7 @@
     </div>
   </div>
 
-  <!-- タグ（将来的に実装） -->
+  <!-- タグ -->
   <div>
     <%= f.label :tag_names, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
     <%= f.text_field :tag_names, value: @post.tags.pluck(:name).join(", "), placeholder: ",で区切って5個まで入力できます", class: "block input input-bordered input-sm w-full max-w-xs" %>

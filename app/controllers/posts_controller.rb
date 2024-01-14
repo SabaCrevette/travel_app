@@ -5,15 +5,25 @@ class PostsController < ApplicationController
   # /search
   def index
     @user_prefectures = UserPrefecture.all
-    @posts = if (tag_name = params[:tag_name])
-               # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-               Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
-             else
-               # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-               Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
-             end
+
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:user, :prefecture, :tags).order(created_at: :desc)
+
+    if params[:exclude_unvisited_prefectures] == 'true'
+      visited_prefecture_ids = current_user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
+      @posts = @posts.where.not(prefecture_id: visited_prefecture_ids)
+    end
+
     @context = 'posts'
   end
+
+  # @posts = if (tag_name = params[:tag_name])
+  #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+  #            Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
+  #          else
+  #            # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+  #            Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
+  #          end
 
   def new
     @post = Post.new
@@ -65,6 +75,7 @@ class PostsController < ApplicationController
   end
 
   def bookmarks
+    @user_prefectures = UserPrefecture.all
     # ブックマーク一覧を取得
     @bookmark_posts = current_user.bookmark_posts.includes(:user, :prefecture, :tags).order(created_at: :desc)
     # タグに基づいて絞り込み
