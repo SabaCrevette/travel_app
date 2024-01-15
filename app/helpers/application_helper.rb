@@ -9,7 +9,11 @@ module ApplicationHelper
   end
 
   def full_url(path)
-    domain = Rails.env.development? ? ENV['DEVELOPMENT_DOMAIN'] : ENV['PRODUCTION_DOMAIN']
+    domain = if Rails.env.development?
+               'http://0.0.0.0:3000'
+             else
+               'https://saba-travel-app-71a92d1a59ff.herokuapp.com/'
+             end
     "#{domain}#{path}"
   end
 end

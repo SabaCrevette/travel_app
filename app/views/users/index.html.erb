@@ -18,8 +18,8 @@
     <%= link_to '準備中', '#buttons', class: "btn disabled" %> 
     <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
 
-<% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
-<%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県制覇しました")}&url=#{request.original_url}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+    <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
+    <%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県制覇しました")}&url=#{request.original_url}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
 
   </div>
 </div>
