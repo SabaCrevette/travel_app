@@ -11,14 +11,7 @@
     <script src="https://kit.fontawesome.com/8050981de6.js" crossorigin="anonymous"></script>
 
     <!-- ogp -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <!-- <meta name="twitter:site" content="@saba7678pg" /> 投稿時に表示するX ID-->
-    <meta property="og:title" content="<%= full_title(yield(:title)) %>" />
-    <meta property="og:url" content="<%= request.url %>" />
-    <meta property="og:description"
-      content="<%= content_for?(:description) ? yield(:description) : 'Travel_appの説明' %>" />
-    <meta property="og:image"
-      content="<%= content_for?(:image_url) ? yield(:image_url) : full_url('/assets/images/kanagawaken.png') %>" />
+    <%= display_meta_tags(default_meta_tags) %>
   </head>
 
   <body>

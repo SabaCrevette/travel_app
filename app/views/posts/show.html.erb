@@ -31,7 +31,8 @@
                 <div class="flex">
                   <span class="flex items-center pl-3 py-2 border-l-2 border-gray-200">
                   <a class="text-gray-500">
-<%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{request.original_url}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+<%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+
                   </a>
                   </span>
                 </div>

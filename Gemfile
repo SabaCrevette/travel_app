@@ -62,8 +62,13 @@ gem 'dotenv-rails'
 # 検索処理の導入
 gem 'ransack'
 
+
 # Geocodingの導入
 gem 'geocoder'
+
+# OGPの導入
+gem 'meta-tags'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

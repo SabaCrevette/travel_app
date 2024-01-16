@@ -1,7 +1,3 @@
-<%= content_for(:title, "マイページ") %>
-<%= content_for(:description, "現在の投稿状況") %>
-<%= content_for(:image_url, full_url("assets/image/kanagawaken.img")) %>
-
 <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
@@ -18,8 +14,8 @@
     <%= link_to '準備中', '#buttons', class: "btn disabled" %> 
     <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
 
-<% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
-<%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県制覇しました")}&url=#{request.original_url}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+    <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
+    <%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県制覇しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
 
   </div>
 </div>
