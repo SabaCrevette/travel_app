@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_12_031813) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_16_072930) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,18 +29,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_031813) do
     t.index ["post_id"], name: "index_bookmarks_on_post_id"
     t.index ["user_id", "post_id"], name: "index_bookmarks_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.bigint "prefecture_id"
-    t.string "address"
-    t.float "latitude"
-    t.float "longitude"
-    t.bigint "area_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["area_id"], name: "index_cities_on_area_id"
-    t.index ["prefecture_id"], name: "index_cities_on_prefecture_id"
   end
 
   create_table "post_tags", force: :cascade do |t|
@@ -63,6 +51,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_031813) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.json "images"
+    t.string "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "area_id"
+    t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["prefecture_id"], name: "index_posts_on_prefecture_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -104,10 +97,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_12_031813) do
 
   add_foreign_key "bookmarks", "posts"
   add_foreign_key "bookmarks", "users"
-  add_foreign_key "cities", "areas"
-  add_foreign_key "cities", "prefectures"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
+  add_foreign_key "posts", "areas"
   add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "users"
   add_foreign_key "user_prefectures", "prefectures"

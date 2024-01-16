@@ -52,6 +52,7 @@
           <div class="flex  mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
             <span class="mr-3">投稿者</span>
             <%= @post.user.name %>
+            <%= @post.address %>
 
           <!-- =begin 旧ボタン
           <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -60,6 +61,24 @@
             </svg>
           </button>
           -->
+
+<div id="map" style="height: 200px; width: 200%;">test</div>
+<script>
+function initMap() {
+  var location = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: location
+  });
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+}
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
+</script>
 
 
           </div>
@@ -70,10 +89,11 @@
               <% end %>
               <%= link_to post_path(@post), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？ '}, class: "btn btn-error", id: "button-delete-#{@post.id}" do %>
                 削除
-              <% end %>
+             <% end %>
             <% end %>
           </div>
         </div>
       </div>
     </div>
 </section>
+
