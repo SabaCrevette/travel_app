@@ -1,52 +1,30 @@
-<div class="container mx-auto p-5">
-  <div class="flex flex-col items-center bg-white p-4 shadow rounded-lg">
-    <div class="avatar mb-4">
-      <span class="font-bold">アバター画像</span>
-      <div class="w-24 rounded-full">
-      <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %>
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">プロフィール</h1>
+    <div class="w-full md:w-10/12 lg:w-8/12 mx-auto">
+
+      <div class="mb-4">
+        <span class="block text-sm font-bold mb-2">アバター画像</span>
+        <div class="mt-2">
+        <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %>
+        </div>
       </div>
-    </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">ユーザー名</span>
-      <%= current_user.name %>
-    </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">メールアドレス</span>
-      <%= current_user.email %>
-    </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">パスワード</span>
-      非表示
+
+      <div>
+        <span class="block text-sm font-bold mb-2">ユーザー名</span>
+        <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"><%= current_user.name %></div>
+      </div>
+
+      <div>
+        <span class="block text-sm font-bold mb-2"">メールアドレス</span>
+        <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"><%= current_user.email %></div>
+        <%= link_to '編集', edit_profile_path, class: 'mt-4 btn btn-outline' %>
+      </div>
       
-      <%= link_to '編集', edit_profile_path, class: 'btn btn-outline' %>
-    </div>
-  </div>
-</div>
-
-
-<!-- =begin
-
-<div class="container mx-auto p-5">
-  <div class="flex flex-col items-center bg-white p-4 shadow rounded-lg">
-    <div class="avatar mb-4">
-      <div class="w-24 rounded-full">
-        image_tag('path_to_avatar_image', alt: 'avatar')
+      <div>
+        <span class="mb-2 inline-block text-sm text-gray-800 sm:text-base">パスワード</span>
+        <%= link_to 'パスワード変更', new_password_reset_path, class: 'btn btn-outline' %>
       </div>
     </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">ユーザー名</span>
-      <span>@user.name</span>
-    </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">メールアドレス</span>
-      <span>@user.emai</span>
-    </div>
-    <div class="flex flex-col items-center mb-4">
-      <span class="font-bold">パスワード</span>
-      link_to '編集', edit_user_password_path(@user), class: 'btn btn-outline'
-    </div>
-    <div class="badge badge-outline">編集</div>
   </div>
 </div>
-
-=end -->

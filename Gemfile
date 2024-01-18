@@ -98,6 +98,9 @@ group :development do
   # debugツール
   gem 'better_errors'
   gem 'binding_of_caller'
+
+  # 開発環境のメーラー
+  gem 'letter_opener_web'
 end
 
 group :test do

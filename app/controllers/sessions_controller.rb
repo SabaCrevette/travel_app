@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if @user
       flash[:notice] = t('sessions.create.success') # :success を :notice に変更
-      redirect_to root_path
+      redirect_to mypage_path
     else
       flash.now[:alert] = t('sessions.create.failure') # :error を :alert に変更
       render :new, status: :unprocessable_entity

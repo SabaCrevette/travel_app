@@ -9,7 +9,7 @@ ja:
       tag: タグ
     attributes:
       user:
-        name: 名前
+        name: ニックネーム
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード確認

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/create'
+  get 'password_resets/edit'
+  get 'password_resets/update'
   root 'tops#index'
   get 'sessions/new'
   get 'sessions/create'
@@ -20,6 +24,12 @@ Rails.application.routes.draw do
   resource :profile, only: %i[show edit update]
 
   resources :bookmarks, only: %i[create destroy]
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 
 
   get 'login', to: 'sessions#new'

@@ -1,4 +1,9 @@
 ja:
+  helpers:
+    submit:
+      create: 登録
+      submit: 保存
+      update: 更新
   defaults: # 使い回しの多い翻訳や特定のスコープに限定されない汎用的な翻訳を記載
     require_login: ログインしてください
     flash:
@@ -21,3 +26,15 @@ ja:
       failure: ログインに失敗しました
     destroy:
       success: ログアウトしました
+  password_resets:
+    new:
+      title: パスワードリセット申請
+      submit: 送信
+    create:
+      success: 再発行用のEmailを送付しました
+    edit:
+      title: パスワードリセット
+      submit: 保存
+    update:
+      success: パスワード更新に成功しました
+      failure: パスワード更新に失敗しました
