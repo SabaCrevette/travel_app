@@ -56,7 +56,7 @@ Rails.application.configure do
 
   # 本番環境で実際にメールを送信する設定
   config.action_mailer.raise_delivery_errors = true
-
+  config.action_mailer.default_url_options = { host: 'saba-travel-app-71a92d1a59ff.herokuapp.com', protocol: 'https' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
