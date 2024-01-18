@@ -5,6 +5,7 @@ ja:
       submit: 保存
       update: 更新
   defaults: # 使い回しの多い翻訳や特定のスコープに限定されない汎用的な翻訳を記載
+    password_reset: パスワードリセット
     require_login: ログインしてください
     flash:
       created: "%{item}を作成しました"
