@@ -1,0 +1,24 @@
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="col-md-10 offset-md-1 col-lg-8 offset-lg-2">
+      <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl"><%= t '.title' %></h1>
+      <%= form_with model: @user, url: password_reset_path(@token), class: "mx-auto max-w-lg rounded-lg border" , method: :patch do |f| %>
+        <%= render 'shared/error_messages', model: f.object %>
+        <div class="flex flex-col gap-4 p-4 md:p-8">
+        <div>
+          <%= f.label :email, class: "mb-2 block text-sm text-gray-800 sm:text-base" %>
+          <div class="font-bold"><%= @user.email %></div>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+          <%= f.password_field :password, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+          <%= f.password_field :password_confirmation, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+        </div>
+          <%= f.submit t('password_resets.edit.submit'), class: "block rounded-lg bg-gray-800 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-gray-300 transition duration-100 hover:bg-gray-700 focus-visible:ring active:bg-gray-600 md:text-base" %>
+      <% end %>
+    </div>
+  </div>
+</div>

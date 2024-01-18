@@ -1,7 +1,7 @@
-<div class="container mx-auto px-4">
-  <div class="flex flex-wrap">
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">プロフィール編集</h1>
     <div class="w-full md:w-10/12 lg:w-8/12 mx-auto">
-      <h1 class="text-2xl font-bold mb-4">プロフィール編集</h1>
       <%= form_with model: @user, url: profile_path(@user), local: true do |f| %>
         <%= render 'shared/error_messages', model: f.object %>
         <div class="mb-4">
@@ -18,7 +18,7 @@
           <%= f.label :email, class: "block text-sm font-bold mb-2" %>
           <%= f.email_field :email, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
         </div>
-        <%= f.submit nil, class: "px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10" %>
+        <%= f.submit nil, class: 'btn btn-outline' %>
       <% end %>
     </div>
   </div>

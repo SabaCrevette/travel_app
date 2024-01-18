@@ -43,9 +43,15 @@
       <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, { class: "block select select-bordered select-sm w-full max-w-xs" } %>
     </div>
 
+    <!-- postsテーブルのlocationに対する検索 -->
+    <div>
+    <%= f.label :location_cont_any, "観光地名検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    </div>
+
     <!-- postsテーブルのtextに対する検索 -->
     <div>
-    <%= f.label :text_cont_any, "検索キーワード", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.label :text_cont_any, "本文検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
     <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
     </div>
 
