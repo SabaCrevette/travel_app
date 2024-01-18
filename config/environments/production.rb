@@ -55,7 +55,6 @@ Rails.application.configure do
   config.action_mailer.perform_caching = true
 
   # 本番環境で実際にメールを送信する設定
-  config.action_mailer.default_url_options = Settings.default_url_options.to_h
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.delivery_method = :smtp
