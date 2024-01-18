@@ -28,6 +28,7 @@
             </div>
             <div class="flex items-center mt-1 mb-4">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 mr-4"><%= @post.location %></h1>
+              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 mr-4"><%= @post.area ? @post.area.name : '未登録' %></h1>
                 <div class="flex">
                   <span class="flex items-center pl-3 py-2 border-l-2 border-gray-200">
                   <a class="text-gray-500">
