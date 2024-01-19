@@ -31,9 +31,21 @@
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>
   <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center justify-center">
     <div class="lg:max-w-lg lg:w-1/2 md:w-1/2 w-1/2 mb-10 md:mb-0">
+    <!-- 自身の投稿とみんなの投稿切り替え -->
+    <% if logged_in? %>
+<label class="label cursor-pointer justify-end">
+  色塗り切り替え
+  <span class="mr-2"></span>
+  <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
+</label>
+  <% end %>
       <!-- 色塗りマップ -->
-      <%= render 'users/japanmap', user_prefectures: @user_prefectures %>
+      <turbo-frame id="japan_map">
+      <%= render 'users/japanmap', user_prefectures: @user_prefectures, text: @text %>
+      </turbo-frame>
     </div>
+    
+    
     <div class="flex flex-col gap-4 p-4 md:p-8 w-1/2">
     
 <%= search_form_for @q, url: "/search", class: "space-y-4", id: "search-form" do |f| %>
@@ -77,11 +89,13 @@
       <%= f.label :event_status_eq, '通年開催の観光地・イベントに絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
     </div>
 
-      <!-- Ransackの検索条件にはない独自のチェックボックス -->
-  <div>
-  <%= check_box_tag :exclude_unvisited_prefectures, "true", params[:exclude_unvisited_prefectures] == "true", class: "checkbox checkbox-primary" %>
-  <%= label_tag :exclude_unvisited_prefectures, '未踏破の都道府県に絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
-  </div>
+    <!-- 未踏破の都道府県：Ransackの検索条件にはない独自のチェックボックス -->
+    <% if logged_in? %>
+      <div>
+      <%= check_box_tag :exclude_unvisited_prefectures, "true", params[:exclude_unvisited_prefectures] == "true", class: "checkbox checkbox-primary" %>
+      <%= label_tag :exclude_unvisited_prefectures, '未踏破の都道府県に絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
+      </div>
+    <% end %>
 
     <!-- 検索ボタン -->
     <div class="mx-auto">
@@ -98,18 +112,19 @@
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
-          ブックマーク
+          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+<!--          ブックマーク切り替え
           <span class="mr-2"></span>
           <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
         </label>
         </p>
-      </div>
-      <turbo-frame id="posts_frame">
+      </div> -->
+<!--      <turbo-frame id="posts_frame"> -->
         <%= render partial: "posts/posts_frame" %>
-      </turbo-frame>
-      <turbo-frame id="bookmarks_frame" src="/posts/bookmarks" style="display: none;">
-        <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
-      </turbo-frame>
+<!--      </turbo-frame> -->
+<!--      // <turbo-frame id="bookmarks_frame" src="/posts/bookmarks" style="display: none;">
+      //   <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
+      // </turbo-frame> -->
   </div>
 </div>
 </div>
@@ -186,8 +201,16 @@ document.addEventListener("turbo:load", function() {
 });
 
 
+document.addEventListener('turbo:load', () => {
+  document.getElementById('toggle-switch').addEventListener('change', (event) => {
+    let isChecked = event.target.checked;
+    let frame = document.getElementById('japan_map');
 
+    fetch(`/posts/toggle_partial?checked=${isChecked}`)
+      .then(response => response.text())
+      .then(html => frame.innerHTML = html);
+  });
+});
 
 </script>
-
 

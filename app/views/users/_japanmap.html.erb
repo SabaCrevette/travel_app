@@ -1,3 +1,11 @@
+<% if text.present? %>
+  <div class="border border-black p-4 flex flex-col justify-center items-center">
+    <div class="text-lg">
+      <%= text %>の色塗り状況
+    </div>
+  </div>
+<% end %>
+
 <% prefectures = [
   "hokkaido",
   "aomori", "iwate", "miyagi", "akita",
@@ -30,15 +38,14 @@
 <%= raw(svg_data).html_safe %>
 
 
-<div class="border border-black-500 p-4">
-  <div class="text-lg">投稿件数</div>
-
-  <div class="flex justify-center space-x-2">
-    <span class="bg-map-0 p-2">□ 0件</span>
-    <span class="bg-map-1 p-2">□ 1件</span>
-    <span class="bg-map-2 p-2">□ 2件</span>
-    <span class="bg-map-3 p-2">□ 3件</span>
-    <span class="bg-map-4 p-2">□ 4件以上</span>
+<div class="flex flex-col justify-center items-center">
+  <div class="text-lg mb-2">投稿件数</div>
+  <div class="flex space-x-2">
+    <span class="bg-map-0 p-2">0件</span>
+    <span class="bg-map-1 p-2">1件</span>
+    <span class="bg-map-2 p-2">2件</span>
+    <span class="bg-map-3 p-2">3件</span>
+    <span class="bg-map-4 p-2">4件以上</span>
   </div>
 </div>
 

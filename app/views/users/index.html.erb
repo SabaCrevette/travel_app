@@ -1,17 +1,20 @@
 <section class="text-gray-600 body-font">
   <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">マイページ</h1>
+    <h1 class="title-font sm:text-4xl text-3xl mb-6 font-medium text-gray-900"><%= current_user.name %>さんのマイページ</h1>
+    <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
     <!-- 色塗りマップ -->
-    <%= render 'japanmap', user_prefectures: @user_prefectures %>
-
+    <%= render 'japanmap', user_prefectures: @user_prefectures, text: @text %>
+    <h2 class="mt-4 text-xl"><%= "#{post_count} 都道府県を探索しました" %></h2>
   </div>
 </section>
 
-<div class="container mx-auto px-4">
-  <div id="buttons" class="grid grid-cols-2 gap-4 mx-auto max-w-lg rounded-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
+<div class="flex flex-col justify-center items-center">
+  <div id="buttons"justify-self class="grid grid-cols-2 gap-4 mx-auto max-w-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
+
     <%= link_to '投稿する', new_post_path, class: "btn btn-primary col-span-2 sm:col-span-1 max-w-xs" %>
     <%= link_to '他の人の投稿を見る', '/search', class: "btn btn-secondary col-span-2 sm:col-span-1 max-w-xs" %>
-    <%= link_to '準備中', '#buttons', class: "btn disabled" %> 
+
+    <%= link_to '準備中', '#buttons', class: "btn disabled col-span-2 sm:col-span-1 max-w-xs" %> 
     <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
 
     <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
@@ -35,7 +38,7 @@
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12"><%= current_user.name %>さんの投稿一覧</h2>
-  <div class="mb-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
+  <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
     <% if @posts.present? %>
       <%= render partial: 'posts/post', collection: @posts, as: :post %>
     <% else %>

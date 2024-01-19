@@ -23,9 +23,11 @@
   <span><%= post.user.name %></span>
 
   <!-- bookmarks -->
-  <% if current_user.bookmark?(post) %>
-    <%= render 'posts/unbookmark', post: post %>
-  <% else %>
-    <%= render 'posts/bookmark', post: post %>
+  <% if logged_in? %>
+    <% if current_user.bookmark?(post) %>
+      <%= render 'posts/unbookmark', post: post %>
+    <% else %>
+      <%= render 'posts/bookmark', post: post %>
+    <% end %>
   <% end %>
 </div>

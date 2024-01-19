@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]
   resources :posts, except: :index do
+    get 'toggle_partial', on: :collection
     collection do
       get 'bookmarks'
     end
