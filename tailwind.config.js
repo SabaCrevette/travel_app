@@ -28,5 +28,5 @@ module.exports = {
   plugins: [
     require("daisyui")
   ],
-  darkMode: false, // 末尾のコンマを修正しました
+  darkMode: false,
 };
