@@ -5,15 +5,9 @@ class PostsController < ApplicationController
   # /search
   def index
     @user_prefectures = UserPrefecture.all
-
+    @text = 'みんな'
     @q = Post.ransack(params[:q])
-    @posts = @q.result.includes(:user, :prefecture, :tags).order(created_at: :desc)
-
-    if params[:exclude_unvisited_prefectures] == 'true'
-      visited_prefecture_ids = current_user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
-      @posts = @posts.where.not(prefecture_id: visited_prefecture_ids)
-    end
-
+    @posts = load_posts
     @context = 'posts'
   end
 
@@ -45,6 +39,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
+    return unless @post.closed? && (current_user.nil? || @post.user_id != current_user.id)
+
+    flash[:alert] = 'その記事は存在しません'
+    redirect_to search_path
   end
 
   # GET /posts/1/edit
@@ -83,6 +82,18 @@ class PostsController < ApplicationController
     @context = 'bookmarks'
   end
 
+  def toggle_partial
+    if params[:checked] == 'true'
+      @user_prefectures = UserPrefecture.where(user_id: current_user.id)
+      @text = "#{current_user.name}さん"
+    else
+      @user_prefectures = UserPrefecture.all
+      @text = 'みんな'
+    end
+
+    render partial: 'users/japanmap', locals: { user_prefectures: @user_prefectures, text: @text }
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -98,5 +109,29 @@ class PostsController < ApplicationController
   # タグの名前を取得し、分割して処理
   def extracted_tag_names
     params[:post][:tag_names].to_s.split(/,\s*|\s+|\u3000+/).map(&:strip)
+  end
+
+  def load_posts
+    posts = filtered_posts_by_status
+    posts = posts.order(created_at: :desc)
+    exclude_unvisited_prefectures(posts)
+  end
+
+  def filtered_posts_by_status
+    if current_user
+      @q.result.includes(:user, :prefecture, :tags)
+        .where('posts.user_id = :user_id OR posts.public_status = :public_status',
+               user_id: current_user.id, public_status: Post.public_statuses[:open])
+    else
+      @q.result.includes(:user, :prefecture, :tags)
+        .where(public_status: Post.public_statuses[:open])
+    end
+  end
+
+  def exclude_unvisited_prefectures(posts)
+    return posts unless params[:exclude_unvisited_prefectures] == 'true' && current_user
+
+    visited_prefecture_ids = current_user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
+    posts.where.not(prefecture_id: visited_prefecture_ids)
   end
 end
