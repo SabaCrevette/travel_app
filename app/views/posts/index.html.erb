@@ -26,14 +26,15 @@
 </section>
 -->
 
-<section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+  <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>
+  <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center justify-center">
+    <div class="lg:max-w-lg lg:w-1/2 md:w-1/2 w-1/2 mb-10 md:mb-0">
       <!-- 色塗りマップ -->
-      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">条件検索</h1>
       <%= render 'users/japanmap', user_prefectures: @user_prefectures %>
     </div>
-    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+    <div class="flex flex-col gap-4 p-4 md:p-8 w-1/2">
     
 <%= search_form_for @q, url: "/search", class: "space-y-4", id: "search-form" do |f| %>
   <div class="flex flex-col gap-4 p-4 md:p-8">
@@ -68,6 +69,9 @@
     </div>
 
     <!-- 通年開催の観光地・イベントに絞り込むチェックボックス -->
+    <div class="">
+    オプション項目
+    </div>
     <div>
       <%= f.check_box :event_status_eq, { class: "checkbox checkbox-primary" }, 'permanent', nil %>
       <%= f.label :event_status_eq, '通年開催の観光地・イベントに絞り込む', class: "ml-2 text-sm text-gray-800 sm:text-base" %>
@@ -80,14 +84,14 @@
   </div>
 
     <!-- 検索ボタン -->
-    <div>
+    <div class="mx-auto">
       <%= f.submit "検索", class: "inline-flex text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg" %>
     </div>
  </div>
 <% end %>
     </div>
   </div>
-</section>
+</div>
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -107,6 +111,7 @@
         <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
       </turbo-frame>
   </div>
+</div>
 </div>
 
 <script>

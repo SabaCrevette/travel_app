@@ -7,12 +7,18 @@
   overflow-y: scroll;
 }
 
-.bg-count-0  { fill: #58f2f2; }
-.bg-count-1  { fill: #58f2de; }
-.bg-count-2  { fill: #58f2c6; }
-.bg-count-3  { fill: #58f2a4; }
-.bg-count-4  { fill: #58f277; }
-.bg-biwa { fill: #FFFFFF}
+.bg-count-0  { fill: #f4fbef; stroke: #ebf7e2; }
+.bg-count-1  { fill: #d9f0c7; stroke: #d0edb9; }
+.bg-count-2  { fill: #acde84; stroke: #a3db76; }
+.bg-count-3  { fill: #76c834; stroke: #6eba31; }
+.bg-count-4  { fill: #d9f855; stroke: #d6f844; }
+.bg-biwa { fill: #FFFFFF; stroke: #FFFFFF; }
+
+.bg-map-0  { background-color: #f4fbef; }
+.bg-map-1  { background-color: #d9f0c7; }
+.bg-map-2  { background-color: #acde84; }
+.bg-map-3  { background-color: #76c834; }
+.bg-map-4  { background-color: #d9f855; }
 
 .bg-count-0:hover {
   transform: translateY(-5px);

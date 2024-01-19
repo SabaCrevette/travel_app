@@ -7,6 +7,11 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-header': '#CBE6F3',
+        'custom-body': '#C8EDF0',
+        'custom-footer': '#CBE6F3',
+      },
       keyframes: {
         flashFade: {
           "0%": { transform: "translateX(180px)", opacity: 0 },
@@ -16,11 +21,12 @@ module.exports = {
         },
       },
       animation: {
-        flash: "flashFade 7.0s forwards",
-      },
-    },
+        flash: "flashFade 7.0s forwards"
+      }
+    }
   },
   plugins: [
-    require("daisyui"),
+    require("daisyui")
   ],
-}
+  darkMode: false, // 末尾のコンマを修正しました
+};
