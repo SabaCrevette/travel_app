@@ -3,10 +3,17 @@
     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-between">
       <!-- 画像セクション -->
       <div class="w-full lg:w-1/2 flex flex-wrap">
-        <div class="w-full mb-4 md:mb-0">
-          <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-64 object-contain rounded' %>
-        </div>
+<div data-controller="slider" class="w-full mb-4 md:mb-0" data-turbo="false">
+  <% @post.images.each do |image| %>
+    <%= image_tag image.url, class: "card-img-top show-img", data: { slider_target: "slider" } %>
+  <% end %>
+  <button type="button" data-action="slider#previous">Previous</button>
+  <button type="button" data-action="slider#next">Next</button>
+</div>
         <div class="flex">
+          <div class="w-1/3">
+            <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+          </div>
           <div class="w-1/3">
             <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
           </div>
@@ -97,4 +104,3 @@ function initMap() {
       </div>
     </div>
 </section>
-
