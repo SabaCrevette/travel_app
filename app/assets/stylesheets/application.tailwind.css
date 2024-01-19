@@ -48,3 +48,14 @@ path:hover {
   transform: translateY(-5px); /* Y軸方向に上に移動 */
 }
 
+/* ダークモード設定を無視してライトモードのスタイルを強制する */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #ffffff; /* 白背景 */
+    color: #000; /* 文字色を黒に設定 */
+  }
+
+  .bg-gray-100 {
+    background-color: #f7fafc; /* Tailwindのbg-gray-100のデフォルト色 */
+  }
+}
