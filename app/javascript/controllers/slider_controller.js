@@ -1,5 +1,4 @@
 import { Controller } from "@hotwired/stimulus"
-import 'swiper/css/bundle'
 
 // Connects to data-controller="slider"
 export default class extends Controller {
