@@ -47,7 +47,9 @@ gem 'bootsnap', require: false
 gem 'sorcery'
 
 # Hotwireを用いたturboの導入
-gem 'hotwire-rails'
+# gem 'hotwire-rails'
+gem 'turbo-rails'
+gem 'stimulus-rails'
 
 # i18nの導入
 gem 'rails-i18n'
