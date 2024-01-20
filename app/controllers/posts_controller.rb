@@ -9,15 +9,15 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = load_posts
     @context = 'posts'
-  end
 
-  # @posts = if (tag_name = params[:tag_name])
-  #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-  #            Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
-  #          else
-  #            # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-  #            Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
-  #          end
+    @posts = if (tag_name = params[:tag_name])
+               # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+               Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
+             else
+               # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+               Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
+             end
+  end
 
   def new
     @post = Post.new
@@ -113,8 +113,13 @@ class PostsController < ApplicationController
 
   def load_posts
     posts = filtered_posts_by_status
+    posts = filter_posts_by_tag(posts) if params[:tag_name].present?
     posts = posts.order(created_at: :desc)
     exclude_unvisited_prefectures(posts)
+  end
+
+  def filter_posts_by_tag(posts)
+    posts.with_tag(params[:tag_name])
   end
 
   def filtered_posts_by_status

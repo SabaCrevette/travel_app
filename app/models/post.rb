@@ -18,14 +18,14 @@ class Post < ApplicationRecord
   after_create :increment_user_prefecture_post_count
   after_destroy :decrement_user_prefecture_post_count
 
-  after_validation :set_area_id, if: ->(obj) { obj.address.present? }
+  after_validation :set_area_id, if: ->(obj) { obj.address.present? && obj.address_changed? }
 
   attr_accessor :images_cache
 
   mount_uploaders :images, ImageUploader
 
   validates :prefecture_id, presence: true
-  validates :location, presence: true, length: { maximum: 50 }
+  validates :location, presence: true, length: { maximum: 30 }
   validates :text, presence: true, length: { maximum: 100 }
   validate :images_count_within_limit
   validate :validate_tags_count
@@ -87,6 +87,8 @@ class Post < ApplicationRecord
     return unless geocoded?
 
     formatted = Geocoder.search([latitude, longitude], language: :ja).first.formatted_address
+    # '289F+GC 日本、' のような形式を削除
+    formatted = formatted.sub(/^\w+\+\w+\s日本、\s*/, '')
     # '日本、' を削除
     self.address = formatted.sub(/^日本、\s*/, '')
   end
@@ -99,7 +101,7 @@ class Post < ApplicationRecord
 
   def extract_city_from_address
     # 都道府県名を除外
-    address_without_prefecture = address.sub(/\A.*?県/, '')
+    address_without_prefecture = address.sub(/\A.*?[都道府県]/, '')
 
     # 郡名を除外（存在する場合）
     address_without_county = address_without_prefecture.sub(/郡/, '')

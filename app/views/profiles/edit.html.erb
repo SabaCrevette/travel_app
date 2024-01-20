@@ -1,25 +1,36 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">プロフィール編集</h1>
-    <div class="w-full md:w-10/12 lg:w-8/12 mx-auto">
+    <div class="mx-auto max-w-lg rounded-lg border">
+    <div class="flex flex-col gap-4 p-4 md:p-8">
+    
       <%= form_with model: @user, url: profile_path(@user), local: true do |f| %>
         <%= render 'shared/error_messages', model: f.object %>
-        <div class="mb-4">
+        
+        <div>
           <%= f.label :avatar, class: "block text-sm font-bold mb-2" %>
-          <%= f.file_field :avatar, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
+          <div class="mt-2 flex justify-center">
+            <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'mb-4 rounded-full w-24 h-24 object-cover' %>
+          </div>
+          <%= f.file_field :avatar, class: "block file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
           <%= f.hidden_field :avatar_cache %>
-          <div class="mt-2"><%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %></div>
         </div>
-        <div class="mb-4">
-          <%= f.label :name, class: "block text-sm font-bold mb-2" %>
-          <%= f.text_field :name, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+
+        <div>
+          <%= f.label :name, class: "mt-2 block text-sm font-bold mb-2" %>
+          <%= f.text_field :name, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
         </div>
-        <div class="mb-4">
-          <%= f.label :email, class: "block text-sm font-bold mb-2" %>
-          <%= f.email_field :email, class: "form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none" %>
+
+        <div>
+          <%= f.label :email, class: "mt-2 block text-sm font-bold mb-2" %>
+          <%= f.email_field :email, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
         </div>
-        <%= f.submit nil, class: 'btn btn-outline' %>
+
+        <div>
+        <%= f.submit '更新', class: 'block w-full mt-4 btn btn-outline h-12 px-6' %>
+        </div>
       <% end %>
+    </div>
     </div>
   </div>
 </div>
