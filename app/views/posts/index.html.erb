@@ -29,8 +29,8 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>
-  <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center justify-center">
-    <div class="lg:max-w-lg lg:w-1/2 md:w-1/2 w-1/2 mb-10 md:mb-0">
+<div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center justify-center">
+  <div class="lg:max-w-lg lg:w-1/2 md:w-1/2 w-full mb-10 md:mb-0">
     <!-- 自身の投稿とみんなの投稿切り替え -->
     <% if logged_in? %>
 <label class="label cursor-pointer justify-end">
@@ -46,38 +46,38 @@
     </div>
     
     <!-- 検索セクション -->
-    <div class="flex flex-col gap-4 p-4 md:p-8 w-1/2">
+<div class="flex flex-col gap-4 p-4 md:p-8 md:w-1/2 w-full">
     
 <%= search_form_for @q, url: "/search", class: "space-y-4", id: "search-form" do |f| %>
   <div class="flex flex-col gap-4 p-4 md:p-8">
     <!-- 都道府県による検索 -->
     <div>
       <%= f.label :prefecture_id_eq, "都道府県", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full", id: "prefecture-select" %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "w-full light:bg-white block select select-bordered select-sm w-full", id: "prefecture-select" %>
     </div>
 
     <!-- エリアセレクトボックス -->
     <div>
       <%= f.label :area_id_eq, "エリア", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full", id: "area-select", disabled: true %>
+      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "w-full light:bg-white block select select-bordered select-sm w-full", id: "area-select", disabled: true %>
     </div>
 
     <!-- postsテーブルのlocationに対する検索 -->
     <div>
     <%= f.label :location_cont_any, "観光地名検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full" %>
+    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- postsテーブルのtextに対する検索 -->
     <div>
     <%= f.label :text_cont_any, "本文検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full" %>
+    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- tagsテーブルのnameに対する検索 -->
     <div>
     <%= f.label :tags_name_cont_any, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "block input input-bordered input-sm w-full" %>
+    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- 通年開催の観光地・イベントに絞り込むチェックボックス -->
@@ -112,7 +112,7 @@
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
-          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'btn col-span-2 sm:col-span-1', role: "button" %>
+          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" %>
 <!--          ブックマーク切り替え
           <span class="mr-2"></span>
           <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
