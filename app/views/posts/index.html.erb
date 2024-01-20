@@ -1,3 +1,88 @@
+<script>
+  document.addEventListener('turbo:load', () => {
+    const toggleSwitch = document.getElementById('toggle-switch');
+    
+    toggleSwitch.addEventListener('change', () => {
+      const postsFrame = document.getElementById('posts_frame');
+      const bookmarksFrame = document.getElementById('bookmarks_frame');
+if (toggleSwitch.checked) {
+  postsFrame.style.display = 'none';
+  bookmarksFrame.style.display = 'block';
+  bookmarksFrame.src = '/posts/bookmarks'; // ブックマークのデータを再ロード
+} else {
+  postsFrame.style.display = 'block';
+  bookmarksFrame.style.display = 'none';
+}
+
+    });
+  });
+
+document.addEventListener('submit', function(e) {
+  var tagField = document.getElementById('tag_field');
+  if (tagField) {
+    var tags = tagField.value.split(/[\s,、]+/); // 半角/全角スペース、コンマで分割
+    tagField.value = tags.join(' '); // 半角スペースで結合し直す
+    }
+  });
+
+
+
+document.addEventListener("turbo:load", function() {
+  // 都道府県セレクトボックスの現在の値を取得
+  var prefectureSelect = document.getElementById("prefecture-select");
+  var prefectureId = prefectureSelect.value;
+  var areaSelect = document.getElementById("area-select");
+
+  // エリアのセレクトボックスを更新する関数
+  function updateAreaSelect(prefectureId) {
+    if(prefectureId) {
+      fetch(`/prefectures/${prefectureId}/areas`)
+        .then(response => response.json())
+        .then(data => {
+          areaSelect.innerHTML = '';
+          var defaultOption = new Option('全件', '');
+          areaSelect.appendChild(defaultOption);
+
+          data.forEach(area => {
+            var option = new Option(area.name, area.id);
+            areaSelect.appendChild(option);
+          });
+
+          areaSelect.disabled = false;
+        });
+    } else {
+      areaSelect.innerHTML = '';
+      var defaultOption = new Option('選択してください', '');
+      areaSelect.appendChild(defaultOption);
+      areaSelect.disabled = true;
+    }
+  }
+
+  // 都道府県セレクトボックスの変更イベントにリスナーを追加
+  prefectureSelect.addEventListener("change", function() {
+    updateAreaSelect(this.value);
+  });
+
+  // ページ読み込み時に都道府県が選択されている場合は、エリアセレクトボックスを更新
+  if(prefectureId) {
+    updateAreaSelect(prefectureId);
+  }
+});
+
+
+document.addEventListener('turbo:load', () => {
+  document.getElementById('toggle-switch').addEventListener('change', (event) => {
+    let isChecked = event.target.checked;
+    let frame = document.getElementById('japan_map');
+
+    fetch(`/posts/toggle_partial?checked=${isChecked}`)
+      .then(response => response.text())
+      .then(html => frame.innerHTML = html);
+  });
+});
+
+</script>
+
 <!-- レコメンド
 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
@@ -128,89 +213,4 @@
   </div>
 </div>
 </div>
-
-<script>
-  document.addEventListener('turbo:load', () => {
-    const toggleSwitch = document.getElementById('toggle-switch');
-    
-    toggleSwitch.addEventListener('change', () => {
-      const postsFrame = document.getElementById('posts_frame');
-      const bookmarksFrame = document.getElementById('bookmarks_frame');
-if (toggleSwitch.checked) {
-  postsFrame.style.display = 'none';
-  bookmarksFrame.style.display = 'block';
-  bookmarksFrame.src = '/posts/bookmarks'; // ブックマークのデータを再ロード
-} else {
-  postsFrame.style.display = 'block';
-  bookmarksFrame.style.display = 'none';
-}
-
-    });
-  });
-
-document.addEventListener('submit', function(e) {
-  var tagField = document.getElementById('tag_field');
-  if (tagField) {
-    var tags = tagField.value.split(/[\s,、]+/); // 半角/全角スペース、コンマで分割
-    tagField.value = tags.join(' '); // 半角スペースで結合し直す
-    }
-  });
-
-
-
-document.addEventListener("turbo:load", function() {
-  // 都道府県セレクトボックスの現在の値を取得
-  var prefectureSelect = document.getElementById("prefecture-select");
-  var prefectureId = prefectureSelect.value;
-  var areaSelect = document.getElementById("area-select");
-
-  // エリアのセレクトボックスを更新する関数
-  function updateAreaSelect(prefectureId) {
-    if(prefectureId) {
-      fetch(`/prefectures/${prefectureId}/areas`)
-        .then(response => response.json())
-        .then(data => {
-          areaSelect.innerHTML = '';
-          var defaultOption = new Option('全件', '');
-          areaSelect.appendChild(defaultOption);
-
-          data.forEach(area => {
-            var option = new Option(area.name, area.id);
-            areaSelect.appendChild(option);
-          });
-
-          areaSelect.disabled = false;
-        });
-    } else {
-      areaSelect.innerHTML = '';
-      var defaultOption = new Option('選択してください', '');
-      areaSelect.appendChild(defaultOption);
-      areaSelect.disabled = true;
-    }
-  }
-
-  // 都道府県セレクトボックスの変更イベントにリスナーを追加
-  prefectureSelect.addEventListener("change", function() {
-    updateAreaSelect(this.value);
-  });
-
-  // ページ読み込み時に都道府県が選択されている場合は、エリアセレクトボックスを更新
-  if(prefectureId) {
-    updateAreaSelect(prefectureId);
-  }
-});
-
-
-document.addEventListener('turbo:load', () => {
-  document.getElementById('toggle-switch').addEventListener('change', (event) => {
-    let isChecked = event.target.checked;
-    let frame = document.getElementById('japan_map');
-
-    fetch(`/posts/toggle_partial?checked=${isChecked}`)
-      .then(response => response.text())
-      .then(html => frame.innerHTML = html);
-  });
-});
-
-</script>
 
