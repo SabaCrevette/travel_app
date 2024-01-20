@@ -52,32 +52,32 @@
   <div class="flex flex-col gap-4 p-4 md:p-8">
     <!-- 都道府県による検索 -->
     <div>
-      <%= f.label :prefecture_id_eq, "都道府県", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "w-full light:bg-white block select select-bordered select-sm w-full", id: "prefecture-select" %>
+      <%= f.label :prefecture_id_eq, "都道府県", class: "mt-2 block text-sm font-bold mb-2" %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", id: "prefecture-select" %>
     </div>
 
     <!-- エリアセレクトボックス -->
     <div>
-      <%= f.label :area_id_eq, "エリア", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "w-full light:bg-white block select select-bordered select-sm w-full", id: "area-select", disabled: true %>
+      <%= f.label :area_id_eq, "エリア", class: "mt-2 block text-sm font-bold mb-2" %>
+      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", id: "area-select", disabled: true %>
     </div>
 
     <!-- postsテーブルのlocationに対する検索 -->
     <div>
-    <%= f.label :location_cont_any, "観光地名検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
+    <%= f.label :location_cont_any, "観光地名検索", class: "mt-2 block text-sm font-bold mb-2" %>
+    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
     </div>
 
     <!-- postsテーブルのtextに対する検索 -->
     <div>
-    <%= f.label :text_cont_any, "本文検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
+    <%= f.label :text_cont_any, "本文検索", class: "mt-2 block text-sm font-bold mb-2" %>
+    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
     </div>
 
     <!-- tagsテーブルのnameに対する検索 -->
     <div>
-    <%= f.label :tags_name_cont_any, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "w-full light:bg-white block input input-bordered input-sm w-full" %>
+    <%= f.label :tags_name_cont_any, "タグ", class: "mt-2 block text-sm font-bold mb-2" %>
+    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
     </div>
 
     <!-- 通年開催の観光地・イベントに絞り込むチェックボックス -->
