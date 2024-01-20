@@ -53,31 +53,31 @@
     <!-- 都道府県による検索 -->
     <div>
       <%= f.label :prefecture_id_eq, "都道府県", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full max-w-xs", id: "prefecture-select" %>
+      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full", id: "prefecture-select" %>
     </div>
 
     <!-- エリアセレクトボックス -->
     <div>
       <%= f.label :area_id_eq, "エリア", class: "block mb-2 text-sm text-gray-800 sm:text-base" %>
-      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full max-w-xs", id: "area-select", disabled: true %>
+      <%= f.collection_select :area_id_eq, Area.none, :id, :name, { include_blank: '全件' }, class: "block select select-bordered select-sm w-full", id: "area-select", disabled: true %>
     </div>
 
     <!-- postsテーブルのlocationに対する検索 -->
     <div>
     <%= f.label :location_cont_any, "観光地名検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.text_field :location_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- postsテーブルのtextに対する検索 -->
     <div>
     <%= f.label :text_cont_any, "本文検索", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.text_field :text_cont_any, placeholder: "キーワードを入力してください", class: "block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- tagsテーブルのnameに対する検索 -->
     <div>
     <%= f.label :tags_name_cont_any, "タグ", class: "block mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
-    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "block input input-bordered input-sm w-full max-w-xs" %>
+    <%= f.text_field :tags_name_cont_any, placeholder: "タグを入力してください", class: "block input input-bordered input-sm w-full" %>
     </div>
 
     <!-- 通年開催の観光地・イベントに絞り込むチェックボックス -->
@@ -112,7 +112,7 @@
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
-          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'btn col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'btn col-span-2 sm:col-span-1', role: "button" %>
 <!--          ブックマーク切り替え
           <span class="mr-2"></span>
           <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">

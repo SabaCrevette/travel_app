@@ -58,4 +58,11 @@ path:hover {
   .bg-gray-100 {
     background-color: #f7fafc; /* Tailwindのbg-gray-100のデフォルト色 */
   }
+  .light\:bg-gray-100 {
+    background-color: #f7fafc; /* Tailwind's default bg-gray-100 color */
+  }
+
+  .light\:text-gray-800 {
+    color: #1a202c; /* Tailwind's default text-gray-800 color */
+  }
 }

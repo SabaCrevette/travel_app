@@ -20,6 +20,7 @@
   "miyazaki", "kagoshima", "okinawa"
 ] %>
 
+
 <% svg_path = Rails.root.join('app', 'assets', 'images', 'japan.svg') %>
 <% svg_data = File.read(svg_path) %>
 <% prefectures.each_with_index do |prefecture, index| %>
@@ -39,14 +40,15 @@
 
 
 <div class="flex flex-col justify-center items-center">
-  <div class="text-lg mb-2">投稿件数</div>
-  <div class="flex space-x-2">
-    <span class="bg-map-0 p-2">0件</span>
-    <span class="bg-map-1 p-2">1件</span>
-    <span class="bg-map-2 p-2">2件</span>
-    <span class="bg-map-3 p-2">3件</span>
-    <span class="bg-map-4 p-2">4件以上</span>
-  </div>
+  <div class="text-xs mb-2">投稿件数</div>
+<div class="text-xs flex flex-wrap gap-2 justify-center">
+  <span class="bg-map-0 p-2">0件</span>
+  <span class="bg-map-1 p-2">1件</span>
+  <span class="bg-map-2 p-2">2件</span><!-- ここで改行！ -->
+  <div class="basis-full w-full"></div> <!-- ここで強制的に折り返し -->
+  <span class="bg-map-3 p-2">3件</span>
+  <span class="bg-map-4 p-2">4件以上</span>
+</div>
 </div>
 
 <!-- パターンB 滋賀塗りつぶし =begin
