@@ -1,46 +1,42 @@
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
+    <!-- 分割ここで指定 -->
     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-between">
-      <!-- 画像セクション -->
-      <div class="w-full lg:w-1/2 flex flex-wrap">
-<div data-controller="slider" class="w-full mb-4 md:mb-0" data-turbo="false">
-  <% @post.images.each do |image| %>
-    <%= image_tag image.url, class: "card-img-top show-img", data: { slider_target: "slider" } %>
-  <% end %>
-  <button type="button" data-action="slider#previous">Previous</button>
-  <button type="button" data-action="slider#next">Next</button>
-</div>
-        <div class="flex">
-          <div class="w-1/3">
-            <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+      
+      <!-- 左の画像セクション -->
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 mx-auto"> 
+          <h2 class="mb-8 text-sm title-font text-gray-500 tracking-widest">思い出画像</h2>
+          <div class="mb-4">
+            <!-- ループ画像セクション -->
+            <div class="">
+              <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-64 object-contain rounded' %>
+            </div>
           </div>
-          <div class="w-1/3">
-            <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
+          <div class="flex gap-4 mx-auto justify-center">
+          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-24 h-48 object-contain rounded' %>
+          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-24 h-48 object-contain rounded' %>
+          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-24 h-48 object-contain rounded' %>
+          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-24 h-48 object-contain rounded' %>
           </div>
-          <div class="w-1/3">
-            <%= image_tag @post.images.third&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
-          </div>
-          <div class="w-1/3">
-            <%= image_tag @post.images.fourth&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-32 object-contain rounded' %>
-          </div>
-        </div>
+        
       </div>
 
+      <!-- 右半分のセクションここから -->
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 relative">
+      <div class="flex justify-between items-start w-full">
+        <h2 class="text-sm title-font text-gray-500 tracking-widest">観光地名</h2>
+        <h2 class="ml-12 text-sm title-font text-gray-500 tracking-widest"><%= @post.area ? @post.area.name : '' %></h2>
+      </div>
         <div class="flex justify-between items-start">
           <div>
-            <h2 class="text-sm title-font text-gray-500 tracking-widest">観光地名</h2>
-            <div class="flex justify-end flex-1">
-              <%= image_tag 'kanagawaken.png', alt: 'Icon', class: 'absolute right-0 top-0 w-[100px] h-[100px] object-cover' %>
-            </div>
             <div class="flex items-center mt-1 mb-4">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 mr-4"><%= @post.location %></h1>
-              <h1 class="text-gray-900 text-3xl title-font font-medium mb-1 mr-4"><%= @post.area ? @post.area.name : '未登録' %></h1>
                 <div class="flex">
                   <span class="flex items-center pl-3 py-2 border-l-2 border-gray-200">
                   <a class="text-gray-500">
-<%= link_to 'Twitterで共有', "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: 'btn btn-accent col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
-
+                      <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: '#' do %>
+                        <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+                      <% end %>
                   </a>
                   </span>
                 </div>
@@ -48,29 +44,41 @@
             </div>
           </div>
           <div class="flex flex-col mb-4">
+            <h2 class="text-sm title-font text-gray-500 tracking-widest">旅の思い出</h2>
             <p class="leading-relaxed mb-4 mt-1"><%= @post.text %></p>
-              <div class="flex">
-                <% @post.tags.each do |tag| %>
-                  <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2">
-                    <%= tag.name %>
-                  </span>
-                <% end %>
-              </div>
+
+              <!-- タグセクション -->
+<div class="flex flex-wrap gap-2">
+  <% @post.tags.each do |tag| %>
+    <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2">
+      <%= tag.name %>
+    </span>
+  <% end %>
+</div>
           </div>
-          <div class="flex  mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-            <span class="mr-3">投稿者</span>
-            <%= @post.user.name %>
-            <%= @post.address %>
+          
 
-          <!-- =begin 旧ボタン
-          <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-            </svg>
-          </button>
-          -->
+<div class="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
+  <div class="flex-grow">
+    <span class="text-sm title-font text-gray-500 tracking-wides">投稿者</span>
+    <%= image_tag @post.user.avatar.present? ? @post.user.avatar.url : 'avatar.jpg', class: 'rounded-full w-10 h-10 object-cover' %>
+    <%= @post.user.name %>さん
+  </div>
+  <!-- bookmarks -->
+  <div class="ml-auto">
+    <% if logged_in? %>
+      <% if current_user.bookmark?(@post) %>
+        <%= render 'posts/unbookmark', post: @post %>
+      <% else %>
+        <%= render 'posts/bookmark', post: @post %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+          
 
-<div id="map" style="height: 200px; width: 200%;">test</div>
+<h2 class="text-sm title-font text-gray-500 tracking-widest"><%= @post.address %></h2>
+<div id="map" style="height: 150px; width: 100%;">map</div>
 <script>
 function initMap() {
   var location = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
@@ -88,9 +96,8 @@ function initMap() {
   src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap">
 </script>
 
-
-          </div>
-          <div class="flex justify-end">
+          
+          <div class="mt-4 flex justify-end">
             <% if current_user == @post.user %>
               <%= link_to edit_post_path(@post), class: "btn mr-3", id: "button-edit-#{@post.id}" do %>
                 編集

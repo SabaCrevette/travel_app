@@ -20,7 +20,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # 画像をリサイズしてからWEBP形式に変換
-  process resize_to_fit: [400, 200]
+  process resize_to_limit: [800, 600]
   process :convert_to_webp
 
   def convert_to_webp

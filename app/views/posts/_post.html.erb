@@ -1,14 +1,10 @@
 <div id="post-id-<%= post.id %>">
   <%= link_to post_path(id: post.id), data: { turbo: false }, class: "aspect-w-4 aspect-h-3 group relative flex h-48 items-end overflow-hidden rounded-lg bg-gray-100 shadow-lg" do %>
     <%= image_tag(post.images.first&.url || "sample.jpg", class: "absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110", loading: "lazy") %>
-
     <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-gray-800 via-transparent to-transparent opacity-50"></div>
-
-    <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg"><%= post.prefecture.name %></span>
-    <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-lg"><%= post.location %></span>
-
+    <span class="relative ml-4 mb-3 inline-block text-sm text-white md:ml-5 md:text-sm"><%= post.prefecture.name %><br><%= post.location %></span>
   <% end %>
-  <div class="flex">
+  <div class="mt-2 flex flex-wrap">
   <!-- タグ 投稿一覧とブックマーク一覧を切り替え -->
   <% post.tags.each do |tag| %>
     <% if local_assigns[:context] == 'bookmarks' %>
@@ -20,7 +16,13 @@
   
 
   </div>
-  <span><%= post.user.name %></span>
+
+<div class="flex mt-6 items-center pb-5 mb-5">
+  <div class="flex-grow">
+    <span class="text-sm title-font text-gray-500 tracking-wides">投稿者</span>
+    <%= image_tag post.user.avatar.present? ? post.user.avatar.url : 'avatar.jpg', class: 'rounded-full w-10 h-10 object-cover' %>
+    <%= post.user.name %>さん
+  </div>
 
   <!-- bookmarks -->
   <% if logged_in? %>
@@ -30,4 +32,5 @@
       <%= render 'posts/bookmark', post: post %>
     <% end %>
   <% end %>
+  </div>
 </div>

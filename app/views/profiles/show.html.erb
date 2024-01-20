@@ -1,12 +1,12 @@
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
     <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">プロフィール</h1>
-    <div class="w-full md:w-10/12 lg:w-8/12 mx-auto">
-
-      <div class="mb-4">
+    <div class="mx-auto max-w-lg rounded-lg border">
+    <div class="flex flex-col gap-4 p-4 md:p-8">
+      <div>
         <span class="block text-sm font-bold mb-2">アバター画像</span>
-        <div class="mt-2">
-        <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %>
+        <div class="mt-2 flex justify-center">
+          <%= image_tag current_user.avatar.present? ? current_user.avatar.url : 'avatar.jpg', class: 'rounded-full w-24 h-24 object-cover' %>
         </div>
       </div>
 
@@ -18,12 +18,12 @@
       <div>
         <span class="block text-sm font-bold mb-2"">メールアドレス</span>
         <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"><%= current_user.email %></div>
-        <%= link_to '編集', edit_profile_path, class: 'mt-4 btn btn-outline' %>
       </div>
       
       <div>
-        <span class="mb-2 inline-block text-sm text-gray-800 sm:text-base">パスワード</span>
-        <%= link_to 'パスワード変更', new_password_reset_path, class: 'btn btn-outline' %>
+        <%= link_to '編集', edit_profile_path, class: 'block mt-4 btn btn-outline flex items-center justify-center h-12 px-6' %>
+        <%= link_to 'パスワード変更はこちら', new_password_reset_path, class: 'block mt-4 btn btn-outline flex items-center justify-center h-12 px-6' %>
+      </div>
       </div>
     </div>
   </div>
