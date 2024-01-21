@@ -31,7 +31,7 @@
   <% if prefecture.include?('biwa') %>
     <% count_class = 'bg-biwa' %>
   <% else %>
-    <% count_class = user_prefecture && user_prefecture.post_count >= 4 ? "bg-count-4" : "bg-count-#{user_prefecture ? user_prefecture.post_count : 0}" %>
+    <% count_class = user_prefecture && user_prefecture.post_count >= 3 ? "bg-count-3" : "bg-count-#{user_prefecture ? user_prefecture.post_count : 0}" %>
   <% end %>
 
   <% svg_data.gsub!(/<path id="#{prefecture}"( class="[^"]*")?/, '<path id="' + prefecture + '" class="' + count_class + '"') %>
@@ -46,8 +46,8 @@
   <span class="bg-map-1 p-2">1件</span>
   <span class="bg-map-2 p-2">2件</span><!-- ここで改行！ -->
   <div class="basis-full w-full"></div> <!-- ここで強制的に折り返し -->
-  <span class="bg-map-3 p-2">3件</span>
-  <span class="bg-map-4 p-2">4件以上</span>
+  <span class="bg-map-3 p-2">3件以上</span>
+  <!-- <span class="bg-map-4 p-2">4件以上</span> -->
 </div>
 </div>
 
