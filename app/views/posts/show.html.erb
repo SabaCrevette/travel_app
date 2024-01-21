@@ -4,22 +4,31 @@
     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-between">
       
       <!-- 左の画像セクション -->
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 mx-auto"> 
+      <div data-controller="slider" class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 mx-auto"> 
           <h2 class="mb-8 text-sm title-font text-gray-500 tracking-widest">思い出画像</h2>
           <div class="mb-4">
-            <!-- ループ画像セクション -->
+            <!-- メイン画像セクション -->
             <div class="">
-              <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-64 object-contain rounded' %>
+                <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-full h-64 object-contain rounded', data: { slider_target: 'mainImage' } %>
             </div>
+<!-- 矢印 -->
+<div class="flex justify-between items-center mt-4">
+  <div class="arrow left" data-action="click->slider#showPreviousImage">
+    <i class="fa-solid fa-arrow-left fa-2x"></i>
+  </div>
+  <div class="arrow right" data-action="click->slider#showNextImage">
+    <i class="fa-solid fa-arrow-right fa-2x"></i>
+  </div>
+</div>
+
           </div>
           <div class="flex gap-4 mx-auto justify-center">
-          <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.third&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.fourth&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
+            <% @post.images.each do |image| %>
+              <%= image_tag image.url, alt: 'ecommerce', class: 'pointer w-20 h-48 object-contain rounded', data: { action: "click->slider#showImage", slider_target: "thumbnail", image_url: image.url } %>
+            <% end %>
           </div>
-        
       </div>
+
 
       <!-- 右半分のセクションここから -->
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 relative">
