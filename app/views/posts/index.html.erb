@@ -111,9 +111,19 @@ document.addEventListener('turbo:load', () => {
 </section>
 -->
 
+
+
+<!-- 検索セクション -->
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-  <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>
+  
+<div class="collapse collapse-arrow join-item border border-base-300">
+  <input type="checkbox" name="my-accordion-2" /> 
+  <div class="text-center collapse-title text-xl font-medium">
+    条件検索
+  </div>
+  <div class="collapse-content"> 
+    
 <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center justify-center">
   <div class="lg:max-w-lg lg:w-1/2 md:w-1/2 w-full mb-10 md:mb-0">
     <!-- 自身の投稿とみんなの投稿切り替え -->
@@ -184,7 +194,7 @@ document.addEventListener('turbo:load', () => {
 
     <!-- 検索ボタン -->
     <div class="mx-auto">
-      <%= f.submit "検索", class: "bg-pink-200 hover:bg-pink-400 block w-full mt-4 btn btn-outline h-12 px-6" %>
+      <%= f.submit "検索", class: "block w-full mt-4 btn btn-outline h-12 px-6" %>
     </div>
  </div>
 <% end %>
@@ -192,12 +202,22 @@ document.addEventListener('turbo:load', () => {
   </div>
 </div>
 
+  </div>
+</div>
+
+  <!-- <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>  -->
+
+
+<!-- 一覧セクション -->
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
-          <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" %>
+<%= link_to bookmarks_posts_path, class: 'btn light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" do %>
+  ブックマークへ行く<i class="fa-regular fa-face-laugh-squint fa-2x"></i>
+<% end %>
+
         </label>
         </p>
       </div>
@@ -205,12 +225,10 @@ document.addEventListener('turbo:load', () => {
           <span class="mr-2"></span>
           <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
  -->
-<!--      <turbo-frame id="posts_frame"> -->
+
         <%= render partial: "posts/posts_frame" %>
-<!--      </turbo-frame> -->
-<!--      // <turbo-frame id="bookmarks_frame" src="/posts/bookmarks" style="display: none;">
-      //   <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
-      // </turbo-frame> -->
+
+
   </div>
 </div>
 </div>
