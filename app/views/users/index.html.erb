@@ -41,16 +41,18 @@
 
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+<div class="mx-auto max-w-screen-2xl px-4 md:px-8">
   <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12"><%= current_user.name %>さんの投稿一覧</h2>
-  <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
-    <% if @posts.present? %>
+
+  <% if @posts.present? %>
+    <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
       <%= render partial: 'posts/post', collection: @posts, as: :post %>
-    <% else %>
-      <div class="flex flex-col items-center justify-center h-screen">
-        <div class="text-xl font-bold mb-4">まだ投稿していません！</div>
-        <%= link_to '投稿する', new_post_path, class: "btn btn-primary px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold" %>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <div class="flex flex-col items-center justify-center">
+      <div class="text-xl font-bold mb-4">まだ投稿していません！</div>
+      <%= link_to '投稿する', new_post_path, class: "btn btn-primary px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold" %>
+    </div>
+  <% end %>
+</div>
 </div>
