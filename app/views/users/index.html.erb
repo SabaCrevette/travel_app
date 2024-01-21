@@ -17,27 +17,16 @@
 <div class="flex flex-col justify-center items-center">
   <div id="buttons"justify-self class="grid grid-cols-2 gap-4 mx-auto max-w-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
 
-    <%= link_to '投稿する', new_post_path, class: "btn bg-green-300 hover:bg-green-400 col-span-2 sm:col-span-1 max-w-xs" %>
-    <%= link_to '他の人の投稿を見る', '/search', class: "btn bg-green-300 hover:bg-green-400 col-span-2 sm:col-span-1 max-w-xs" %>
+    <%= link_to '投稿する', new_post_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
+    <%= link_to '他の人の投稿を見る', '/search', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
 
-    <%= link_to '準備中', '#', class: "btn col-span-2 sm:col-span-1 max-w-xs", disabled: "disabled" %> 
-    <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn bg-green-300 hover:bg-green-400 col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
-
+    <%= link_to '準備中', '#', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs", disabled: "disabled" %> 
+    <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-outline col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
+<!-- -->
     <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
 
   </div>
 </div>
-
-<!-- =begin サンプル
-<div class="container mx-auto px-4">
-  <div class="grid grid-cols-2 gap-4">
-    <button class="btn btn-primary col-span-2 sm:col-span-1">投稿する</button>
-    <button class="btn btn-secondary col-span-2 sm:col-span-1">他の人の投稿を見る</button>
-    <button class="btn btn-accent col-span-2 sm:col-span-1">ランキング</button>
-    <button class="btn btn-ghost col-span-2 sm:col-span-1">ブックマーク</button>
-  </div>
-</div>
-= end -->
 
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
@@ -51,7 +40,7 @@
   <% else %>
     <div class="flex flex-col items-center justify-center">
       <div class="text-xl font-bold mb-4">まだ投稿していません！</div>
-      <%= link_to '投稿する', new_post_path, class: "btn btn-primary px-4 py-2 rounded bg-blue-500 hover:bg-blue-700 text-white font-bold" %>
+      <%= link_to '投稿する', new_post_path, class: "btn btn-outline  px-4 py-2 rounded bg-blue-100 hover:bg-blue-200 font-bold" %>
     </div>
   <% end %>
 </div>

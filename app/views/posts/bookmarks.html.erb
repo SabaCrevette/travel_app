@@ -11,13 +11,11 @@
           <div class="mb-3">ブックマーク中の投稿がありません</div>
         <% end %>
     </div>
+<div class="flex justify-center">
+  <%= link_to '戻る', search_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
+</div>
   </div>
 </div>
 
 
-<!--
-      <turbo-frame id="bookmarks_frame" style="display: none;">
-        <%= render partial: "posts/bookmarks_frame", locals: { bookmark_posts: @bookmark_posts, context: @context } %>
-      </turbo-frame>
 
--->
