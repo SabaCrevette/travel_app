@@ -8,11 +8,20 @@
   <!-- タグ 投稿一覧とブックマーク一覧を切り替え -->
   <% post.tags.each do |tag| %>
     <% if local_assigns[:context] == 'bookmarks' %>
+      <%= content_tag :span, tag.name, class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
+    <% else %>
+      <%= content_tag :span, tag.name, class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
+    <% end %>
+  <% end %>
+  <!--
+  <% post.tags.each do |tag| %>
+    <% if local_assigns[:context] == 'bookmarks' %>
       <%= link_to tag.name, bookmarks_posts_path(tag_name: tag.name), class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
     <% else %>
       <%= link_to tag.name, search_path(tag_name: tag.name) + '#posts-list-section', class: 'inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2' %>
     <% end %>
   <% end %>
+  -->
   
 
   </div>

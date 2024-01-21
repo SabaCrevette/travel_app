@@ -10,13 +10,13 @@ class PostsController < ApplicationController
     @posts = load_posts
     @context = 'posts'
 
-    @posts = if (tag_name = params[:tag_name])
-               # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-               Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
-             else
-               # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-               Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
-             end
+    # @posts = if (tag_name = params[:tag_name])
+    #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+    #            Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
+    #          else
+    #            # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
+    #            Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
+    #          end
   end
 
   def new

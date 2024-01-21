@@ -198,12 +198,13 @@ document.addEventListener('turbo:load', () => {
         <p>
           <label class="label cursor-pointer justify-end">
           <%= link_to 'ブックマークへ', bookmarks_posts_path, class: 'light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" %>
+        </label>
+        </p>
+      </div>
 <!--          ブックマーク切り替え
           <span class="mr-2"></span>
           <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
-        </label>
-        </p>
-      </div> -->
+ -->
 <!--      <turbo-frame id="posts_frame"> -->
         <%= render partial: "posts/posts_frame" %>
 <!--      </turbo-frame> -->

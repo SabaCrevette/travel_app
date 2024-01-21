@@ -13,10 +13,10 @@
             </div>
           </div>
           <div class="flex gap-4 mx-auto justify-center">
+          <%= image_tag @post.images.first&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
           <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
-          <%= image_tag @post.images.second&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
+          <%= image_tag @post.images.third&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
+          <%= image_tag @post.images.fourth&.url || "sample.jpg", alt: 'ecommerce', class: 'w-20 h-48 object-contain rounded' %>
           </div>
         
       </div>
