@@ -1,6 +1,4 @@
-import { Application } from '@hotwired/stimulus'
+import { application } from "./application"
 
 import SliderController from "./slider_controller"
-
-const application = Application.start()
 application.register("slider", SliderController)

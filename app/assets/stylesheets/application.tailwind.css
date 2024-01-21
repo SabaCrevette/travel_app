@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.pointer {
+  cursor: pointer;
+}
+
+.main-image {
+  transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* 最初は透明 */
+}
+
 .custom-dropdown {
   max-height: 200px; /* 10項目分の高さに調整する */
   overflow-y: scroll;
