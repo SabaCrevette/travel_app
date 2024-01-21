@@ -17,6 +17,18 @@ class Post < ApplicationRecord
 
   after_create :increment_user_prefecture_post_count
   after_destroy :decrement_user_prefecture_post_count
+  before_update :adjust_prefecture_post_count, if: :prefecture_changed?
+
+  # 以前と新しい都道府県のカウントを調整
+  def adjust_prefecture_post_count
+    # 以前の都道府県を取得し、カウントを減らす
+    old_prefecture = UserPrefecture.find_by(user:, prefecture_id: prefecture_id_was)
+    old_prefecture.decrement!(:post_count) if old_prefecture.present?
+
+    # 新しい都道府県を取得し、カウントを増やす
+    new_prefecture = UserPrefecture.find_or_create_by(user:, prefecture_id:)
+    new_prefecture.increment!(:post_count)
+  end
 
   after_validation :set_area_id, if: ->(obj) { obj.address.present? && obj.address_changed? }
 

@@ -16,25 +16,43 @@
   overflow-y: scroll;
 }
 
-.bg-count-0  { fill: #f4fbef; stroke: #ebf7e2; }
-.bg-count-1  { fill: #d9f0c7; stroke: #d0edb9; }
-.bg-count-2  { fill: #acde84; stroke: #a3db76; }
-.bg-count-3  { fill: #76c834; stroke: #6eba31; }
-.bg-count-4  { fill: #d9f855; stroke: #d6f844; }
+.slider-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* スライダー要素に絶対位置を設定 */
+.slider-line {
+  white-space: nowrap;
+  overflow: hidden; /* はみ出た部分を非表示にする */
+}
+
+.bg-count-0  { fill: #FFFFFF; stroke: #C5EDDD; }
+.bg-count-1  { fill: #FCF1D3; }
+.bg-count-2  { fill: #FFFBD5; }
+.bg-count-3  { fill: #F9F580; }
+
 .bg-biwa { fill: #FFFFFF; stroke: #FFFFFF; }
 
-.bg-map-0  { background-color: #f4fbef; }
-.bg-map-1  { background-color: #d9f0c7; }
-.bg-map-2  { background-color: #acde84; }
-.bg-map-3  { background-color: #76c834; }
-.bg-map-4  { background-color: #d9f855; }
+.bg-map-0  { background-color: #FFFFFF; border: 1px solid #C5EDDD; }
+.bg-map-1  { background-color: #FCF1D3; }
+.bg-map-2  { background-color: #FFFBD5; }
+.bg-map-3  { background-color: #F9F580; }
+
 
 .bg-count-0:hover {
   transform: translateY(-5px);
 }
 
+.top-count-0  { fill: #FFFFFF; stroke: #C5EDDD; }
+.top-count-1  { fill: #FCF1D3; }
+.top-count-2  { fill: #FFFBD5; }
+.top-count-3  { fill: #C8EFD3; }
+
+
 path {
-  transition: transform 0.3s ease; /* アニメーションの持続時間とイージング */
+  transition: transform 0.3s ease, fill 1s ease, stroke 1s ease;
 }
 
 path:hover {
@@ -46,14 +64,6 @@ path:hover {
 }
 
 .hover path:hover {
-  transform: translateY(-5px); /* Y軸方向に上に移動 */
-}
-
-path {
-  transition: transform 0.3s ease; /* アニメーションの持続時間とイージング */
-}
-
-path:hover {
   transform: translateY(-5px); /* Y軸方向に上に移動 */
 }
 

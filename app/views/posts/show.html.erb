@@ -43,9 +43,15 @@
                 <div class="flex">
                   <span class="flex items-center pl-3 py-2 border-l-2 border-gray-200">
                   <a class="text-gray-500">
-                      <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: '#' do %>
-                        <i class="fa-brands fa-square-x-twitter fa-2x"></i>
-                      <% end %>
+<% if current_user == @post.user %>
+  <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}への思い出を投稿しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: '#' do %>
+    <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+  <% end %>
+<% else %>
+  <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{@post.location}に行ってみたい！")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener", class: '#' do %>
+    <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+  <% end %>
+<% end %>
                   </a>
                   </span>
                 </div>
