@@ -1,4 +1,8 @@
-<h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl xl:mb-12">投稿一覧</h2>
+<div class="flex items-center justify-center mb-4 md:mb-8 xl:mb-12 space-x-4">
+  <h2 class="text-2xl font-bold text-gray-800 lg:text-3xl">投稿一覧</h2>
+  <%= link_to '検索リセット', search_path, class: "badge text-xs text-gray-500 hover:text-gray-700" %>
+</div>
+
 <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
   <% if @posts.present? %>
     <%= render partial: "post", collection: @posts, locals: { context: @context } %>
