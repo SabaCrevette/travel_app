@@ -1,7 +1,11 @@
 <footer class="text-gray-600 body-font">
   <div class="bg-gray-100">
     <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-      <div class="container mx-aut flex flex-wrap justify-center items-center">利用規約 | プライバシーポリシー | お問い合わせ</div>
+<div class="container mx-auto flex flex-wrap justify-center items-center">
+  <%= link_to '利用規約', terms_of_service_path %>　|　  
+  <%= link_to 'プライバシーポリシー', privacy_policy_path %>　|　  
+  <%= link_to 'お問い合わせ', 'https://docs.google.com/forms/d/e/1FAIpQLScdBVBzYZ7O2flvV12Xgu_hop4hpiiwIPv8iTpH9wPagp_aog/viewform', target: "_blank", rel: "noopener noreferrer" %>
+</div>
       <p class="text-gray-500 text-sm text-center sm:text-left">© 2024 Travel_app</p>
       <span class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
         <a class="text-gray-500">

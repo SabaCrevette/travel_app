@@ -1,8 +1,8 @@
 module ApplicationHelper
   def default_meta_tags
     {
-      site: 'Travel_app',
-      title: '旅の思い出アプリ',
+      site: 'Picto Memory',
+      title: '旅の思い出彩りアプリ',
       reverse: true,
       charset: 'utf-8',
       description: '旅の思い出を投稿し、日本地図を彩りませんか？',
