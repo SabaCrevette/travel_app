@@ -30,7 +30,7 @@ class Post < ApplicationRecord
     new_prefecture.increment!(:post_count)
   end
 
-  after_validation :set_area_id, if: ->(obj) { obj.address.present? && obj.address_changed? }
+  before_save :set_area_id, if: ->(obj) { obj.will_save_change_to_address? }
 
   attr_accessor :images_cache
 
@@ -108,7 +108,7 @@ class Post < ApplicationRecord
   def set_area_id
     city_name = extract_city_from_address
     area_mapping = AreaMapping.find_by(prefecture_id:, city: city_name)
-    self.area_id = area_mapping.area_id if area_mapping.present?
+    self.area_id = area_mapping&.area_id
   end
 
   def extract_city_from_address
@@ -116,7 +116,7 @@ class Post < ApplicationRecord
     address_without_prefecture = address.sub(/\A.*?[都道府県]/, '')
 
     # 郡名を除外（存在する場合）
-    address_without_county = address_without_prefecture.sub(/郡/, '')
+    address_without_county = address_without_prefecture.sub(/.*?郡/, '')
 
     # 市区町村名を抽出
     city_name = address_without_county.split(/市|区|町|村/).first.strip
