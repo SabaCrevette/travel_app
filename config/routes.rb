@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/mypage/:user_id', to: 'users#show'
   get '/search', to: 'posts#index', as: 'search'
   get 'prefectures/:id/areas', to: 'prefectures#areas'
+  get 'terms_of_service', to: 'tops#terms_of_service'
+  get 'privacy_policy', to: 'tops#privacy_policy'
   
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]

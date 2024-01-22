@@ -83,36 +83,6 @@ document.addEventListener('turbo:load', () => {
 
 </script>
 
-<!-- レコメンド
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-col">
-      <div class="h-1 bg-gray-200 rounded overflow-hidden">
-        <div class="w-24 h-full bg-pink-500"></div>
-      </div>
-      <div class="flex flex-wrap sm:flex-row flex-col py-6 mb-12">
-        <h1 class="sm:w-2/5 text-gray-900 font-medium title-font text-2xl mb-2 sm:mb-0">レコメンドの提供</h1>
-        <p class="sm:w-3/5 leading-relaxed text-base sm:pl-10 pl-0">ログイン後機能、MVP後の機能</p>
-      </div>
-    </div>
-    <div class="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-      <div class="p-4 md:w-1/3 sm:mb-0 mb-6">
-        <div class="rounded-lg h-64 overflow-hidden">
-          <img alt="content" class="object-cover object-center h-full w-full" src="https://dummyimage.com/1203x503">
-        </div>
-        <a class="text-pink-500 inline-flex items-center mt-3">Learn More
-          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
--->
-
-
-
 <!-- 検索セクション -->
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -205,7 +175,7 @@ document.addEventListener('turbo:load', () => {
   </div>
 </div>
 
-  <!-- <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">条件検索</h2>  -->
+
 
 
 <!-- 一覧セクション -->
@@ -214,17 +184,15 @@ document.addEventListener('turbo:load', () => {
       <div>
         <p>
           <label class="label cursor-pointer justify-end">
+            <% if logged_in? %>
 <%= link_to bookmarks_posts_path, class: 'btn light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" do %>
   ブックマークへ行く<i class="fa-regular fa-face-laugh-squint fa-2x"></i>
+<% end %>
 <% end %>
 
         </label>
         </p>
       </div>
-<!--          ブックマーク切り替え
-          <span class="mr-2"></span>
-          <input type="checkbox" class="toggle" id="toggle-switch" data-action="change->toggle#switch">
- -->
 
         <%= render partial: "posts/posts_frame" %>
 

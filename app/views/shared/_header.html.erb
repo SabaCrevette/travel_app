@@ -2,7 +2,7 @@
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
       <%= image_tag 'favicon.ico', alt: 'ロゴ', class: 'w-10 h-10 text-white p-2 rounded-full' %>
-      <span class="ml-3 text-xl">PictoMemory</span>
+      <span class="ml-3 text-xl">Picto Memory</span>
     <% end %>
     <!-- Desktop Menu -->
     <nav class="hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
@@ -15,10 +15,10 @@
       <% end %>
     </nav>
 
-    <div class="md:hidden">
-      <div class="dropdown dropdown-bottom dropdown-end">
-        <div tabindex="0" class="m-1">メニュー</div> <!-- Hidden Click Element -->
-        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
+    <div class="md:hidden text-right">
+      <div class="dropdown dropdown-bottom dropdown-end overflow-visible ">
+        <div tabindex="0" role="button" class="btn m-1">メニュー</div> <!-- Hidden Click Element -->
+        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to 'プロフィール', profile_path, class: "mr-5 hover:text-gray-900" %></li>
           <li><%= link_to 'マイページ', '/mypage' %></li>
           <li><%= link_to '投稿する', new_post_path %></li>
