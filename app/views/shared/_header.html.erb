@@ -5,20 +5,20 @@
       <span class="ml-3 text-xl">Picto Memory</span>
     <% end %>
     <!-- Desktop Menu -->
-    <nav class="hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
+    <nav class="text-xs md:flex md:ml-auto flex-wrap items-center justify-center">
       <%= link_to 'プロフィール', profile_path, class: "mr-5 hover:text-gray-900" %>
       <%= link_to 'マイページ', '/mypage', class: "mr-5 hover:text-gray-900" %>
       <%= link_to '投稿する', new_post_path, class: "mr-5 hover:text-gray-900" %>
       <%= link_to '探す', '/search', class: "mr-5 hover:text-gray-900" %>
-      <%= link_to logout_path, data: { turbo_method: :delete }, class: "inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
+      <%= link_to logout_path, data: { turbo_method: :delete }, class: "text-xs inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
         ログアウト
       <% end %>
     </nav>
 
-    <div class="md:hidden text-right">
+<!--    <div class="md:hidden text-right">
       <div class="dropdown dropdown-bottom dropdown-end overflow-visible ">
-        <div tabindex="0" role="button" class="btn m-1">メニュー</div> <!-- Hidden Click Element -->
-        <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        <div tabindex="0" role="button" class="btn m-1">メニュー</div> 
+        <ul tabindex="0" class="text-xs dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
           <li><%= link_to 'プロフィール', profile_path, class: "mr-5 hover:text-gray-900" %></li>
           <li><%= link_to 'マイページ', '/mypage' %></li>
           <li><%= link_to '投稿する', new_post_path %></li>
@@ -29,7 +29,7 @@
             <% end %>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </div>
 </header>

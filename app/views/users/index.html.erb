@@ -4,12 +4,13 @@
     <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
     <!-- 色塗りマップ -->
     <%= render 'japanmap', user_prefectures: @user_prefectures, text: @text %>
-    <h2 class="mt-4 text-xl"><%= "#{post_count} 都道府県を探索しました" %></h2>
-    <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県制覇しました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener" do %>
+    <h2 class="mt-4 text-xl"><%= "#{post_count} 都道府県を彩りました" %></h2>
+    <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県彩りました")}&url=#{ERB::Util.url_encode(request.original_url)}&hashtags=Travel_app", target: "_blank", rel: "noopener" do %>
       <i class="fa-brands fa-square-x-twitter fa-2x"></i>
     <% end %>
   </div>
 </section>
+
 
 
 
