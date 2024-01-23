@@ -1,7 +1,7 @@
-area = Area.find_by(id: 45)
-area.update(name: '神奈川・湘南/県西') if area
+# area = Area.find_by(id: 45)
+# area.update(name: '神奈川・湘南/県西') if area
 
-
+AreaMapping.create(area_id: 30, prefecture_id: 10, city: '草津町')
 
 # prefectures = [
 #   "北海道", "青森県", "岩手県", "宮城県", "秋田県",
