@@ -4,29 +4,15 @@
       <%= image_tag 'favicon.ico', alt: 'ロゴ', class: 'w-10 h-10 text-white p-2 rounded-full' %>
       <span class="ml-3 text-xl">Picto Memory</span>
     <% end %>
-    <nav class="light:bg-white hidden md:flex md:ml-auto flex-wrap items-center text-base justify-center">
-      <%= link_to '探す', '/search', class: "mr-5 hover:text-gray-900" %>
-      <%= link_to '新規登録', new_user_path, class: "mr-5 hover:text-gray-900" %>
-      <%= link_to login_path, class: "inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
+    <nav class="text-xs md:flex md:ml-auto flex-nowrap items-center justify-center">
+      <%= link_to '探す', '/search', class: "mr-4 hover:text-gray-900" %>
+      <%= link_to '新規登録', new_user_path, class: "mr-4 hover:text-gray-900" %>
+      <%= link_to login_path, class: "text-xs inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
         ログイン
         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
           <path d="M5 12h14M12 5l7 7-7 7"></path>
         </svg>
       <% end %>
     </nav>
-    <div class="md:hidden">
-      <div class="light:bg-white dropdown dropdown-bottom dropdown-end">
-        <div tabindex="0" class="m-1">メニュー</div> <!-- Hidden Click Element -->
-        <ul tabindex="0" class="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to '探す', '/search' %></li>
-          <li><%= link_to '新規登録', new_user_path %></li>
-          <li>
-      <%= link_to login_path, class: "inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
-        ログイン
-      <% end %>
-          </li>
-        </ul>
-      </div>
-    </div>
   </div>
 </header>
