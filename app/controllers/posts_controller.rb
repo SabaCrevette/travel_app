@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @q = Post.ransack(params[:q])
     @posts = load_posts
     @context = 'posts'
+    Rails.logger.debug "Loaded posts: #{@posts.inspect}"
 
     # @posts = if (tag_name = params[:tag_name])
     #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
