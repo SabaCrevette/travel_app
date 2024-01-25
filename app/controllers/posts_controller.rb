@@ -4,12 +4,18 @@ class PostsController < ApplicationController
 
   # /search
   def index
-    @user_prefectures = UserPrefecture.all
     @text = 'みんな'
     @q = Post.ransack(params[:q])
     @posts = load_posts
     @context = 'posts'
-    Rails.logger.info "UserPrefectures: #{@user_prefectures.inspect}"
+
+    # 全ユーザーの投稿を都道府県ごとに集計
+    posts_count_by_prefecture = Post.group(:prefecture_id).count
+
+    # 集計結果をもとに、@user_prefectures に格納するデータ構造を作成
+    @user_prefectures = posts_count_by_prefecture.map do |prefecture_id, count|
+      OpenStruct.new(prefecture_id:, post_count: count)
+    end
 
     # @posts = if (tag_name = params[:tag_name])
     #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
@@ -85,10 +91,15 @@ class PostsController < ApplicationController
 
   def toggle_partial
     if params[:checked] == 'true'
+      # トグルONの時、現在のユーザーの投稿に基づくデータ
       @user_prefectures = UserPrefecture.where(user_id: current_user.id)
       @text = "#{current_user.name}さん"
     else
-      @user_prefectures = UserPrefecture.all
+      # トグルOFFの時、全ユーザーの投稿数に基づくデータをUserPrefectureオブジェクトとして構築
+      post_counts = Post.group(:prefecture_id).count
+      @user_prefectures = post_counts.map do |prefecture_id, count|
+        OpenStruct.new(prefecture_id:, post_count: count)
+      end
       @text = 'みんな'
     end
 
