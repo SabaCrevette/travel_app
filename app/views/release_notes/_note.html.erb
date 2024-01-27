@@ -1,9 +1,10 @@
 <div class="mt-4 flex items-center lg:w-3/5 mx-auto pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
-  <div class="flex-grow sm:text-left text-center mt-6 sm:mt-0">
+  <div class="flex-grow text-left md:text-center mt-6 sm:mt-0">
     <% release_notes.each do |release_note| %>
       <div class="release-note border-b pb-10 mb-10 border-gray-200 sm:flex-row flex-col">
         <h2 class="text-gray-900 text-lg title-font font-medium mb-2"><%= release_note.title %></h2>
         <p class="leading-relaxed text-base"><%= simple_format(release_note.text) %></p>
+
 
   <div class="flex justify-end">
   <% if current_user&.admin? %>
