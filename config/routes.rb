@@ -14,12 +14,16 @@ Rails.application.routes.draw do
   get 'terms_of_service', to: 'tops#terms_of_service'
   get 'privacy_policy', to: 'tops#privacy_policy'
   
+  resources :release_notes
   resources :users, only: %i[new create]
   resources :sessions, only: %i[new create destroy]
   resources :posts, except: :index do
     get 'toggle_partial', on: :collection
     collection do
       get 'bookmarks'
+      get 'autocomplete_location'
+      get 'autocomplete_text'
+      get 'autocomplete_tag_name'
     end
   end
 

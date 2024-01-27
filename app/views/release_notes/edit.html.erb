@@ -1,0 +1,10 @@
+<div class="bg-white py-6 sm:py-8 lg:py-12">
+  <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-8 lg:text-3xl">リリースノート編集</h2>
+      <%= render 'form', release_note: @release_note %>
+
+  </div>
+<div class="mt-4 flex justify-center">
+  <%= link_to '戻る', 'javascript:history.back()', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
+</div>
+</div>
