@@ -60,10 +60,10 @@
           </div>
           <div class="flex flex-col mb-4">
             <h2 class="text-sm title-font text-gray-500 tracking-widest">旅の思い出</h2>
-            <p class="leading-relaxed mb-4 mt-1"><%= @post.text %></p>
+            <p class="leading-relaxed mb-4 mt-1"><%= simple_format(@post.text) %></p>
 
               <!-- タグセクション -->
-<div class="flex flex-wrap gap-2">
+<div class="mt-4 flex flex-wrap gap-2">
   <% @post.tags.each do |tag| %>
     <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2 py-1 rounded mr-2">
       <%= tag.name %>
@@ -124,8 +124,8 @@ function initMap() {
           </div>
         </div>
       </div>
-<div class="mt-4 flex justify-center">
-  <%= link_to '戻る', 'javascript:history.back()', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
+<div class="flex justify-center">
+  <%= link_to '戻る', search_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
 </div>
     </div>
 </section>

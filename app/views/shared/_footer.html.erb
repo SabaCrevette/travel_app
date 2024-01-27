@@ -2,11 +2,11 @@
   <div class="bg-gray-100">
     <div class="container mx-auto py-4 px-5 flex flex-wrap justify-center items-center">
       <!-- Links container -->
-      <div class="flex justify-center items-center space-x-4 text-xs mb-4"> <!-- mb-4 adds margin to the bottom -->
-        <%= link_to '利用規約', terms_of_service_path %>
-        <%= link_to 'プライバシーポリシー', privacy_policy_path %> 
-        <%= link_to 'お問い合わせ', 'https://docs.google.com/forms/d/e/1FAIpQLScdBVBzYZ7O2flvV12Xgu_hop4hpiiwIPv8iTpH9wPagp_aog/viewform', target: "_blank", rel: "noopener noreferrer" %>
-        <%= link_to 'リリースノート', release_notes_path %> 
+      <div class="flex justify-center items-center text-xs mb-4"> <!-- mb-4 adds margin to the bottom -->
+        <%= link_to '利用規約', terms_of_service_path, class: "mr-2" %>
+        <%= link_to 'プライバシーポリシー', privacy_policy_path, class: "mr-2" %> 
+        <%= link_to 'お問い合わせ', 'https://docs.google.com/forms/d/e/1FAIpQLScdBVBzYZ7O2flvV12Xgu_hop4hpiiwIPv8iTpH9wPagp_aog/viewform', target: "_blank", rel: "noopener noreferrer", class: "mr-2" %>
+        <%= link_to 'リリースノート', release_notes_path, class: "mr-2" %> 
       </div>
       <!-- Footer text -->
       <p class="text-gray-500 text-sm text-center w-full">© 2024 PictoMemory</p>
