@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :bookmark_posts, through: :bookmarks, source: :post
   has_many :user_prefectures
   has_many :prefectures, through: :user_prefectures
+  has_many :release_notes
   mount_uploader :avatar, AvatarUploader
 
   attr_accessor :password, :password_confirmation
@@ -19,6 +20,8 @@ class User < ApplicationRecord
 
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true, length: { maximum: 255 }
+
+  enum role: { general: 0, admin: 1 }
 
   def bookmark(post)
     bookmark_posts << post

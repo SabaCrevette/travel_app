@@ -106,6 +106,21 @@ class PostsController < ApplicationController
     render partial: 'users/japanmap', locals: { user_prefectures: @user_prefectures, text: @text }
   end
 
+  def autocomplete_location
+    @locations = Post.select('DISTINCT location').where('location LIKE ?', "%#{params[:q]}%").limit(5)
+    render partial: 'posts/autocompletes/location', locals: { locations: @locations }
+  end
+
+  def autocomplete_text
+    @texts = Post.select('DISTINCT text').where('text LIKE ?', "%#{params[:q]}%").limit(5)
+    render partial: 'posts/autocompletes/text', locals: { texts: @texts }
+  end
+
+  def autocomplete_tag_name
+    @tag_names = Tag.select('DISTINCT name').where('name LIKE ?', "%#{params[:q]}%").limit(5)
+    render partial: 'posts/autocompletes/tag_name', locals: { tag_names: @tag_names }
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

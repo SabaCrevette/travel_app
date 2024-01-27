@@ -1,0 +1,26 @@
+<div class="mx-auto max-w-lg rounded-lg border">
+<div class="flex flex-col gap-4 p-4 md:p-8">
+
+
+<%= form_with model: release_note, local: true do |f| %>
+  <%= render 'shared/error_messages', model: f.object %>
+
+  <div>
+    <%= f.label :title, class: "mt-2 block text-sm font-bold mb-2" %>
+    <%= f.text_area :title, rows: 3, placeholder: "MM/DD  〇〇を更新しました", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+  </div>
+
+  <div>
+    <%= f.label :text, class: "mt-2 block text-sm font-bold mb-2" %>
+    <%= f.text_area :text, rows: 3, placeholder: "・〇〇を実装しました", class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+  </div>
+
+  <!-- 送信ボタン -->
+  <div>
+    <%= f.submit "投稿する", class: "block w-full mt-4 btn btn-outline h-12 px-6" %>
+  </div>
+  </div>
+<% end %>
+
+
+</div>
