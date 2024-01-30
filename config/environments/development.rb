@@ -64,4 +64,7 @@ Rails.application.configure do
 
   # 開発環境でのメーラー設定
   config.action_mailer.delivery_method = :letter_opener_web
+
+  config.log_level = :debug
+
 end

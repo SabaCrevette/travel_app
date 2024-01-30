@@ -59,7 +59,6 @@ gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'fog-aws'
 gem 'aws-sdk-s3', require:false
-gem 'dotenv-rails'
 
 # 検索処理の導入
 gem 'ransack'
@@ -70,7 +69,6 @@ gem 'geocoder'
 
 # OGPの導入
 gem 'meta-tags'
-
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
