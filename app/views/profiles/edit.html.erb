@@ -21,10 +21,21 @@
           <%= f.text_field :name, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
         </div>
 
-        <div>
-          <%= f.label :email, class: "mt-2 block text-sm font-bold mb-2" %>
-          <%= f.email_field :email, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
-        </div>
+<%# ユーザーがGoogleアカウントでログインしているかどうかを確認 %>
+<% is_google_account = @user.authentications.where(provider: 'google').exists? %>
+
+<div>
+  <%# ラベルのテキストを条件に応じて変更 %>
+  <% if is_google_account %>
+    <%= f.label :email, "メールアドレス（Googleアカウントと連携しているため変更できません）", class: "text-xs mt-2 block text-sm font-bold mb-2" %>
+  <% else %>
+    <%= f.label :email, class: "bg-gray-50mt-2 block text-sm font-bold mb-2" %>
+  <% end %>
+
+  <%# 入力フィールドにdaisyUIのスタイルを適用 %>
+  <%= f.email_field :email, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", disabled: is_google_account %>
+</div>
+
 
         <div>
         <%= f.submit '更新', class: 'block w-full mt-4 btn btn-outline h-12 px-6' %>
@@ -34,3 +45,4 @@
     </div>
   </div>
 </div>
+

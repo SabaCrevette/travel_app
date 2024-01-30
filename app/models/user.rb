@@ -3,6 +3,8 @@ class User < ApplicationRecord
 
   # パスワード更新時に、パスワードとパスワード確認のどちらも入力されていなければ、パスワードの更新処理を行わないようにする
   before_validation :skip_password_validation, on: :update
+  has_many :authentications, dependent: :destroy
+  accepts_nested_attributes_for :authentications
 
   has_many :posts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   get 'prefectures/:id/areas', to: 'prefectures#areas'
   get 'terms_of_service', to: 'tops#terms_of_service'
   get 'privacy_policy', to: 'tops#privacy_policy'
+
+  post "oauth/callback" => "oauths#callback"
+  get "oauth/callback" => "oauths#callback" 
+  get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider  
   
   resources :release_notes
   resources :users, only: %i[new create]
