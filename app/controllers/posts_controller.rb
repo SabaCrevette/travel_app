@@ -135,7 +135,7 @@ class PostsController < ApplicationController
 
   # タグの名前を取得し、分割して処理
   def extracted_tag_names
-    params[:post][:tag_names].to_s.split(/,\s*|\s+|\u3000+/).map(&:strip)
+    params[:post][:tag_names].to_s.split(/,\s*|\s+|\u3000+|、/).map(&:strip)
   end
 
   def load_posts
