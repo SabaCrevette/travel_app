@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     @posts = current_user.posts.includes(:prefecture, :tags).order(created_at: :desc)
     @user_prefectures = UserPrefecture.where(user_id: current_user.id)
     @context = 'posts'
+    @tag_recommend = RecommendPostQuery.new(current_user).call
+    @prefecture_recommend = RecommendPrefectureQuery.new(current_user).call
+    @category_recommend = RecommendCategoryQuery.new(current_user).call
   end
 
   def new

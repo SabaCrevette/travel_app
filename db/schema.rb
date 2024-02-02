@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_27_120606) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_02_030401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -51,6 +51,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_120606) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "category_tags", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id", "tag_id"], name: "index_category_tags_on_category_id_and_tag_id", unique: true
+    t.index ["category_id"], name: "index_category_tags_on_category_id"
+    t.index ["tag_id"], name: "index_category_tags_on_tag_id"
+  end
+
   create_table "post_tags", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "tag_id"
@@ -84,7 +100,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_120606) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "region_id"
     t.index ["name"], name: "index_prefectures_on_name", unique: true
+    t.index ["region_id"], name: "index_prefectures_on_region_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "release_notes", force: :cascade do |t|
@@ -125,7 +149,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_120606) do
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
     t.integer "access_count_to_reset_password_page", default: 0
+    t.bigint "category_id"
+    t.bigint "prefecture_id"
+    t.index ["category_id"], name: "index_users_on_category_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["prefecture_id"], name: "index_users_on_prefecture_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
@@ -133,12 +161,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_27_120606) do
   add_foreign_key "area_mappings", "prefectures"
   add_foreign_key "bookmarks", "posts"
   add_foreign_key "bookmarks", "users"
+  add_foreign_key "category_tags", "categories"
+  add_foreign_key "category_tags", "tags"
   add_foreign_key "post_tags", "posts"
   add_foreign_key "post_tags", "tags"
   add_foreign_key "posts", "areas"
   add_foreign_key "posts", "prefectures"
   add_foreign_key "posts", "users"
+  add_foreign_key "prefectures", "regions"
   add_foreign_key "release_notes", "users"
   add_foreign_key "user_prefectures", "prefectures"
   add_foreign_key "user_prefectures", "users"
+  add_foreign_key "users", "categories"
+  add_foreign_key "users", "prefectures"
 end
