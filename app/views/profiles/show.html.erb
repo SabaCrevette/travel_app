@@ -19,6 +19,20 @@
         <span class="block text-sm font-bold mb-2"">メールアドレス</span>
         <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"><%= current_user.email %></div>
       </div>
+
+<div>
+  <span class="block text-sm font-bold mb-2">居住都道府県（任意）</span>
+  <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+    <%= @user.prefecture ? @user.prefecture.name : '未設定' %>
+  </div>
+</div>
+
+<div>
+  <span class="block text-sm font-bold mb-2">旅の嗜好（任意）</span>
+  <div class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+    <%= @user.category ? @user.category.name : '未設定' %>
+  </div>
+</div>
       
       <div>
         <%= link_to '編集', edit_profile_path, class: 'block mt-4 btn btn-outline flex items-center justify-center h-12 px-6' %>

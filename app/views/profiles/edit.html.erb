@@ -36,6 +36,16 @@
   <%= f.email_field :email, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", disabled: is_google_account %>
 </div>
 
+<div>
+  <%= f.label :prefecture_id, "出身都道府県", class: "mt-2 block text-sm font-bold mb-2" %>
+  <%= f.collection_select :prefecture_id, @prefectures, :id, :name, { include_blank: '未選択' }, { class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" } %>
+</div>
+
+<div>
+  <%= f.label :category_id, "旅行の醍醐味", class: "mt-2 block text-sm font-bold mb-2" %>
+  <%= f.collection_select :category_id, @categories, :id, :name, { include_blank: '未選択' }, { class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" } %>
+</div>
+
 
         <div>
         <%= f.submit '更新', class: 'block w-full mt-4 btn btn-outline h-12 px-6' %>

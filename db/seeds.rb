@@ -1,7 +1,96 @@
+# カテゴリ名の配列
+category_names = [
+  "温泉",
+  "自然・絶景",
+  "食べ物・グルメ",
+  "観光地・名所",
+  "アクティビティ・体験",
+  "芸術・文化",
+  "宿泊・リゾート",
+  "音楽・エンターテイメント"
+]
+
+# カテゴリ名をデータベースに追加
+category_names.each do |name|
+  Category.find_or_create_by!(name: name)
+end
+
+# カテゴリとタグの関連付けを定義する
+# 166まで反映済み（R6.2.2）
+category_tag_assignments = [
+  # 温泉
+  { category_id: 1, tag_ids: [
+    2,11,15,82,142,143,149
+  ] }, 
+
+  # 自然・絶景
+  { category_id: 2, tag_ids: [
+    2,6,8,9,15,16,25,26,40,48,49,50,51,52,54,57,70,72,78,79,85,106,115,123,145,155,156,157,164,165,166
+  ] }, 
+
+  # 食べ物・グルメ
+  { category_id: 3, tag_ids: [
+    4,6,10,14,20,21,23,29,30,34,44,45,47,55,62,63,64,66,67,76,81,86,107,108,109,110,135,139
+  ] }, 
+
+  # 観光地・名所
+  { category_id: 4, tag_ids: [
+    1,2,4,5,6,7,8,9,10,15,16,18,20,21,22,24,27,28,32,33,35,36,38,42,43,53,56,58,61,65,69,71,73,74,75,77,80,84,89,90,
+    91,92,93,95,96,97,98,99,100,101,102,103,105,114,117,120,122,124,126,127,129,130,131,132,133,134,136,138,144,147,148,154,158,159,160,161,162,163
+  ] }, 
+
+  # アクティビイティ・体験
+  { category_id: 5, tag_ids: [
+    1,4,6,17,19,68,94,104,111,113,116,118,119,125,128,137,150
+  ] }, 
+
+  # 芸術・文化
+  { category_id: 6, tag_ids: [
+    1,3,4,6,37,39,41,46,60,140,141
+  ] }, 
+
+  # 宿泊・リゾート
+  { category_id: 7, tag_ids: [
+    2,11,12,13,15,31,59
+  ] }, 
+
+  # 音楽・エンターテイメント
+  { category_id: 8, tag_ids: [
+    83,86,87,88,121,151
+  ] }
+]
+
+# タグとカテゴリの関連付けをデータベースに保存する
+category_tag_assignments.each do |assignment|
+  assignment[:tag_ids].each do |tag_id|
+    # ここで、中間テーブルにレコードを追加します
+    CategoryTag.find_or_create_by(category_id: assignment[:category_id], tag_id: tag_id)
+  end
+end
+
+# Regionsの作成
+regions_data = [
+  { id: 1, name: '北海道・東北', prefecture_ids: [1,2,3,4,5,6,7] },
+  { id: 2, name: '関東', prefecture_ids: [8,9,10,11,12,13,14] },
+  { id: 3, name: '中部', prefecture_ids: [15,16,17,18,19,20,21,22,23] },
+  { id: 4, name: '近畿', prefecture_ids: [24,25,26,27,28,29,30] },
+  { id: 5, name: '中国', prefecture_ids: [31,32,33,34,35] },
+  { id: 6, name: '四国', prefecture_ids: [36,37,38,39] },
+  { id: 7, name: '九州・沖縄', prefecture_ids: [40,41,42,43,44,45,46,47] }
+]
+
+regions_data.each do |region_data|
+  region = Region.find_or_create_by!(id: region_data[:id], name: region_data[:name])
+  region_data[:prefecture_ids].each do |pref_id|
+    prefecture = Prefecture.find(pref_id)
+    prefecture.update!(region: region)
+  end
+end
+
 # area = Area.find_by(id: 45)
 # area.update(name: '神奈川・湘南/県西') if area
 
-AreaMapping.create(area_id: 30, prefecture_id: 10, city: '草津町')
+# AreaMapping.create(area_id: 30, prefecture_id: 10, city: '草津町')
 
 # prefectures = [
 #   "北海道", "青森県", "岩手県", "宮城県", "秋田県",

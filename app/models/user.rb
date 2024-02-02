@@ -14,6 +14,9 @@ class User < ApplicationRecord
   has_many :release_notes
   mount_uploader :avatar, AvatarUploader
 
+  belongs_to :category, optional: true
+  belongs_to :prefecture, optional: true
+
   attr_accessor :password, :password_confirmation
 
   validates :password, presence: true, length: { minimum: 3 }, confirmation: true, if: :should_validate_password?

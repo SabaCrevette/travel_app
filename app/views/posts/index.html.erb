@@ -115,11 +115,17 @@ document.addEventListener('turbo:load', () => {
     
 <%= search_form_for @q, url: "/search", class: "space-y-4", id: "search-form" do |f| %>
   <div class="flex flex-col gap-4 p-4 md:p-8">
-    <!-- 都道府県による検索 -->
-    <div>
-      <%= f.label :prefecture_id_eq, "都道府県", class: "mt-2 block text-sm font-bold mb-2" %>
-      <%= f.collection_select :prefecture_id_eq, Prefecture.all, :id, :name, { include_blank: '全件' }, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", id: "prefecture-select" %>
-    </div>
+<!-- 都道府県による検索（グループ化されたセレクトボックス） -->
+<div>
+  <%= f.label :prefecture_id_eq, "都道府県", class: "mt-2 block text-sm font-bold mb-2" %>
+<%= f.grouped_collection_select :prefecture_id_eq, 
+                                Region.joins(:prefectures).includes(:prefectures).order('regions.id, prefectures.id'), 
+                                :prefectures, :name, :id, :name, 
+                                { include_blank: '全件' }, 
+                                { class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring", id: "prefecture-select" } %>
+
+</div>
+
 
     <!-- エリアセレクトボックス -->
     <div>
