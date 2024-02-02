@@ -31,65 +31,65 @@
 </div>
 
 
-
+<%= turbo_frame_tag 'recommendations' do %>
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8 text-center">
   
-<h2 id="recommend" class="mb-4 text-center text-2xl font-bold text-gray-800 lg:text-3xl xl:mb-12"><%= current_user.name %>さんへのオススメ</h2>
-    <%= link_to '更新', '/mypage#recommend', data: { turbo: true }, class: "mb-4 badge text-xs text-gray-500 hover:text-gray-700" %>
+    <h2 id="recommend" class="mb-4 text-center text-2xl font-bold text-gray-800 lg:text-3xl"><%= current_user.name %>さんへのオススメ</h2>
+    <%= link_to '更新', '/mypage#recommend', data: { turbo_frame: 'recommendations' }, class: "mb-4 badge text-xs text-gray-500 hover:text-gray-700" %>
+
     <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:gap-6">
     
-<!-- レコメンド1：投稿データのタグに基づいたレコメンド -->
-<div class="flex justify-center">
-  <% if @tag_recommend.is_a?(String) %>
-    <p><%= @tag_recommend %></p>
-  <% elsif @tag_recommend.present? %>
-    <%= link_to post_path(@tag_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
-      <% image_url = @tag_recommend.images.first.url %>
-      <%= image_tag(image_url, alt: "Recommended post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
-    <% end %>
-  <% else %>
-    <p>投稿がありません</p>
-  <% end %>
-</div>
+      <!-- レコメンド1：投稿データのタグに基づいたレコメンド -->
+      <div class="flex justify-center">
+        <% if @tag_recommend.is_a?(String) %>
+          <p><%= @tag_recommend %></p>
+        <% elsif @tag_recommend.present? %>
+          <%= link_to post_path(@tag_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+            <% image_url = @tag_recommend.images.first.url %>
+            <%= image_tag(image_url, alt: "Recommended post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
+          <% end %>
+        <% else %>
+          <p>投稿がありません</p>
+        <% end %>
+      </div>
 
 
-<!-- レコメンド2：プロフィールの居住都道府県に基づいたレコメンド -->
-<div class="flex justify-center">
-  <% if @prefecture_recommend.is_a?(String) %>
-    <p><%= @prefecture_recommend %></p>
-  <% elsif @prefecture_recommend.present? %>
-    <%= link_to post_path(@prefecture_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
-      <% image_url = @prefecture_recommend.images.first.url %>
-      <%= image_tag(image_url, alt: "Recommended prefecture post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
-    <% end %>
-  <% else %>
-    <p>投稿がありません</p>
-  <% end %>
-</div>
+      <!-- レコメンド2：プロフィールの居住都道府県に基づいたレコメンド -->
+      <div class="flex justify-center">
+        <% if @prefecture_recommend.is_a?(String) %>
+          <p><%= @prefecture_recommend %></p>
+        <% elsif @prefecture_recommend.present? %>
+          <%= link_to post_path(@prefecture_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+            <% image_url = @prefecture_recommend.images.first.url %>
+            <%= image_tag(image_url, alt: "Recommended prefecture post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
+          <% end %>
+        <% else %>
+          <p>投稿がありません</p>
+        <% end %>
+      </div>
 
 
-<!-- レコメンド3：プロフィールの旅の嗜好に基づいたレコメンド -->
-<div class="flex justify-center">
-  <% if @category_recommend.is_a?(String) %>
-    <p><%= @category_recommend %></p>
-  <% elsif @category_recommend.present? %>
-    <%= link_to post_path(@category_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
-      <% image_url = @category_recommend.images.first.url %>
-      <%= image_tag(image_url, alt: "Recommended category post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
-    <% end %>
-  <% else %>
-    <p>投稿がありません</p>
-  <% end %>
-</div>
+      <!-- レコメンド3：プロフィールの旅の嗜好に基づいたレコメンド -->
+      <div class="flex justify-center">
+        <% if @category_recommend.is_a?(String) %>
+          <p><%= @category_recommend %></p>
+        <% elsif @category_recommend.present? %>
+          <%= link_to post_path(@category_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+            <% image_url = @category_recommend.images.first.url %>
+            <%= image_tag(image_url, alt: "Recommended category post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
+          <% end %>
+        <% else %>
+          <p>投稿がありません</p>
+        <% end %>
+      </div>
 
     </div>
   </div>
 </div>
+<% end %>
 
 
-</div>
-</div>
 
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
