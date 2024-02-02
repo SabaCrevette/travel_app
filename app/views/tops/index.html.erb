@@ -1,6 +1,6 @@
 <!-- 現状 -->
 <!-- 左に持ってくる要素 -->
-<div class="text-gray-600 body-font">
+<div class="mt-4 text-gray-600 body-font">
   <div class="container mx-auto flex px-5 mt-6 mb-4 items-center justify-center flex-col">
     <% svg_path = Rails.root.join('app', 'assets', 'images', 'top.svg') %>
     <% svg_data = File.read(svg_path) %>
@@ -14,11 +14,6 @@
     <% svg_data.gsub!(/<svg id="#{element_id}"( class="[^"]*")?/, '<svg id="' + element_id + '" class="' + class_name + '" data-controller="' + data_controller + '"') %>
 
     <%= raw(svg_data).html_safe %>
-
-<%= link_to '#use', class: "scroll-to mb-8 animate-slide-in-fwd-center" do %>
-  <i class="fa-solid fa-angles-down fa-4x"></i>
-<% end %>
-
 
 
 
