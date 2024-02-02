@@ -1,71 +1,76 @@
-<section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-    <h1 class="mt-12 animate-slide-in-fwd-center title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">
-    <%= image_tag 'logo.png', class: 'w-full h-auto rounded' %>
-    </h1>
+<!-- 現状 -->
+<!-- 左に持ってくる要素 -->
+<div class="text-gray-600 body-font">
+  <div class="container mx-auto flex px-5 mt-6 mb-4 items-center justify-center flex-col">
+    <% svg_path = Rails.root.join('app', 'assets', 'images', 'top.svg') %>
+    <% svg_data = File.read(svg_path) %>
 
-<% svg_path = Rails.root.join('app', 'assets', 'images', 'top.svg') %>
-<% svg_data = File.read(svg_path) %>
+    <%# SVG ファイル内の <svg id="japan"> タグを見つけてクラスとdata-controller属性を追加する %>
+    <% element_id = 'japan' %>
+    <% class_name = 'top-count-1 animate-slide-in-fwd-center' %>
+    <% data_controller = 'map' %>
 
-<%# SVG ファイル内の <svg id="japan"> タグを見つけてクラスとdata-controller属性を追加する %>
-<% element_id = 'japan' %>
-<% class_name = 'top-count-1 animate-slide-in-fwd-center' %>
-<% data_controller = 'map' %>
+    <%# SVG タグにクラスとdata-controller属性を追加する %>
+    <% svg_data.gsub!(/<svg id="#{element_id}"( class="[^"]*")?/, '<svg id="' + element_id + '" class="' + class_name + '" data-controller="' + data_controller + '"') %>
 
-<%# SVG タグにクラスとdata-controller属性を追加する %>
-<% svg_data.gsub!(/<svg id="#{element_id}"( class="[^"]*")?/, '<svg id="' + element_id + '" class="' + class_name + '" data-controller="' + data_controller + '"') %>
+    <%= raw(svg_data).html_safe %>
 
-<%= raw(svg_data).html_safe %>
+<%= link_to '#use', class: "scroll-to mb-8 animate-slide-in-fwd-center" do %>
+  <i class="fa-solid fa-angles-down fa-4x"></i>
+<% end %>
 
-  </div>
-</section>
 
-<section class="text-gray-600 body-font">
-  <div class="container px-5 py-8 mx-auto">
-    <div class="text-center mb-20">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-4">このアプリの使い方</h1>
-      <div class="flex mt-6 justify-center">
-        <div class="w-16 h-1 rounded-full bg-red-300 inline-flex"></div>
+
+
+<!-- 右に持ってくる要素 -->
+
+    <div class="text-gray-600 body-font">
+      <div class="container px-5 py-8 mx-auto">
+        <div class="text-center mb-1">
+          <h1 id="use" class="sm:text-3xl text-2xl font-medium title-font text-gray-900 mb-1">このアプリの使い方</h1>
+          <div class="w-16 h-1 rounded-full bg-red-300 inline-flex"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-gray-600 body-font mb-4">
+      <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center rounded-lg border">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+          <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/939e6f847a1bbd4764913f654401fbcf.png">
+        </div>
+        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">旅の思い出を投稿して<br>都道府県を彩りを添える
+          </h1>
+          <p class="mt-4 mb-2 leading-relaxed">あなたの旅の思い出を教えてください。</p>
+            <br>
+          <p class="mb-8 leading-relaxed">思い出が1つ増えると、あなたの訪れた都道府県が彩られていきます。</p>
+          <div class="flex justify-center">
+            <%= link_to '使ってみる', new_post_path, class: "ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
+          </div>
+          <div class="flex justify-center">
+            <div class="badge badge-outline mt-4">※ログイン限定機能です</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-gray-600 body-font mb-4">
+      <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center rounded-lg border">
+        <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+          <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/778d72cb5ed7baa0b579b1015a00d035.png">
+        </div>
+        <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+          <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">みなさんの投稿から<br>彩ったことのない地を探す
+          </h1>
+          <p class="mt-4 mb-2 leading-relaxed">みなさんの思い出・彩りから、あなたがまだ訪れていない地を探してみませんか？</p>
+            <br>
+          <p class="mb-8 leading-relaxed">まだ見ぬ世界を発見し、あなたの思い出に彩りを加えてみてください。</p>
+          <div class="flex justify-center">
+            <%= link_to '使ってみる', search_path, class: "ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
-
-<section class="text-gray-600 body-font mb-4">
-  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center rounded-lg border">
-    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-      <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/939e6f847a1bbd4764913f654401fbcf.png">
-    </div>
-    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">旅の思い出を投稿して<br>都道府県に色を塗る
-      </h1>
-      <p class="mt-4 mb-2 leading-relaxed">あなたの旅の思い出を教えてください。</p>
-        <br>
-      <p class="mb-8 leading-relaxed">思い出が1つ増えると、あなたの訪れた都道府県が彩られていきます。</p>
-      <div class="flex justify-center">
-        <%= link_to '使ってみる', new_post_path, class: "ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
-      </div>
-      <div class="flex justify-center">
-        <div class="badge badge-outline mt-4">※ログイン限定機能です</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="text-gray-600 body-font mb-4">
-  <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center rounded-lg border">
-    <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
-      <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/778d72cb5ed7baa0b579b1015a00d035.png">
-    </div>
-    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">みなさんの投稿から<br>彩ったことのない地を探す
-      </h1>
-      <p class="mt-4 mb-2 leading-relaxed">みなさんの思い出・彩りから、あなたがまだ訪れていない地を探してみませんか？</p>
-        <br>
-      <p class="mb-8 leading-relaxed">まだ見ぬ世界を発見し、あなたの思い出に彩りを加えてみてください。</p>
-      <div class="flex justify-center">
-        <%= link_to '使ってみる', search_path, class: "ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
-      </div>
-    </div>
-  </div>
-</section>
+</div>

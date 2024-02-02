@@ -1,8 +1,7 @@
 <header class="text-gray-600 body-font bg-gray-100">
   <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
     <%= link_to root_path, class: "flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0" do %>
-      <!-- <%= image_tag 'favicon.ico', alt: 'ロゴ', class: 'w-10 h-10 text-white p-2 rounded-full' %> -->
-      <span class="ml-3 text-xl">Picto Memory</span>
+      <%= image_tag 'logo.png', class: 'w-full h-auto rounded', style: 'max-width: 200px; max-height: 150px;' %>
     <% end %>
     <!-- Desktop Menu -->
     <nav class="text-xs md:flex md:ml-auto flex-nowrap items-center justify-center">
@@ -13,22 +12,5 @@
       <%= link_to 'ログアウト', logout_path, data: { turbo_method: :delete }, class: "hover:text-gray-900" %>
     </nav>
 
-
-<!--    <div class="md:hidden text-right">
-      <div class="dropdown dropdown-bottom dropdown-end overflow-visible ">
-        <div tabindex="0" role="button" class="btn m-1">メニュー</div> 
-        <ul tabindex="0" class="text-xs dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to 'プロフィール', profile_path, class: "mr-5 hover:text-gray-900" %></li>
-          <li><%= link_to 'マイページ', '/mypage' %></li>
-          <li><%= link_to '投稿する', new_post_path %></li>
-          <li><%= link_to '探す', '/search' %></li>
-          <li>
-            <%= link_to logout_path, data: { turbo_method: :delete }, class: "inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" do %>
-            ログアウト
-            <% end %>
-          </li>
-        </ul>
-      </div> -->
-    </div>
   </div>
 </header>
