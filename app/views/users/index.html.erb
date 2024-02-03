@@ -44,7 +44,7 @@
         <% if @tag_recommend.is_a?(String) %>
           <p><%= @tag_recommend %></p>
         <% elsif @tag_recommend.present? %>
-          <%= link_to post_path(@tag_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+          <%= link_to post_path(@tag_recommend), class: "group relative h-84 w-90 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
             <% image_url = @tag_recommend.images.first.url %>
             <%= image_tag(image_url, alt: "Recommended post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
           <% end %>
@@ -59,7 +59,7 @@
         <% if @prefecture_recommend.is_a?(String) %>
           <p><%= @prefecture_recommend %></p>
         <% elsif @prefecture_recommend.present? %>
-          <%= link_to post_path(@prefecture_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+          <%= link_to post_path(@prefecture_recommend), class: "group relative h-84 w-90 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
             <% image_url = @prefecture_recommend.images.first.url %>
             <%= image_tag(image_url, alt: "Recommended prefecture post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
           <% end %>
@@ -74,7 +74,7 @@
         <% if @category_recommend.is_a?(String) %>
           <p><%= @category_recommend %></p>
         <% elsif @category_recommend.present? %>
-          <%= link_to post_path(@category_recommend), class: "group relative h-96 w-96 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
+          <%= link_to post_path(@category_recommend), class: "group relative h-84 w-90 overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg" do %>
             <% image_url = @category_recommend.images.first.url %>
             <%= image_tag(image_url, alt: "Recommended category post image", class: 'h-full w-full object-cover object-center transition duration-200 group-hover:scale-110', loading: 'lazy') %>
           <% end %>
