@@ -30,12 +30,29 @@
   </div>
 </div>
 
-
-
 <div class="bg-white py-6 sm:py-8 lg:py-12">
   <div class="mx-auto max-w-screen-2xl px-4 md:px-8 text-center">
   
-    <h2 id="recommend" class="mb-4 text-center text-2xl font-bold text-gray-800 lg:text-3xl"><%= current_user.name %>さんへのオススメ</h2>
+<div class="flex items-center justify-center gap-2 mb-4">
+  <h2 id="recommend" class="text-2xl font-bold text-gray-800 lg:text-3xl"><%= current_user.name %>さんへのオススメ</h2>
+  <button class="badge badge-accent badge-outline" onclick="my_modal_2.showModal()">?</button>
+</div>
+
+<dialog id="my_modal_2" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">おすすめの基準</h3>
+    <p class="py-4 text-left">・あなたの投稿したタグに基づいた関連投稿</p>
+    <p class="py-4 text-left">・プロフィールに登録された都道府県近隣の投稿</p>
+    <p class="py-4 text-left">・プロフィールに登録された旅の嗜好に基づく関連投稿</p>
+    <%= link_to 'プロフィールを編集する', profile_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %> 
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>閉じる</button>
+  </form>
+</dialog>
+
+
+
     <!-- <%= link_to '更新', '/mypage#recommend', data: { turbo: true }, class: "mb-4 badge text-xs text-gray-500 hover:text-gray-700" %> -->
     <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:gap-6">
     
