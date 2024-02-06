@@ -29,7 +29,7 @@ class OauthsController < ApplicationController
       auto_login(@user)
     end
 
-    redirect_to root_path, notice: notice_message
+    redirect_to mypage_path, notice: notice_message
   rescue StandardError
     redirect_to login_path, alert: "#{provider.titleize}アカウントでのログインに失敗しました"
   end
