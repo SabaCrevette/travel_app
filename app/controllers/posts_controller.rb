@@ -2,9 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index show]
 
+  DEFAULT_TEXT = 'みんな'.freeze
+
   # /search
   def index
-    @text = 'みんな'
+    @text = DEFAULT_TEXT
     @q = Post.ransack(params[:q])
     @posts = load_posts
     @context = 'posts'
@@ -16,14 +18,6 @@ class PostsController < ApplicationController
     @user_prefectures = posts_count_by_prefecture.map do |prefecture_id, count|
       OpenStruct.new(prefecture_id:, post_count: count)
     end
-
-    # @posts = if (tag_name = params[:tag_name])
-    #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-    #            Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
-    #          else
-    #            # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-    #            Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
-    #          end
   end
 
   def new
@@ -100,7 +94,7 @@ class PostsController < ApplicationController
       @user_prefectures = post_counts.map do |prefecture_id, count|
         OpenStruct.new(prefecture_id:, post_count: count)
       end
-      @text = 'みんな'
+      @text = DEFAULT_TEXT
     end
 
     render partial: 'users/japanmap', locals: { user_prefectures: @user_prefectures, text: @text }
