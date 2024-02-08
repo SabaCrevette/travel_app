@@ -65,12 +65,4 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-
-  config.before(:each, type: :system) do
-    driven_by :remote_chrome
-    Capybara.server_host = '0.0.0.0' # Docker内でリスニングするアドレス
-    Capybara.server_port = 3001 # Seleniumとは異なるポートを使用
-    Capybara.app_host = "http://#{Capybara.current_session.server.host}:#{Capybara.current_session.server.port}"
-    Capybara.ignore_hidden_elements = false
-  end
 end
