@@ -49,6 +49,27 @@ class Post < ApplicationRecord
   enum event_status: { permanent: 0, seasonal: 1 }
   enum public_status: { open: 0, closed: 1 }
 
+  scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+  scope :by_status, lambda { |user|
+    if user
+      includes(:user, :prefecture, :tags)
+        .where('posts.user_id = :user_id OR posts.public_status = :public_status', user_id: user.id, public_status: public_statuses[:open])
+    else
+      includes(:user, :prefecture, :tags)
+        .where(public_status: public_statuses[:open])
+    end
+  }
+  scope :exclude_unvisited_prefectures, lambda { |user|
+    return all unless user
+
+    visited_prefecture_ids = user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
+    where.not(prefecture_id: visited_prefecture_ids)
+  }
+
+  def self.posts_count_by_prefecture
+    group(:prefecture_id).count
+  end
+
   # タグ名に基づいて投稿をフィルタリングするクラスメソッド
   def self.with_tag(tag_name)
     # タグに関連する投稿を取得

@@ -39,3 +39,6 @@ ja:
     update:
       success: パスワード更新に成功しました
       failure: パスワード更新に失敗しました
+  posts:
+    not_found: その記事は存在しません
+    default_text: みんな
