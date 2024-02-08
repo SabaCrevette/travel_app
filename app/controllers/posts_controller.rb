@@ -39,7 +39,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    return unless @post.closed? && (!current_user || @post.user_id != current_user.id)
+    return if post_opened_and_current_user_owned?
 
     flash[:alert] = t('posts.not_found')
     redirect_to search_path and return
@@ -133,5 +133,9 @@ class PostsController < ApplicationController
   # タグの名前を取得し、分割して処理
   def extracted_tag_names
     params[:post][:tag_names].to_s.split(/,\s*|\s+|\u3000+|、/).map(&:strip)
+  end
+
+  def post_opened_and_current_user_owned?
+    !(@post.closed? && (current_user.nil? || @post.user_id != current_user.id))
   end
 end
