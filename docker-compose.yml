@@ -24,6 +24,10 @@ services:
     tty: true
     depends_on:
       - db
+  chrome:
+    image: seleniarm/standalone-chromium:latest
+    ports:
+      - 4444:4444
 volumes:
   postgres_volume:
   node_modules:
