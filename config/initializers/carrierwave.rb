@@ -1,6 +1,6 @@
 CarrierWave.configure do |config|
   config.storage :fog
-  config.fog_provider = 'fog/aws'
+  # config.fog_provider = 'fog/aws' DEPRECATION WARNINGに該当したためコメントアウト、影響がなければ削除
   config.fog_directory = 'saba-travel-app'
   config.fog_credentials = {
     provider:              'AWS',

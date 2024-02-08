@@ -76,7 +76,7 @@ group :development, :test do
   # rubocopの導入
   gem 'rubocop', require: false
   # RSpecの導入
-  gem 'rspec-rails', '~> 5.0'
+  gem 'rspec-rails', '~> 6.1'
   # factory_botの導入
   gem 'factory_bot_rails'
   # Bulletの追加
