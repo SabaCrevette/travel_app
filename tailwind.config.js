@@ -40,6 +40,9 @@ module.exports = {
       },
       animation: {
         "slide-in-fwd-center": "slide-in-fwd-center 3.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "slide-in-fwd-center-1": "slide-in-fwd-center 3.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s both",
+        "slide-in-fwd-center-2": "slide-in-fwd-center 3.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.0s both",
+        "slide-in-fwd-center-3": "slide-in-fwd-center 3.0s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.5s both",
         flash: "flashFade 7.0s forwards",
         slideA: 'slideA 30s linear infinite',
         slideB: 'slideB 30s linear infinite',
