@@ -2,9 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
   skip_before_action :require_login, only: %i[index show]
 
+  DEFAULT_TEXT = I18n.t('posts.default_text').freeze
+
   # /search
   def index
-    @text = 'みんな'
+    @text = DEFAULT_TEXT
     @q = Post.ransack(params[:q])
     @posts = load_posts
     @context = 'posts'
@@ -16,14 +18,6 @@ class PostsController < ApplicationController
     @user_prefectures = posts_count_by_prefecture.map do |prefecture_id, count|
       OpenStruct.new(prefecture_id:, post_count: count)
     end
-
-    # @posts = if (tag_name = params[:tag_name])
-    #            # タグ名に基づいて投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-    #            Post.with_tag(tag_name).includes(:user, :prefecture, :tags).order(created_at: :desc)
-    #          else
-    #            # すべての投稿を取得し、関連するユーザー、都道府県、タグを事前読み込み
-    #            Post.includes(:user, :prefecture, :tags).order(created_at: :desc)
-    #          end
   end
 
   def new
@@ -45,22 +39,16 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    return unless @post.closed? && (!current_user || @post.user_id != current_user.id)
 
-    return unless @post.closed? && (current_user.nil? || @post.user_id != current_user.id)
-
-    flash[:alert] = 'その記事は存在しません'
-    redirect_to search_path
+    flash[:alert] = t('posts.not_found')
+    redirect_to search_path and return
   end
 
   # GET /posts/1/edit
-  def edit
-    @post = current_user.posts.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @post = current_user.posts.find(params[:id])
-
     # TagAssigner サービスを使用してタグを割り当てる
     TagAssigner.new(@post, extracted_tag_names).assign_with_removal
 
@@ -74,8 +62,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = current_user.posts.find(params[:id])
-    post.destroy!
+    @post.destroy!
     flash[:notice] = t('defaults.flash.deleted', item: Post.model_name.human)
     redirect_to search_path, status: :see_other
   end
@@ -100,7 +87,7 @@ class PostsController < ApplicationController
       @user_prefectures = post_counts.map do |prefecture_id, count|
         OpenStruct.new(prefecture_id:, post_count: count)
       end
-      @text = 'みんな'
+      @text = DEFAULT_TEXT
     end
 
     render partial: 'users/japanmap', locals: { user_prefectures: @user_prefectures, text: @text }
@@ -121,11 +108,21 @@ class PostsController < ApplicationController
     render partial: 'posts/autocompletes/tag_name', locals: { tag_names: @tag_names }
   end
 
+  def load_posts
+    @q = Post.ransack(params[:q])
+    @posts = @q.result # `distinct: true`を省略
+    @posts = @posts.with_tag(params[:tag_name]) if params[:tag_name].present?
+    @posts = @posts.exclude_unvisited_prefectures(current_user) if params[:exclude_unvisited_prefectures] == 'true'
+    @posts = @posts.by_status(current_user)
+    @posts = @posts.order(created_at: :desc)
+  end
+
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to search_path, alert: t('posts.not_found')
   end
 
   # Only allow a list of trusted parameters through.
@@ -136,34 +133,5 @@ class PostsController < ApplicationController
   # タグの名前を取得し、分割して処理
   def extracted_tag_names
     params[:post][:tag_names].to_s.split(/,\s*|\s+|\u3000+|、/).map(&:strip)
-  end
-
-  def load_posts
-    posts = filtered_posts_by_status
-    posts = filter_posts_by_tag(posts) if params[:tag_name].present?
-    posts = posts.order(created_at: :desc)
-    exclude_unvisited_prefectures(posts)
-  end
-
-  def filter_posts_by_tag(posts)
-    posts.with_tag(params[:tag_name])
-  end
-
-  def filtered_posts_by_status
-    if current_user
-      @q.result.includes(:user, :prefecture, :tags)
-        .where('posts.user_id = :user_id OR posts.public_status = :public_status',
-               user_id: current_user.id, public_status: Post.public_statuses[:open])
-    else
-      @q.result.includes(:user, :prefecture, :tags)
-        .where(public_status: Post.public_statuses[:open])
-    end
-  end
-
-  def exclude_unvisited_prefectures(posts)
-    return posts unless params[:exclude_unvisited_prefectures] == 'true' && current_user
-
-    visited_prefecture_ids = current_user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
-    posts.where.not(prefecture_id: visited_prefecture_ids)
   end
 end

@@ -1,4 +1,8 @@
+require_dependency 'concerns/addressable'
+
 class Post < ApplicationRecord
+  include Addressable
+
   belongs_to :user
   belongs_to :prefecture, optional: true
   belongs_to :city, optional: true
@@ -44,6 +48,27 @@ class Post < ApplicationRecord
 
   enum event_status: { permanent: 0, seasonal: 1 }
   enum public_status: { open: 0, closed: 1 }
+
+  scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
+  scope :by_status, lambda { |user|
+    if user
+      includes(:user, :prefecture, :tags)
+        .where('posts.user_id = :user_id OR posts.public_status = :public_status', user_id: user.id, public_status: public_statuses[:open])
+    else
+      includes(:user, :prefecture, :tags)
+        .where(public_status: public_statuses[:open])
+    end
+  }
+  scope :exclude_unvisited_prefectures, lambda { |user|
+    return all unless user
+
+    visited_prefecture_ids = user.posts.select(:prefecture_id).distinct.pluck(:prefecture_id)
+    where.not(prefecture_id: visited_prefecture_ids)
+  }
+
+  def self.posts_count_by_prefecture
+    group(:prefecture_id).count
+  end
 
   # タグ名に基づいて投稿をフィルタリングするクラスメソッド
   def self.with_tag(tag_name)
@@ -103,28 +128,5 @@ class Post < ApplicationRecord
     formatted = formatted.sub(/^\w+\+\w+\s日本、\s*/, '')
     # '日本、' を削除
     self.address = formatted.sub(/^日本、\s*/, '')
-  end
-
-  def set_area_id
-    city_name = extract_city_from_address
-    area_mapping = AreaMapping.find_by(prefecture_id:, city: city_name)
-    self.area_id = area_mapping&.area_id
-  end
-
-  def extract_city_from_address
-    # 都道府県名を除外
-    address_without_prefecture = address.sub(/\A.*?[都道府県]/, '')
-
-    # 郡名を除外（存在する場合）
-    address_without_county = address_without_prefecture.sub(/.*?郡/, '')
-
-    # 市区町村名を抽出
-    city_name = address_without_county.split(/市|区|町|村/).first.strip
-    city_name += '市' if address.include?("#{city_name}市")
-    city_name += '区' if address.include?("#{city_name}区")
-    city_name += '町' if address.include?("#{city_name}町")
-    city_name += '村' if address.include?("#{city_name}村")
-
-    city_name
   end
 end
