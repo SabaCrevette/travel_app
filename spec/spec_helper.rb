@@ -91,6 +91,4 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
-  # RSpecでFactoryBot.のPrefixなしでcreateなどを使えるようにする設定
-  config.include FactoryBot::Syntax::Methods
 end
