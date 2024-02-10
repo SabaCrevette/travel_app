@@ -1,7 +1,7 @@
 <section class="text-gray-600 body-font overflow-hidden">
   <div class="container mx-auto">
     <!-- 分割ここで指定 -->
-    <div class="lg:w-4/5 mx-auto flex flex-wrap justify-between items-center">
+    <div class="lg:w-full mx-auto flex flex-wrap justify-between items-center">
       <!-- 左の画像セクション -->
       <div class="lg:w-1/2 w-full lg:p-10 mt-6 lg:mt-0 mx-auto lg:flex lg:justify-center lg:items-center">
         <% svg_path = Rails.root.join('app', 'assets', 'images', 'top.svg') %>
@@ -22,33 +22,35 @@
           <div class="flex flex-col mb-4 px-4">
 
             <div class="animate-slide-in-fwd-center-2 text-gray-600 body-font mb-4">
-              <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center rounded-lg border">
-                <div class="lg:flex-grow md:w-1/2 flex flex-col items-center text-center">
+              <div class="container mx-auto flex px-5 py-10 flex-col lg:flex-row items-center rounded-lg border md:justify-center">
+                <div class="flex-grow flex flex-col items-center text-left md:items-center lg:items-start">
                   <div class="md:items-start md:text-left">
                   <h1 class="title-font sm:text-xl text-xl mb-4 font-medium text-gray-900">旅の思い出を投稿して<br>都道府県を彩りを添える
                   </h1>
                   <p class="text-xs mt-4 mb-2 leading-relaxed">あなたの旅の思い出を教えてください。</p>
                     <br>
-                  <p class="text-xs mb-8 leading-relaxed">思い出が1つ増えると、あなたの訪れた都道府県が彩られていきます。</p>
+                  <p class="text-xs mb-8 leading-relaxed">思い出が1つ増えると、<br>あなたの訪れた都道府県が彩られていきます。</p>
                   </div>
                   <!-- <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/939e6f847a1bbd4764913f654401fbcf.png"> -->
-                  <div class="flex justify-center">
-                    <%= link_to '使ってみる', new_post_path, class: "text-xs ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
-                    <div class="ml-4 text-xs badge badge-outline mt-4">※ログイン限定機能です</div>
+                  <div class="flex flex-col items-center">
+                    <%= link_to '使ってみる', new_post_path, class: "text-xs inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg" %>
+                    <div class="text-xs badge badge-outline mt-2">※ログイン限定機能です</div>
                   </div>
+
                 </div>
               </div>
             </div>
 
+
             <div class="animate-slide-in-fwd-center-3 text-gray-600 body-font mb-4">
-              <div class="container mx-auto flex px-5 py-10 md:flex-row flex-col items-center rounded-lg border">
-                <div class="lg:flex-grow md:w-1/2 flex flex-col items-center text-center">
+              <div class="container mx-auto flex px-5 py-10 flex-col lg:flex-row items-center rounded-lg border md:justify-center">
+                <div class="flex-grow flex flex-col items-center text-left md:items-center lg:items-start">
                   <div class="md:items-start md:text-left">
                   <h1 class="title-font sm:text-xl text-xl mb-4 font-medium text-gray-900">みなさんの投稿から<br>彩ったことのない地を探す
                   </h1>
                   <p class="text-xs mt-4 mb-2 leading-relaxed">みなさんの思い出・彩りから、<br>あなたがまだ訪れていない地を探してみませんか？</p>
                     <br>
-                  <p class="text-xs mb-8 leading-relaxed">まだ見ぬ世界を発見し、あなたの思い出に彩りを加えてみてください。</p>
+                  <p class="text-xs mb-8 leading-relaxed">まだ見ぬ世界を発見し、<br>あなたの思い出に彩りを加えてみてください。</p>
                   </div>
                   <!-- <img class="object-cover object-center rounded" alt="hero" src="https://i.gyazo.com/778d72cb5ed7baa0b579b1015a00d035.png"> -->
                   <div class="flex justify-center">
@@ -57,6 +59,7 @@
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
