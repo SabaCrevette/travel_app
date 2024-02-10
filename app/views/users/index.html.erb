@@ -27,10 +27,33 @@
       <%= link_to '準備中', '#', class: "btn btn-outline", disabled: "disabled" %>
     </div>
 
-    <div class="flex items-center justify-center gap-2 mt-4 mb-4">
-      <h2 id="recommend" class="mt-10 text-xl text-gray-800 lg:text-xl"><%= current_user.name %>さんへのオススメ</h2>
-      <button class="badge badge-accent badge-outline" onclick="my_modal_2.showModal()">?</button>
+<div class="flex flex-col items-center justify-center gap-2 mt-4 mb-4">
+  <div class="flex items-center justify-center gap-2">
+    <h2 id="recommend" class="text-xl text-gray-800 lg:text-xl"><%= current_user.name %>さんへのオススメ</h2>
+    <button class="badge badge-accent badge-outline" onclick="my_modal_2.showModal()">?</button>
+  </div>
+  <!--
+  <div class="w-full text-center"> 
+    <%= link_to '更新', '/mypage', data: { turbo: true }, class: "badge text-xs text-gray-500 hover:text-gray-700" %>
+  </div>
+  -->
+</div>
+
+
+<dialog id="my_modal_2" class="modal">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg text-center">おすすめの基準</h3>
+    <p class="py-4 text-left">・あなたの投稿したタグに基づいた関連投稿</p>
+    <p class="py-4 text-left">・プロフィールに登録された都道府県近隣の投稿</p>
+    <p class="py-4 text-left">・プロフィールに登録された旅の嗜好に基づく関連投稿</p>
+    <div class="flex justify-center">
+      <%= link_to 'プロフィールを編集する', profile_path, class: "btn btn-outline" %> 
     </div>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>閉じる</button>
+  </form>
+</dialog>
 
 
     <!-- レコメンドセクション -->
