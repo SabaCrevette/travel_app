@@ -17,6 +17,15 @@ RSpec.describe "Sessions", type: :system do
         expect(page).to have_content 'ログインしました'
         expect(current_path).to eq mypage_path
       end
+
+      it 'ログイン処理が成功する' do
+        visit login_path
+        fill_in 'Email', with: 'aaa@aaa'
+        fill_in 'Password', with: 'password'
+        click_button 'ログイン'
+        expect(page).to have_content 'ログインしました'
+        expect(current_path).to eq mypage_path
+      end
     end
   end
 end

@@ -1,61 +1,42 @@
-<section class="text-gray-600 body-font">
-  <div class="container mx-auto flex px-5 py-24 items-center justify-center flex-col">
-    <h1 class="title-font sm:text-4xl text-3xl mb-6 font-medium text-gray-900"><%= current_user.name %>さんのマイページ</h1>
+<div class="container mx-auto flex flex-wrap lg:flex-nowrap items-start justify-between">
+
+  <div class="container mx-auto flex px-5 py-10 items-center justify-center flex-col">
+    <h1 class="title-font font-bold sm:text-2xl text-3xl mt-6 text-gray-900"><%= current_user.name %>さんのマイページ</h1>
+  </div>
+
+  <!-- 左セクション: マップとツイートボタンなど -->
+  <div class="w-full lg:w-1/2 px-5 py-10 flex flex-col items-center justify-center">
     <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
-    <!-- 色塗りマップ -->
     <%= render 'japanmap', user_prefectures: @user_prefectures, text: @text %>
     <h2 class="mt-4 text-xl"><%= "#{post_count} 都道府県を彩りました" %></h2>
-<%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県彩りました")}&url=#{ERB::Util.url_encode(root_url(only_path: false))}&hashtags=PictoMemory", target: "_blank", rel: "noopener" do %>
-  <i class="fa-brands fa-square-x-twitter fa-2x"></i>
-<% end %>
-
+    <%= link_to "https://twitter.com/intent/tweet?text=#{ERB::Util.url_encode("#{post_count}/47都道府県彩りました")}&url=#{ERB::Util.url_encode(root_url(only_path: false))}&hashtags=PictoMemory", target: "_blank", rel: "noopener" do %>
+      <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+    <% end %>
   </div>
-</section>
+
+  <!-- 右セクション: ボタンとレコメンド -->
+  <div class="w-full lg:w-1/2 px-5 py-10 flex flex-col items-center">
+
+    <div class="flex items-center justify-center gap-2 mt-4 mb-4">
+      <h2 id="recommend" class="mt-10 text-xl text-gray-800 lg:text-xl">メニュー</h2>
+    </div>
+
+    <div id="buttons" class="w-full grid grid-cols-2 gap-4 mb-10">
+      <%= link_to '投稿する', new_post_path, class: "btn btn-outline" %>
+      <%= link_to '他の人の投稿を見る', '/search', class: "btn btn-outline" %>
+      <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-outline' %>
+      <%= link_to '準備中', '#', class: "btn btn-outline", disabled: "disabled" %>
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mt-4 mb-4">
+      <h2 id="recommend" class="mt-10 text-xl text-gray-800 lg:text-xl"><%= current_user.name %>さんへのオススメ</h2>
+      <button class="badge badge-accent badge-outline" onclick="my_modal_2.showModal()">?</button>
+    </div>
 
 
-
-
-
-<div class="flex flex-col justify-center items-center">
-  <div id="buttons"justify-self class="grid grid-cols-2 gap-4 mx-auto max-w-lg"> <!-- mx-auto max-w-lg rounded-lg border -->
-
-    <%= link_to '投稿する', new_post_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
-    <%= link_to '他の人の投稿を見る', '/search', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %>
-
-    <%= link_to 'ブックマーク', bookmarks_posts_path, class: 'btn btn-outline col-span-2 sm:col-span-1 max-w-xs', role: "button" %>
-    <%= link_to '準備中', '#', class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs", disabled: "disabled" %>
-    
-    <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
-
-  </div>
-</div>
-
-<div class="bg-white py-6 sm:py-8 lg:py-12">
-  <div class="mx-auto max-w-screen-2xl px-4 md:px-8 text-center">
-  
-<div class="flex items-center justify-center gap-2 mb-4">
-  <h2 id="recommend" class="text-2xl font-bold text-gray-800 lg:text-3xl"><%= current_user.name %>さんへのオススメ</h2>
-  <button class="badge badge-accent badge-outline" onclick="my_modal_2.showModal()">?</button>
-</div>
-
-<dialog id="my_modal_2" class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">おすすめの基準</h3>
-    <p class="py-4 text-left">・あなたの投稿したタグに基づいた関連投稿</p>
-    <p class="py-4 text-left">・プロフィールに登録された都道府県近隣の投稿</p>
-    <p class="py-4 text-left">・プロフィールに登録された旅の嗜好に基づく関連投稿</p>
-    <%= link_to 'プロフィールを編集する', profile_path, class: "btn btn-outline col-span-2 sm:col-span-1 max-w-xs" %> 
-  </div>
-  <form method="dialog" class="modal-backdrop">
-    <button>閉じる</button>
-  </form>
-</dialog>
-
-
-
-    <!-- <%= link_to '更新', '/mypage#recommend', data: { turbo: true }, class: "mb-4 badge text-xs text-gray-500 hover:text-gray-700" %> -->
+    <!-- レコメンドセクション -->
     <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-3 xl:gap-6">
-    
+      <!-- レコメンド1 -->
       <!-- レコメンド1：投稿データのタグに基づいたレコメンド -->
       <div class="flex justify-center">
         <% if @tag_recommend.is_a?(String) %>
@@ -69,9 +50,7 @@
           <p>投稿がありません</p>
         <% end %>
       </div>
-
-
-      <!-- レコメンド2：プロフィールの居住都道府県に基づいたレコメンド -->
+      <!-- レコメンド2 -->
       <div class="flex justify-center">
         <% if @prefecture_recommend.is_a?(String) %>
           <p><%= @prefecture_recommend %></p>
@@ -84,9 +63,7 @@
           <p>投稿がありません</p>
         <% end %>
       </div>
-
-
-      <!-- レコメンド3：プロフィールの旅の嗜好に基づいたレコメンド -->
+      <!-- レコメンド3 -->
       <div class="flex justify-center">
         <% if @category_recommend.is_a?(String) %>
           <p><%= @category_recommend %></p>
@@ -99,14 +76,11 @@
           <p>投稿がありません</p>
         <% end %>
       </div>
-      
     </div>
   </div>
-</div>
-
 
 </div>
-</div>
+
 
 
 <div id="posts-list-section" class="bg-white py-6 sm:py-8 lg:py-12">
