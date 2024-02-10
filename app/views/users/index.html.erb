@@ -1,9 +1,8 @@
-<div class="container mx-auto flex flex-wrap lg:flex-nowrap items-start justify-between">
-
   <div class="container mx-auto flex px-5 py-10 items-center justify-center flex-col">
     <h1 class="title-font font-bold sm:text-2xl text-3xl mt-6 text-gray-900"><%= current_user.name %>さんのマイページ</h1>
   </div>
 
+<div class="container mx-auto flex flex-wrap lg:flex-nowrap items-start justify-between">
   <!-- 左セクション: マップとツイートボタンなど -->
   <div class="w-full lg:w-1/2 px-5 py-10 flex flex-col items-center justify-center">
     <% post_count = current_user.posts.select(:prefecture_id).distinct.count %>
