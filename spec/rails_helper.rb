@@ -34,6 +34,7 @@ end
 RSpec.configure do |config|
   # RSpecでFactoryBot.のPrefixなしでcreateなどを使えるようにする設定
   config.include FactoryBot::Syntax::Methods
+  config.include SystemHelper, type: :system
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
