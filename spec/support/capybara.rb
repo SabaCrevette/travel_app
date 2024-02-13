@@ -21,6 +21,10 @@ Capybara.register_driver :remote_chrome do |app|
 end
 
 RSpec.configure do |config|
+  Capybara.configure do |capybara_config|
+    capybara_config.exact = true
+  end
+  
   config.before(:each, type: :system) do
     driven_by :rack_test
   end
