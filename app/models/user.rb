@@ -43,7 +43,7 @@ class User < ApplicationRecord
   private
 
   def should_validate_password?
-    password.present? || password_confirmation.present?
+    new_record? || password.present? || password_confirmation.present?
   end
 
   def skip_password_validation
