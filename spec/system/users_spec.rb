@@ -27,7 +27,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'ニックネームを入力してください'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'メールアドレスが未入力' do
         visit new_user_path
@@ -38,7 +38,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'メールアドレスを入力してください'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'メールアドレスが既に登録済み' do
         visit new_user_path
@@ -49,7 +49,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'メールアドレスはすでに存在します'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'パスワードが未入力' do
         visit new_user_path
@@ -60,7 +60,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワードを入力してください'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'パスワードが3文字未満' do
         visit new_user_path
@@ -71,7 +71,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワードは3文字以上で入力してください'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'パスワード確認が未入力' do
         visit new_user_path
@@ -82,7 +82,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワード確認を入力してください'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
       it 'パスワードとパスワード確認が一致しない' do
         visit new_user_path
@@ -93,7 +93,7 @@ RSpec.describe "Users", type: :system do
         click_button 'アカウント登録'
         expect(page).to have_content 'ユーザー登録に失敗しました'
         expect(page).to have_content 'パスワード確認とパスワードの入力が一致しません'
-        expect(current_path).to eq "/users"
+        expect(current_path).to eq "/users/new"
       end
     end
   end

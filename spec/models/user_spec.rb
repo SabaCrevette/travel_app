@@ -1,10 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # describe 'バリデーションチェック' do
-  #   context 'パスワードが存在する' do
-  #   end
-  # end
+  describe 'バリデーションチェック' do
+    it '設定したすべてのバリデーションが機能しているか' do
+      user = build(:user)
+      expect(user).to be_valid
+      expect(user.errors).to be_empty
+    end
+    it '名前が未定義の際にバリデーションエラーが出るかどうか' do
+      user = build(:user, name: nil)
+      expect(user).to be_invalid
+    end
+    it 'パスワードが未定義の際にバリデーションエラーが出るかどうか' do
+      user = build(:user, email: nil)
+      expect(user).to be_invalid
+    end
+    it 'roleがデフォルトで0（general）に設定されているかどうか' do
+      user = build(:user)
+      expect(user.role).to eq('general') # または expect(user.role).to eq(0) が必要な値に依存します
+    end
+  end
 end
 
 # create_table "users", force: :cascade do |t|

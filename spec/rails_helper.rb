@@ -5,6 +5,7 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
+require 'factory_bot'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -34,7 +35,7 @@ end
 RSpec.configure do |config|
   # RSpecでFactoryBot.のPrefixなしでcreateなどを使えるようにする設定
   config.include FactoryBot::Syntax::Methods
-  config.include SystemHelper, type: :system
+  config.include LoginMacros, type: :system
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = ["#{::Rails.root}/spec/fixtures"]
@@ -64,6 +65,23 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
+  config.filter_run_when_matching :focus
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+  if ENV['CODEBUILD_BUILD_ID']
+    config.before(:each, type: :system) do
+      driven_by :selenium, using: :headless_chrome, screen_size: [1920, 1080]
+      Capybara.ignore_hidden_elements = false
+    end
+  else
+    config.before(:each, type: :system) do
+      driven_by :remote_chrome
+      Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+      Capybara.server_port = 4444
+      Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+      Capybara.ignore_hidden_elements = false
+    end
+  end
+
+  config.include Sorcery::TestHelpers::Rails::Request, type: :request
 end
