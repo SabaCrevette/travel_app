@@ -23,7 +23,7 @@
   <!-- 画像選択 -->
   <div>
     <%= f.label :images, "画像を選択（最低1枚、最大4枚）*", class: "mt-2 block text-sm font-bold mb-2" %>
-    <%= f.file_field :images, multiple: true, class: "mb-2block file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
+    <%= f.file_field :images, multiple: true, class: "mb-2 block file-input file-input-bordered w-full max-w-xs", accept: 'image/jpeg,image/png,image/webp,image/heic' %>
     <!-- <%= f.hidden_field :images_cache %> -->
     <% if @post.new_record? %>
       <% @post.images.each do |image| %>
