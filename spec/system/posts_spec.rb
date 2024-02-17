@@ -35,7 +35,7 @@ RSpec.describe "Posts", type: :system do
         expect(current_path).to eq new_post_path
         expect(page).to have_selector('select#post_prefecture_id') # ここでセレクトボックスの存在を確認
       end
-      xit '投稿画像1枚で成功する(jpg)' do
+      xit '投稿画像1枚で成功する(jpg)' do #GeocodingAPIを用いるためテストスキップ処理
         fill_in 'post[location]', with: '富良野ラベンダー畑'
         fill_in 'post[text]', with: 'めちゃくちゃ綺麗'
         attach_file('post[images][]', image_path, visible: false) # 修正: visible: falseオプションを使用

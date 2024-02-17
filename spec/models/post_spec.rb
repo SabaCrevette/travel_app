@@ -6,28 +6,28 @@ RSpec.describe Post, type: :model do
 
   describe 'バリデーションチェック' do
     context '必須項目が全て入力されている場合' do
-      let(:post) { build(:post, user: user, prefecture: prefecture, images: [fixture_file_upload('path/to/image.jpg', 'image/jpeg')]) }
+      let(:post) { build(:post, user: user, prefecture: prefecture, images: [fixture_file_upload('sample1.jpeg', 'image/jpeg')]) }
 
-      fit '投稿が有効であること' do
+      it '投稿が有効であること' do
         expect(post).to be_valid
       end
     end
 
     context 'locationが空の場合' do
-      let(:post) { build(:post, user: user, prefecture: prefecture, images: [fixture_file_upload('path/to/image.jpg', 'image/jpeg')]) }
+      let(:post) { build(:post, user: user, prefecture: prefecture, location: '', images: [fixture_file_upload('sample1.jpeg', 'image/jpeg')]) }
 
-      fit '投稿が無効であること' do
+      it '投稿が無効であること' do
         expect(post).not_to be_valid
-        expect(post.errors[:location]).to include("can't be blank")
+        expect(post.errors[:location]).to include("を入力してください")
       end
     end
 
     context 'textが空の場合' do
-      let(:post) { build(:post, user: user, prefecture: prefecture, images: [fixture_file_upload('path/to/image.jpg', 'image/jpeg')]) }
+      let(:post) { build(:post, user: user, prefecture: prefecture, text: '', images: [fixture_file_upload('sample1.jpeg', 'image/jpeg')]) }
 
-      fit '投稿が無効であること' do
+      it '投稿が無効であること' do
         expect(post).not_to be_valid
-        expect(post.errors[:text]).to include("can't be blank")
+        expect(post.errors[:text]).to include("を入力してください")
       end
     end
   end
@@ -35,11 +35,11 @@ RSpec.describe Post, type: :model do
   describe 'デフォルト値の検証' do
     let(:post) { build(:post, prefecture: prefecture) }
 
-    fit 'event_statusがデフォルトで0に設定されていること' do
+    it 'event_statusがデフォルトで0に設定されていること' do
       expect(post.event_status).to eq("permanent") # enumのキーに修正
     end
 
-    fit 'public_statusがデフォルトで0に設定されていること' do
+    it 'public_statusがデフォルトで0に設定されていること' do
       expect(post.public_status).to eq("open") # enumのキーに修正
     end
   end
