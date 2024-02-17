@@ -1,9 +1,18 @@
 FactoryBot.define do
   factory :post do
-    sequence(:location, "location_1")
+    association :user
+    association :prefecture
+    sequence(:location) { |n| "location_#{n}" }
     text { "綺麗だった" }
+    event_status { 0 }
+    public_status { 0 }
+    address { "北海道新得町" }
+    latitude { 43.2203266 }
+    longitude { 142.8634737 }
+    images { [Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/sample1.jpeg'), 'image/jpeg')] }
   end
 end
+
 
 
 
