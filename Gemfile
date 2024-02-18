@@ -63,6 +63,8 @@ gem 'aws-sdk-s3', require:false
 # 検索処理の導入
 gem 'ransack'
 
+# ページネーションの導入
+gem 'kaminari'
 
 # Geocodingの導入
 gem 'geocoder'

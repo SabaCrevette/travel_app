@@ -3,10 +3,17 @@
   <%= link_to '検索リセット', search_path, class: "badge text-xs text-gray-500 hover:text-gray-700" %>
 </div>
 
-<div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
-  <% if @posts.present? %>
+<% if @posts.present? %>
+  <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-3 md:mb-8 md:grid-cols-4 md:gap-6 xl:gap-8">
     <%= render partial: "post", collection: @posts, locals: { context: @context } %>
-  <% else %>
-    <div class="mb-3">投稿がありません</div>
-  <% end %>
+  </div>
+<% else %>
+  <div class="flex justify-center items-center h-64"> <!-- ここで高さを指定しています -->
+    <div>投稿がありません</div>
+  </div>
+<% end %>
+
+<div class="flex justify-center">
+  <!-- ページネーション -->
+  <%= paginate @posts %>
 </div>

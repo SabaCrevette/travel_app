@@ -200,19 +200,15 @@ document.addEventListener('turbo:load', () => {
         <p>
           <label class="label cursor-pointer justify-end">
             <% if logged_in? %>
-<%= link_to bookmarks_posts_path, class: 'btn light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" do %>
-  ブックマークへ行く<i class="fa-regular fa-face-laugh-squint fa-2x"></i>
-<% end %>
-<% end %>
-
-        </label>
+              <%= link_to bookmarks_posts_path, class: 'btn light:btn col-span-2 light:text-gray-800 sm:col-span-1', role: "button" do %>
+                ブックマークへ行く<i class="fa-regular fa-face-laugh-squint fa-2x"></i>
+              <% end %>
+            <% end %>
+          </label>
         </p>
       </div>
-
         <%= render partial: "posts/posts_frame" %>
-
-
+    </div>
   </div>
-</div>
 </div>
 
