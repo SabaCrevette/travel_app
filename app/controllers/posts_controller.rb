@@ -114,7 +114,7 @@ class PostsController < ApplicationController
     @posts = @posts.with_tag(params[:tag_name]) if params[:tag_name].present?
     @posts = @posts.exclude_unvisited_prefectures(current_user) if params[:exclude_unvisited_prefectures] == 'true'
     @posts = @posts.by_status(current_user)
-    @posts = @posts.order(created_at: :desc)
+    @posts = @posts.order(created_at: :desc).page(params[:page]) # ページネーション
   end
 
   private
