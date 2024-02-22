@@ -1,5 +1,7 @@
 # PictoMemory
 
+サービスURL：https://pictomemory.com/
+
 [![Image from Gyazo](https://i.gyazo.com/87e4d2de1fe517232ac53aa05bd86102.png)](https://gyazo.com/87e4d2de1fe517232ac53aa05bd86102)
 
 ## ■サービス概要
@@ -95,20 +97,15 @@
 - レコメンド機能（未踏の都道府県やタグを基に提供）
 - Googleログイン
 
-## ■ 機能の実装方針予定
-- フロントエンド
-  - JavaScript
-  - TailWind CSS（daisyUI）
-- バックエンド
-  - Ruby 3.2.2
-  - Ruby on Rails 7.1.2
-- データベース
-  - PostgreSQL
-- インフラ
-  - Heroku
-  - AmazonS3
-- API
-  - GoogleGeocodingAPI
+## ■ 使用技術一覧
+|  | 使用技術 |
+|:-----------|:------------|
+| フロントエンド       | TailwindCSS（＋daisyUI）<br>JavaScript<br>Hotwire（Turbo / Stimulus）|
+| バックエンド     | Ruby 3.2.2<br>Ruby on Rails 7.1.2      |
+| データベース       | PostgreSQL        |
+| インフラ         | Heroku <br> AmazonS3         |
+| API       | GoogleGeocodingAPI <br> Maps JavaScript API |
+| その他    | docker     |
 
 ## 画面遷移図
 https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=LuFJgdIqyuprDBfb-1
@@ -117,5 +114,7 @@ https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%
 [![Image from Gyazo](https://i.gyazo.com/0e9c8a44ad8962e2c117a86e111da0a2.png)](https://gyazo.com/0e9c8a44ad8962e2c117a86e111da0a2)
 
 ## セットアップ方法
+- `docker compose build`
 - `docker compose up`
 - `docker compose exec web bash`
+- `bin/dev`（CSS/JavaScript/daisyUIの更新）
