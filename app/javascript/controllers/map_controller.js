@@ -21,7 +21,7 @@ export default class extends Controller {
       }
 
       // ランダムなクラスを追加
-      const randomClass = 'top-count-' + Math.floor(Math.random() * 5);
+      const randomClass = 'top-count-' + Math.floor(Math.random() * 4);
       path.classList.add(randomClass);
 
       // 次のクラス変更までのランダムな待機時間を設定
@@ -32,3 +32,8 @@ export default class extends Controller {
     changeClass();
   }
 }
+
+// メモ
+// Math.random()  0以上1未満のランダムな浮動小数点数を生成
+// 上記に*5で0以上5未満の値となる。
+// Math.floorで小数点以下を切り捨てる（下に丸める）
