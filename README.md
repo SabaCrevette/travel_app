@@ -1,6 +1,7 @@
 # PictoMemory
 
-サービスURL：https://pictomemory.com/
+サービスURL：https://pictomemory.com/ 
+アプリ解説記事：https://qiita.com/SabaCrevette/items/90b132b5b292f407d19c
 
 [![Image from Gyazo](https://i.gyazo.com/87e4d2de1fe517232ac53aa05bd86102.png)](https://gyazo.com/87e4d2de1fe517232ac53aa05bd86102)
 
@@ -105,7 +106,7 @@
 | データベース       | PostgreSQL        |
 | インフラ         | Heroku <br> AmazonS3         |
 | API       | GoogleGeocodingAPI <br> Maps JavaScript API |
-| その他    | docker     |
+| その他    | docker <br> RSpec  |
 
 ## 画面遷移図
 https://www.figma.com/file/y18bXLd8HjhH2SQWC7s3hl/travel_app-%E7%94%BB%E9%9D%A2%E9%81%B7%E7%A7%BB%E5%9B%B3?type=design&node-id=0%3A1&mode=design&t=LuFJgdIqyuprDBfb-1
