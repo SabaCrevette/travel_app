@@ -1,6 +1,7 @@
 # PictoMemory
 
-サービスURL：https://pictomemory.com/ 
+サービスURL：https://pictomemory.com    
+
 アプリ解説記事：https://qiita.com/SabaCrevette/items/90b132b5b292f407d19c
 
 [![Image from Gyazo](https://i.gyazo.com/87e4d2de1fe517232ac53aa05bd86102.png)](https://gyazo.com/87e4d2de1fe517232ac53aa05bd86102)
